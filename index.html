@@ -715,7 +715,32 @@
                         `;
                     });
                 } else {
-                    listEl.innerHTML = '<p style="color: #888; text-align: center; font-size: 12px; margin-top: 30px;">কোনো ভিআইপি প্ল্যান উপলব্ধ নেই।</p>';
+                    listEl.innerHTML = `
+                        <div class="plan-card">
+                            <div class="plan-title">
+                                <span>🔥 Plan 200 TK 1 MONTH</span>
+                                <span class="plan-price-tag">৳200</span>
+                            </div>
+                            <div class="plan-details">
+                                <div>⏳ মেয়াদ: <strong>1 month</strong></div>
+                                <div>💰 দৈনিক আয়: <strong>৳20</strong></div>
+                                <div>📝 বিবরণ: প্রতি দিন টাস্ক সম্পন্ন করে ২০ টাকা আয় করুন।</div>
+                            </div>
+                            <button class="plan-btn" onclick="buyVipPlan('default_1', 200, 'Plan 200 TK 1 MONTH', 20)">প্যাকেজ কিনুন</button>
+                        </div>
+                        <div class="plan-card">
+                            <div class="plan-title">
+                                <span>🔥 PLAN 500 TK 1 MONTH</span>
+                                <span class="plan-price-tag">৳500</span>
+                            </div>
+                            <div class="plan-details">
+                                <div>⏳ মেয়াদ: <strong>1 month</strong></div>
+                                <div>💰 দৈনিক আয়: <strong>৳30</strong></div>
+                                <div>📝 বিবরণ: প্রতিদিন টাস্ক সম্পন্ন করে ৩০ টাকা আয় করুন।</div>
+                            </div>
+                            <button class="plan-btn" onclick="buyVipPlan('default_2', 500, 'PLAN 500 TK 1 MONTH', 30)">প্যাকেজ কিনুন</button>
+                        </div>
+                    `;
                 }
             });
         }
