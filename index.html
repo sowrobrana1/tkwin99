@@ -434,8 +434,8 @@
             <div style="background: #0b111e; border: 1px dashed #ffd700; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 11px; color: #2ecc71;">
                 ⚡ ফাস্ট গেমপ্লে • নো ল্যাগ • লাইভ নোটিফিকেশন
             </div>
-            <!-- এখানে ডিরেক্ট গুগল ড্রাইভ ডাউনলোড লিংক বসানো হয়েছে -->
-            <a id="apkDownloadBtnLink" href="https://drive.google.com/uc?export=download&id=1puW3sNhWTlSVvvpM2bQWuIrOT040qq92" class="btn-submit" style="display: block; text-decoration: none; padding: 12px; text-align: center; margin-bottom: 8px; background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%); color: #fff;">
+            <!-- এখানে আপনার নতুন আপডেট করা গুগল ড্রাইভ ডিরেক্ট ডাউনলোড লিংক বসানো হয়েছে -->
+            <a id="apkDownloadBtnLink" href="https://drive.google.com/uc?export=download&id=11eS6GvrP5VwmcT92cBpzcm1krCdcvmrJ" class="btn-submit" style="display: block; text-decoration: none; padding: 12px; text-align: center; margin-bottom: 8px; background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%); color: #fff;">
                 📥 অ্যাপ ডাউনলোড করুন (APK)
             </a>
             <button type="button" class="btn-login" style="width: 100%; padding: 8px; font-size: 11px;" onclick="closeModal('appDownloadModal')">পরে ডাউনলোড করব</button>
@@ -601,7 +601,7 @@
             db.ref('app_settings').on('value', snap => {
                 const appData = snap.val() || {};
                 const latestVersion = appData.latestVersion || "1.0.0";
-                const apkUrl = appData.apkUrl || "https://drive.google.com/uc?export=download&id=1puW3sNhWTlSVvvpM2bQWuIrOT040qq92";
+                const apkUrl = appData.apkUrl || "https://drive.google.com/uc?export=download&id=11eS6GvrP5VwmcT92cBpzcm1krCdcvmrJ";
 
                 document.getElementById('apkDownloadBtnLink').href = apkUrl;
 
@@ -825,7 +825,6 @@
             });
         }
 
-        // রাত ১২টার পর (তারিখ পরিবর্তন হলে) নতুন টাস্ক ক্লেইম করার আপডেট ফাংশন
         function claimDailyTask(pushKey, dailyIncome) {
             if(!activeUserPhone) return;
             const todayStr = new Date().toDateString(); 
