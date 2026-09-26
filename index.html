@@ -826,7 +826,7 @@
 
         function claimDailyTask(pushKey, dailyIncome) {
             if(!activeUserPhone) return;
-            const todayStr = new Date().toDateString();
+            const todayStr = new Date().toDateString(); // Ajker tarikh (Jemon: Sat Sep 26 2026)
 
             db.ref('users/' + activeUserPhone).once('value').then(snap => {
                 let userData = snap.val() || {};
@@ -835,8 +835,10 @@
 
                 planRef.once('value').then(pSnap => {
                     let planData = pSnap.val();
+                    
+                    // Jodi ajker tarikh-e already claim kora thake
                     if(planData.lastClaimDate === todayStr) {
-                        alert("আজকের টাস্ক ইতিমধ্যে কমপ্লিট করা হয়েছে!");
+                        alert("আজকের টাস্ক ইতিমধ্যে কমপ্লিট করা হয়েছে! আগামী রাত ১২টার পর আবার টাস্ক ক্লেইম করতে পারবেন।");
                         return;
                     }
 
