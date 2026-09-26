@@ -1126,17 +1126,49 @@
             loadPurchasedPlans();
         }
 
+        // ফিক্সড ও নিখুঁত loadUserRecords ফাংশন যা ডিপোজিট ও উইথড্র হিস্ট্রি দেখাবে
         function loadUserRecords(phone) {
+            if (!phone) return;
+
             db.ref('deposits').on('value', snap => {
                 const box = document.getElementById('userDepositHistory');
+                if (!box) return;
                 box.innerHTML = '';
                 const data = snap.val();
-                if(data) {
+                let found = false;
+
+                if (data) {
                     Object.values(data).reverse().forEach(item => {
-                        if(item.phone === phone) {
-                            box.innerHTML += `<div class="record-card">৳${item.amount} - ${item.status}</div>`;
+                        if (String(item.phone).trim() === String(phone).trim()) {
+                            found = true;
+                            let statusClass = item.status === 'success' ? 'status-success' : (item.status === 'rejected' ? 'status-rejected' : 'status-pending');
+                            box.innerHTML += `<div class="record-card">৳${item.amount} (${item.method}) - <span class="${statusClass}">${item.status}</span></div>`;
                         }
                     });
+                }
+                if (!found) {
+                    box.innerHTML = '<p style="color: #888; text-align: center; font-size: 11px; padding: 5px;">কোনো ডিপোজিট রেকর্ড নেই</p>';
+                }
+            });
+
+            db.ref('withdrawals').on('value', snap => {
+                const box = document.getElementById('userWithdrawHistory');
+                if (!box) return;
+                box.innerHTML = '';
+                const data = snap.val();
+                let found = false;
+
+                if (data) {
+                    Object.values(data).reverse().forEach(item => {
+                        if (String(item.phone).trim() === String(phone).trim()) {
+                            found = true;
+                            let statusClass = item.status === 'success' ? 'status-success' : (item.status === 'rejected' ? 'status-rejected' : 'status-pending');
+                            box.innerHTML += `<div class="record-card">৳${item.amount} (${item.method}) - <span class="${statusClass}">${item.status}</span></div>`;
+                        }
+                    });
+                }
+                if (!found) {
+                    box.innerHTML = '<p style="color: #888; text-align: center; font-size: 11px; padding: 5px;">কোনো উইথড্র রেকর্ড নেই</p>';
                 }
             });
         }
