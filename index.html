@@ -423,6 +423,24 @@
         </div>
     </div>
 
+    <!-- App Download Popup Modal -->
+    <div class="modal" id="appDownloadModal">
+        <div class="modal-box" style="text-align: center;">
+            <span class="close-modal" onclick="closeModal('appDownloadModal')">&times;</span>
+            <h3 style="color: #ffd700; margin-bottom: 10px;">📱 TKWIN99 অফিসিয়াল অ্যাপ</h3>
+            <p style="font-size: 12px; color: #ccc; margin-bottom: 15px; line-height: 1.5;">
+                আরও দ্রুত এবং স্মুথ গেমিং অভিজ্ঞতার জন্য আমাদের অ্যান্ড্রয়েড অ্যাপটি ডাউনলোড করুন!
+            </p>
+            <div style="background: #0b111e; border: 1px dashed #ffd700; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 11px; color: #2ecc71;">
+                ⚡ ফাস্ট গেমপ্লে • নো ল্যাগ • লাইভ নোটিফিকেশন
+            </div>
+            <a id="apkDownloadBtnLink" href="#" class="btn-submit" style="display: block; text-decoration: none; padding: 12px; text-align: center; margin-bottom: 8px; background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%); color: #fff;">
+                📥 অ্যাপ ডাউনলোড করুন (APK)
+            </a>
+            <button type="button" class="btn-login" style="width: 100%; padding: 8px; font-size: 11px;" onclick="closeModal('appDownloadModal')">পরে ডাউনলোড করব</button>
+        </div>
+    </div>
+
     <div class="modal" id="taskDetailModal">
         <div class="modal-box" style="text-align: center;">
             <span class="close-modal" onclick="closeModal('taskDetailModal')">&times;</span>
@@ -542,6 +560,9 @@
         let currentBetAmount = betSteps[currentBetIndex];
         let adminWinPercentage = 50;
 
+        // বর্তমান অ্যাপ ভার্সন (অটো আপডেট চেকের জন্য)
+        const currentAppVersion = "1.0.0";
+
         window.onload = function() {
             const urlParams = new URLSearchParams(window.location.search);
             const refCode = urlParams.get('ref');
@@ -573,7 +594,34 @@
 
             loadVipPlans();
             loadPurchasedPlans();
+            checkAppVersionAndPopup();
         };
+
+        // ওয়েবসাইট ওপেন হওয়ার পর অ্যাপ ডাউনলোড পপ-আপ দেখানোর লজিক
+        function checkAppVersionAndPopup() {
+            db.ref('app_settings').on('value', snap => {
+                const appData = snap.val() || {};
+                const latestVersion = appData.latestVersion || "1.0.0";
+                const apkUrl = appData.apkUrl || "#";
+
+                // ডাউনলোড লিংকে ফায়ারবেসের দেওয়া এপিকে লিংক সেট করা
+                document.getElementById('apkDownloadBtnLink').href = apkUrl;
+
+                // যদি নতুন ভার্সন আসে অ্যালার্ট দেওয়া
+                if (latestVersion !== currentAppVersion) {
+                    alert(`⚠️ নতুন অ্যাপ আপডেট উপলব্ধ (${latestVersion})!\n\nদয়া করে লেটেস্ট ভার্সন ডাউনলোড করে নিন।`);
+                }
+            });
+
+            // প্রথমবার ভিজিট করলে পপ-আপ শো করা
+            if (!sessionStorage.getItem('app_popup_shown')) {
+                setTimeout(() => {
+                    const modal = document.getElementById('appDownloadModal');
+                    if(modal) modal.style.display = 'flex';
+                }, 2000);
+                sessionStorage.setItem('app_popup_shown', 'true');
+            }
+        }
 
         // ফোনের ব্যাক বাটন হ্যান্ডেল করার জন্য হিস্ট্রি লিসেনার
         window.addEventListener('popstate', function (event) {
@@ -691,7 +739,6 @@
                 let userData = snap.val() || {};
                 let currentBal = Number(userData.balance || 0);
                 
-                // Check if user already purchased this exact plan ID
                 let purchasedPlans = userData.purchased_plans || {};
                 let alreadyBought = Object.values(purchasedPlans).some(p => p.planId === planId);
 
@@ -709,7 +756,6 @@
                     currentBal -= price;
                     db.ref('users/' + activeUserPhone).update({ balance: currentBal });
 
-                    // Save purchased plan to user node
                     db.ref('users/' + activeUserPhone + '/purchased_plans').push({
                         planId: planId,
                         planName: planName,
@@ -779,7 +825,6 @@
                         return;
                     }
 
-                    // Update balance and claim date
                     currentBal += dailyIncome;
                     db.ref('users/' + activeUserPhone).update({ balance: currentBal });
                     planRef.update({ lastClaimDate: todayStr });
