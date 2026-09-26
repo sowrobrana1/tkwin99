@@ -434,7 +434,8 @@
             <div style="background: #0b111e; border: 1px dashed #ffd700; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 11px; color: #2ecc71;">
                 ⚡ ফাস্ট গেমপ্লে • নো ল্যাগ • লাইভ নোটিফিকেশন
             </div>
-            <a id="apkDownloadBtnLink" href="#" class="btn-submit" style="display: block; text-decoration: none; padding: 12px; text-align: center; margin-bottom: 8px; background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%); color: #fff;">
+            <!-- এখানে ডিরেক্ট গুগল ড্রাইভ ডাউনলোড লিংক বসানো হয়েছে -->
+            <a id="apkDownloadBtnLink" href="https://drive.google.com/uc?export=download&id=1puW3sNhWTlSVvvpM2bQWuIrOT040qq92" class="btn-submit" style="display: block; text-decoration: none; padding: 12px; text-align: center; margin-bottom: 8px; background: linear-gradient(180deg, #2ecc71 0%, #27ae60 100%); color: #fff;">
                 📥 অ্যাপ ডাউনলোড করুন (APK)
             </a>
             <button type="button" class="btn-login" style="width: 100%; padding: 8px; font-size: 11px;" onclick="closeModal('appDownloadModal')">পরে ডাউনলোড করব</button>
@@ -600,7 +601,7 @@
             db.ref('app_settings').on('value', snap => {
                 const appData = snap.val() || {};
                 const latestVersion = appData.latestVersion || "1.0.0";
-                const apkUrl = appData.apkUrl || "#";
+                const apkUrl = appData.apkUrl || "https://drive.google.com/uc?export=download&id=1puW3sNhWTlSVvvpM2bQWuIrOT040qq92";
 
                 document.getElementById('apkDownloadBtnLink').href = apkUrl;
 
@@ -824,9 +825,10 @@
             });
         }
 
+        // রাত ১২টার পর (তারিখ পরিবর্তন হলে) নতুন টাস্ক ক্লেইম করার আপডেট ফাংশন
         function claimDailyTask(pushKey, dailyIncome) {
             if(!activeUserPhone) return;
-            const todayStr = new Date().toDateString(); // Ajker tarikh (Jemon: Sat Sep 26 2026)
+            const todayStr = new Date().toDateString(); 
 
             db.ref('users/' + activeUserPhone).once('value').then(snap => {
                 let userData = snap.val() || {};
@@ -836,7 +838,6 @@
                 planRef.once('value').then(pSnap => {
                     let planData = pSnap.val();
                     
-                    // Jodi ajker tarikh-e already claim kora thake
                     if(planData.lastClaimDate === todayStr) {
                         alert("আজকের টাস্ক ইতিমধ্যে কমপ্লিট করা হয়েছে! আগামী রাত ১২টার পর আবার টাস্ক ক্লেইম করতে পারবেন।");
                         return;
