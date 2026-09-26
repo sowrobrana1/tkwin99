@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tkwin99 - Admin Control Panel</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0b0f19; color: #ffffff; padding: 15px; }
+        .admin-header { background: #17212d; padding: 15px; border-radius: 10px; border-bottom: 2px solid #ffb400; display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .admin-header h2 { color: #ffb400; font-size: 20px; }
+        .admin-container { display: flex; flex-direction: column; gap: 25px; }
+        .admin-card { background: #17212d; border: 1px solid #2a3746; border-radius: 12px; padding: 18px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        .admin-card h3 { color: #ffb400; font-size: 16px; margin-bottom: 15px; border-bottom: 1px solid #2a3746; padding-bottom: 8px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 12px; }
+        .form-group { display: flex; flex-direction: column; gap: 5px; }
+        .form-group label { font-size: 12px; color: #aaa; }
+        .form-group input, .form-group select, .form-group textarea { padding: 10px; border-radius: 6px; border: 1px solid #2a3746; background: #0d131d; color: #fff; font-size: 13px; }
+        .btn-action { padding: 10px 15px; background: #ffb400; color: #000; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; font-size: 13px; }
+        .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        .data-table th, .data-table td { padding: 10px; text-align: left; border-bottom: 1px solid #2a3746; }
+        .data-table th { background-color: #0d131d; color: #ffb400; }
+        .status-badge { padding: 3px 8px; border-radius: 12px; font-size: 11px; font-weight: bold; text-transform: uppercase; }
+        .status-pending { background: #d35400; color: #fff; }
+        .status-success, .status-approved { background: #27ae60; color: #fff; }
+        .status-rejected { background: #c0392b; color: #fff; }
+        .btn-sm { padding: 5px 10px; font-size: 11px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; margin-right: 4px; }
+        .btn-approve { background: #27ae60; color: #fff; }
+        .btn-reject { background: #c0392b; color: #fff; }
+        .user-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
+        .user-card { background: #0d131d; border: 1px solid #ffb400; border-radius: 10px; padding: 15px; }
+        .user-card-header { font-size: 15px; font-weight: bold; color: #ffb400; margin-bottom: 10px; border-bottom: 1px dashed #2a3746; padding-bottom: 5px; display: flex; justify-content: space-between; align-items: center; }
+        .user-detail-row { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 8px; color: #ddd; }
+        .user-detail-row span.label { color: #888; }
+        .user-detail-row span.val-pass { background: #2a3746; padding: 2px 6px; border-radius: 4px; color: #ffb400; font-family: monospace; }
+        .pass-reset-box { margin-top: 10px; padding-top: 10px; border-top: 1px solid #2a3746; display: flex; gap: 5px; }
+        .pass-reset-box input { padding: 6px; font-size: 11px; border-radius: 4px; border: 1px solid #2a3746; background: #17212d; color: #fff; width: 100%; }
+        .btn-reset-pass { background: #e67e22; color: #fff; border: none; padding: 6px 10px; border-radius: 4px; font-size: 11px; font-weight: bold; cursor: pointer; white-space: nowrap; }
+        .search-box { width: 100%; padding: 10px; border-radius: 6px; border: 1px solid #2a3746; background: #0d131d; color: #fff; margin-bottom: 15px; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-header">
+        <h2>Tkwin99 Admin Panel</h2>
+        <span>Status: Live System</span>
+    </div>
+
+    <div class="admin-container">
+
+        <!-- MANAGE VIP PLANS & DAILY TASK PACKAGES -->
+        <div class="admin-card">
+            <h3>💎 Manage VIP Plans & Daily Task Packages (ভিআইপি প্ল্যান ও ডেইলি টাস্ক প্যাকেজ)</h3>
+            <form onsubmit="handleSaveVipPlan(event)" style="margin-bottom: 15px;">
+                <input type="hidden" id="editPlanKey" value="">
+                <div class="form-grid">
+                    <div class="form-group"><label>Plan Name (যেমন: Plan 200 TK 1 Month)</label><input type="text" id="vipPlanName" placeholder="Plan 200 TK" required></div>
+                    <div class="form-group"><label>Price / Buy Amount (যেমন: 200)</label><input type="number" id="vipPlanPrice" placeholder="200" min="1" required></div>
+                    <div class="form-group"><label>Duration (যেমন: 1 Month বা 1 Year)</label><input type="text" id="vipPlanDuration" placeholder="1 Month" required></div>
+                    <div class="form-group"><label>Daily Income Amount (যেমন: 20)</label><input type="number" id="vipPlanDailyIncome" placeholder="20" min="1" required></div>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Description / Task Details (যেমন: প্রতিদিন টাস্ক সম্পন্ন করে ২০ টাকা আয় করুন)</label>
+                    <textarea id="vipPlanDesc" rows="2" placeholder="টাস্ক বিবরণ লিখুন..." required></textarea>
+                </div>
+                <button type="submit" id="savePlanBtn" class="btn-action" style="background: #ffd700; color:#000;">Add VIP Plan</button>
+                <button type="button" id="cancelEditBtn" class="btn-action" style="background: #7f8c8d; color:#fff; display:none; margin-left:5px;" onclick="resetPlanForm()">Cancel Edit</button>
+            </form>
+            <div id="adminVipPlanList" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+
+        <!-- ALL GAMES WINNING PERCENTAGE CONTROLLER -->
+        <div class="admin-card">
+            <h3>🎮 All Games Win % Control (সকল গেমের উইনিং পার্সেন্টেজ কন্ট্রোল)</h3>
+            <form onsubmit="saveAllGamesControl(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>🎡 Spin Win % (0-100)</label>
+                        <input type="number" id="adminSpinWinPercent" placeholder="50" min="0" max="100" step="any" required>
+                    </div>
+                    <div class="form-group">
+                        <label>🎲 Ludo Gold Win % (0-100)</label>
+                        <input type="number" id="adminLudoWinPercent" placeholder="50" min="0" max="100" step="any" required>
+                    </div>
+                    <div class="form-group">
+                        <label>💣 Mines Win % (0-100)</label>
+                        <input type="number" id="adminMinesWinPercent" placeholder="50" min="0" max="100" step="any" required>
+                    </div>
+                    <div class="form-group">
+                        <label>🪙 Head/Tail Win % (0-100)</label>
+                        <input type="number" id="adminHeadTailWinPercent" placeholder="50" min="0" max="100" step="any" required>
+                    </div>
+                    <div class="form-group">
+                        <label>🎰 Fruit Slot Win % (0-100)</label>
+                        <input type="number" id="adminSlotWinPercent" placeholder="50" min="0" max="100" step="any" required>
+                    </div>
+                    <div class="form-group">
+                        <label>🔮 Color Predict Win % (0-100)</label>
+                        <input type="number" id="adminColorWinPercent" placeholder="50" min="0" max="100" step="any" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-action">Save All Games Win %</button>
+            </form>
+        </div>
+
+        <!-- REFERRAL NOTICE & BONUS SETTINGS -->
+        <div class="admin-card">
+            <h3>🤝 Referral Notice & Bonus Settings</h3>
+            <form onsubmit="saveReferralSettings(event)">
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Referral Bonus Amount (BDT)</label>
+                    <input type="number" id="adminRefBonus" placeholder="উদাহরণ: 200" step="any" required>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Referral Notice Text (আমন্ত্রণ বক্সে যা দেখাবে)</label>
+                    <textarea id="adminRefText" rows="3" placeholder="যেমন: আজ আপনার বন্ধুকে রেফার করলে সে এবং আপনি ২০০ টাকা বোনাস পাবেন!" required></textarea>
+                </div>
+                <button type="submit" class="btn-action">Save Referral Settings</button>
+            </form>
+        </div>
+
+        <!-- MANAGE AGENT TASKS -->
+        <div class="admin-card">
+            <h3>💼 Manage Agent Tasks (এজেন্ট ও টাস্ক সেটআপ)</h3>
+            <form onsubmit="handleAddAgentTask(event)" style="margin-bottom: 15px;">
+                <div class="form-grid">
+                    <div class="form-group"><label>Task Title (যেমন: ৫ জন বন্ধু রেফার করুন)</label><input type="text" id="taskTitle" required></div>
+                    <div class="form-group"><label>Required Referral Count (কতজন রেফার করতে হবে, যেমন: 5 বা 10)</label><input type="number" id="taskReqCount" value="5" min="1" required></div>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Task Description (যেমন: ৫ জন বন্ধুকে রেফার করে একাউন্ট খুলুন)</label>
+                    <textarea id="taskDesc" rows="2" required></textarea>
+                </div>
+                <button type="submit" class="btn-action" style="background: #2ecc71; color:#fff;">Add New Task</button>
+            </form>
+            <div id="adminTaskList" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+
+        <!-- COMPLETED TASKS SUBMISSIONS BY USERS -->
+        <div class="admin-card">
+            <h3>📋 User Completed Task Submissions (ইউজারদের টাস্ক রিকোয়েস্ট)</h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead><tr><th>Phone</th><th>Username</th><th>Random ID</th><th>Task Name</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="taskSubmissionsTable"><tr><td colspan="6" style="text-align: center; color: #888;">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- DEPOSIT & WITHDRAW NOTICE -->
+        <div class="admin-card">
+            <h3>📢 Deposit & Withdrawal Notice Settings</h3>
+            <form onsubmit="saveNotices(event)">
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Deposit Notice</label>
+                    <textarea id="noticeDeposit" rows="2" required></textarea>
+                </div>
+                <div class="form-group" style="margin-bottom: 12px;">
+                    <label>Withdrawal Notice</label>
+                    <textarea id="noticeWithdraw" rows="2" required></textarea>
+                </div>
+                <button type="submit" class="btn-action">Update Notices</button>
+            </form>
+        </div>
+
+        <!-- PAYMENT GATEWAY -->
+        <div class="admin-card">
+            <h3>💳 Payment Gateway Numbers</h3>
+            <form onsubmit="savePaymentSettings(event)">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin-bottom: 15px;">
+                    <div style="background: #0d131d; padding: 12px; border-radius: 8px; border: 1px solid #2a3746;">
+                        <h4 style="color: #e2136e; margin-bottom: 8px; font-size: 14px;">bKash</h4>
+                        <input type="text" id="bkashNum" placeholder="017xxxxxxxx" style="width:100%; padding:8px; margin-bottom:6px; background:#17212d; border:1px solid #2a3746; color:#fff;" required>
+                        <select id="bkashType" style="width:100%; padding:8px; background:#17212d; border:1px solid #2a3746; color:#fff;">
+                            <option value="Send Money">Send Money</option>
+                            <option value="Cash Out">Cash Out</option>
+                        </select>
+                    </div>
+                    <div style="background: #0d131d; padding: 12px; border-radius: 8px; border: 1px solid #2a3746;">
+                        <h4 style="color: #f7921e; margin-bottom: 8px; font-size: 14px;">Nagad</h4>
+                        <input type="text" id="nagadNum" placeholder="018xxxxxxxx" style="width:100%; padding:8px; margin-bottom:6px; background:#17212d; border:1px solid #2a3746; color:#fff;" required>
+                        <select id="nagadType" style="width:100%; padding:8px; background:#17212d; border:1px solid #2a3746; color:#fff;">
+                            <option value="Send Money">Send Money</option>
+                            <option value="Cash Out">Cash Out</option>
+                        </select>
+                    </div>
+                    <div style="background: #0d131d; padding: 12px; border-radius: 8px; border: 1px solid #2a3746;">
+                        <h4 style="color: #8c3293; margin-bottom: 8px; font-size: 14px;">Rocket</h4>
+                        <input type="text" id="rocketNum" placeholder="019xxxxxxxx" style="width:100%; padding:8px; margin-bottom:6px; background:#17212d; border:1px solid #2a3746; color:#fff;" required>
+                        <select id="rocketType" style="width:100%; padding:8px; background:#17212d; border:1px solid #2a3746; color:#fff;">
+                            <option value="Send Money">Send Money</option>
+                            <option value="Cash Out">Cash Out</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn-action">Save Gateway Settings</button>
+            </form>
+        </div>
+
+        <!-- BALANCE UPDATE -->
+        <div class="admin-card">
+            <h3>💰 User Balance Update</h3>
+            <form onsubmit="handleBalanceUpdate(event)">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>User Mobile Number</label>
+                        <input type="text" id="targetUserPhone" placeholder="017xxxxxxxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label>New Balance Amount (BDT)</label>
+                        <input type="number" id="newBalanceAmount" placeholder="Amount e.g. 1000" step="any" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn-action">Update Balance</button>
+            </form>
+        </div>
+
+        <!-- DEPOSITS -->
+        <div class="admin-card">
+            <h3>📥 Deposit Requests</h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead><tr><th>Phone</th><th>Method</th><th>Amount</th><th>TrxID</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="depositTableBody"><tr><td colspan="6" style="text-align: center; color: #888;">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- WITHDRAWALS -->
+        <div class="admin-card">
+            <h3>💸 Withdrawal Requests</h3>
+            <div style="overflow-x: auto;">
+                <table class="data-table">
+                    <thead><tr><th>Phone</th><th>Method</th><th>Amount</th><th>Account No</th><th>Status</th><th>Action</th></tr></thead>
+                    <tbody id="withdrawTableBody"><tr><td colspan="6" style="text-align: center; color: #888;">Loading...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REGISTERED USERS -->
+        <div class="admin-card">
+            <h3>👤 Registered Users (Control & Block)</h3>
+            <input type="text" id="searchUser" class="search-box" placeholder="🔎 Search by Phone, Name or Random ID..." onkeyup="filterUsers()">
+            <div class="user-grid" id="userCardList">
+                <p style="color: #888; font-size: 12px;">Loading user list...</p>
+            </div>
+        </div>
+
+        <!-- PROMOTIONS -->
+        <div class="admin-card">
+            <h3>🎁 Manage Promotions & Offers</h3>
+            <form onsubmit="handleAddPromotion(event)" style="margin-bottom: 15px;">
+                <div class="form-grid">
+                    <div class="form-group"><label>Offer Title</label><input type="text" id="promoTitle" required></div>
+                    <div class="form-group"><label>Offer Description</label><input type="text" id="promoDesc" required></div>
+                </div>
+                <button type="submit" class="btn-action">Add New Offer</button>
+            </form>
+            <div id="adminPromoList" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+
+    </div>
+
+    <!-- MODAL TO VIEW USERS WHO BOUGHT A PLAN -->
+    <div id="planUsersModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:1000; justify-content:center; align-items:center;">
+        <div style="background:#17212d; border:1px solid #ffd700; border-radius:10px; width:90%; max-width:500px; padding:20px; position:relative; max-height:80vh; overflow-y:auto;">
+            <span onclick="closePlanUsersModal()" style="position:absolute; top:10px; right:15px; font-size:20px; color:#aaa; cursor:pointer;">&times;</span>
+            <h3 id="modalPlanTitle" style="color:#ffd700; margin-bottom:12px; font-size:16px;">প্যাকেজ ক্রেতা তালিকা</h3>
+            <div id="planUsersListContainer">
+                <p style="color:#888; text-align:center;">লোড হচ্ছে...</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyDD3jGQtUP3RYINP3sNv11HavsPg62I-T0",
+            authDomain: "tkwin99-5133e.firebaseapp.com",
+            databaseURL: "https://tkwin99-5133e-default-rtdb.firebaseio.com",
+            projectId: "tkwin99-5133e",
+            storageBucket: "tkwin99-5133e.firebasestorage.app",
+            messagingSenderId: "438983613752",
+            appId: "1:438983613752:web:689306fb37500e980eb5cd"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        database.ref('settings').on('value', snap => {
+            const data = snap.val() || {};
+            document.getElementById('adminSpinWinPercent').value = data.spinWinPercentage !== undefined ? data.spinWinPercentage : 50;
+            document.getElementById('adminLudoWinPercent').value = data.ludoWinPercentage !== undefined ? data.ludoWinPercentage : 50;
+            document.getElementById('adminMinesWinPercent').value = data.minesWinPercentage !== undefined ? data.minesWinPercentage : 50;
+            document.getElementById('adminHeadTailWinPercent').value = data.headTailWinPercentage !== undefined ? data.headTailWinPercentage : 50;
+            document.getElementById('adminSlotWinPercent').value = data.slotWinPercentage !== undefined ? data.slotWinPercentage : 50;
+            document.getElementById('adminColorWinPercent').value = data.colorWinPercentage !== undefined ? data.colorWinPercentage : 50;
+
+            if(data.referralBonus !== undefined) document.getElementById('adminRefBonus').value = data.referralBonus;
+            if(data.referralText) document.getElementById('adminRefText').value = data.referralText;
+        });
+
+        // Add or Edit VIP Plan Functionality
+        function handleSaveVipPlan(e) {
+            e.preventDefault();
+            const editKey = document.getElementById('editPlanKey').value;
+            const name = document.getElementById('vipPlanName').value.trim();
+            const price = parseFloat(document.getElementById('vipPlanPrice').value);
+            const duration = document.getElementById('vipPlanDuration').value.trim();
+            const dailyIncome = parseFloat(document.getElementById('vipPlanDailyIncome').value);
+            const desc = document.getElementById('vipPlanDesc').value.trim();
+
+            const planData = { name, price, duration, dailyIncome, desc, timestamp: Date.now() };
+
+            if(editKey) {
+                database.ref('vip_plans/' + editKey).update(planData).then(() => {
+                    alert("VIP Plan Updated Successfully!");
+                    resetPlanForm();
+                });
+            } else {
+                database.ref('vip_plans').push(planData).then(() => {
+                    alert("VIP Plan Added Successfully!");
+                    resetPlanForm();
+                });
+            }
+        }
+
+        function editVipPlan(key, name, price, duration, dailyIncome, desc) {
+            document.getElementById('editPlanKey').value = key;
+            document.getElementById('vipPlanName').value = name;
+            document.getElementById('vipPlanPrice').value = price;
+            document.getElementById('vipPlanDuration').value = duration;
+            document.getElementById('vipPlanDailyIncome').value = dailyIncome;
+            document.getElementById('vipPlanDesc').value = desc;
+            document.getElementById('savePlanBtn').innerText = "Update VIP Plan";
+            document.getElementById('savePlanBtn').style.background = "#2ecc71";
+            document.getElementById('cancelEditBtn').style.display = "inline-block";
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetPlanForm() {
+            document.getElementById('editPlanKey').value = '';
+            document.getElementById('vipPlanName').value = '';
+            document.getElementById('vipPlanPrice').value = '';
+            document.getElementById('vipPlanDuration').value = '';
+            document.getElementById('vipPlanDailyIncome').value = '';
+            document.getElementById('vipPlanDesc').value = '';
+            document.getElementById('savePlanBtn').innerText = "Add VIP Plan";
+            document.getElementById('savePlanBtn').style.background = "#ffd700";
+            document.getElementById('cancelEditBtn').style.display = "none";
+        }
+
+        // Display VIP Plans with Edit, Delete & View Buyers Count
+        database.ref('vip_plans').on('value', planSnap => {
+            const plansData = planSnap.val() || {};
+            
+            database.ref('users').once('value', userSnap => {
+                const usersData = userSnap.val() || {};
+                let planBuyersCount = {};
+
+                Object.values(usersData).forEach(user => {
+                    const purchased = user.purchased_plans || {};
+                    Object.values(purchased).forEach(p => {
+                        planBuyersCount[p.planId] = (planBuyersCount[p.planId] || 0) + 1;
+                    });
+                });
+
+                const container = document.getElementById('adminVipPlanList');
+                container.innerHTML = '';
+
+                if (Object.keys(plansData).length > 0) {
+                    Object.keys(plansData).reverse().forEach(key => {
+                        const p = plansData[key];
+                        const buyerCount = planBuyersCount[key] || 0;
+
+                        container.innerHTML += `
+                            <div style="background: #0d131d; padding: 12px; border-radius: 6px; border: 1px solid #2a3746; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                                <div style="flex: 1; min-width: 200px;">
+                                    <strong style="color: #ffd700; font-size: 14px;">${p.name} (৳${p.price})</strong>
+                                    <p style="font-size: 11px; color: #ccc;">মেয়াদ: ${p.duration} | দৈনিক আয়: ৳${p.dailyIncome}</p>
+                                    <p style="font-size: 10px; color: #888;">${p.desc}</p>
+                                    <p style="font-size: 12px; color: #2ecc71; margin-top: 4px; cursor: pointer; text-decoration: underline;" onclick="openPlanUsersModal('${key}', '${p.name}')">👥 মোট ক্রেতা: ${buyerCount} জন (তালিকা দেখুন)</p>
+                                </div>
+                                <div style="display: flex; gap: 5px;">
+                                    <button class="btn-sm" style="background: #2980b9; color: #fff;" onclick="editVipPlan('${key}', '${p.name}', ${p.price}, '${p.duration}', ${p.dailyIncome}, '${p.desc}')">Edit</button>
+                                    <button class="btn-sm" style="background: #c0392b; color: #fff;" onclick="database.ref('vip_plans/${key}').remove()">Delete</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                } else {
+                    container.innerHTML = '<p style="color: #888; font-size: 12px;">কোনো ভিআইপি প্ল্যান যোগ করা হয়নি।</p>';
+                }
+            });
+        });
+
+        // Open Modal to see which users bought a specific plan, adjust balance and delete plan from user
+        let currentOpenPlanId = '';
+        let currentOpenPlanName = '';
+
+        function openPlanUsersModal(planId, planName) {
+            currentOpenPlanId = planId;
+            currentOpenPlanName = planName;
+            document.getElementById('modalPlanTitle').innerText = `প্যাকেজ ক্রেতা তালিকা: ${planName}`;
+            document.getElementById('planUsersListContainer').innerHTML = '<p style="color:#888; text-align:center;">লোড হচ্ছে...</p>';
+            document.getElementById('planUsersModal').style.display = 'flex';
+
+            database.ref('users').once('value', snap => {
+                const users = snap.val() || {};
+                let html = '';
+                let foundAny = false;
+
+                Object.keys(users).forEach(phone => {
+                    const user = users[phone];
+                    const purchased = user.purchased_plans || {};
+
+                    Object.keys(purchased).forEach(pKey => {
+                        const p = purchased[pKey];
+                        if(p.planId === planId) {
+                            foundAny = true;
+                            html += `
+                                <div style="background:#0b111e; border:1px solid #2a3746; padding:10px; border-radius:6px; margin-bottom:8px; font-size:12px;">
+                                    <div><strong>ইউজার:</strong> ${user.username || 'N/A'} (${user.phone})</div>
+                                    <div><strong>আইডি:</strong> ${user.randomId || 'N/A'} | <strong>বর্তমান ব্যালেন্স:</strong> ৳${user.balance || 0}</div>
+                                    <div style="margin-top:6px; display:flex; gap:6px; align-items:center; flex-wrap:wrap;">
+                                        <input type="number" id="adjustAmt_${phone}_${pKey}" placeholder="টাকা যোগ/কর্তন" style="padding:4px; font-size:11px; width:90px; background:#17212d; border:1px solid #2a3746; color:#fff; border-radius:4px;">
+                                        <button class="btn-sm btn-approve" onclick="adjustUserTaskBalance('${phone}', 'adjustAmt_${phone}_${pKey}')">টাকা এড/ঠিক</button>
+                                        <button class="btn-sm btn-reject" onclick="deleteUserPurchasedPlan('${phone}', '${pKey}')">প্ল্যান ডিলিট</button>
+                                    </div>
+                                </div>
+                            `;
+                        }
+                    });
+                });
+
+                if(!foundAny) {
+                    html = '<p style="color:#888; text-align:center; font-size:12px;">এই প্ল্যানটি এখনো কেউ কেনেনি।</p>';
+                }
+                document.getElementById('planUsersListContainer').innerHTML = html;
+            });
+        }
+
+        function closePlanUsersModal() {
+            document.getElementById('planUsersModal').style.display = 'none';
+        }
+
+        function adjustUserTaskBalance(phone, inputId) {
+            const val = parseFloat(document.getElementById(inputId).value);
+            if(isNaN(val)) {
+                alert("দয়া করে সঠিক টাকার পরিমাণ লিখুন!");
+                return;
+            }
+            database.ref('users/' + phone + '/balance').once('value').then(snap => {
+                let currentBal = Number(snap.val() || 0);
+                let newBal = currentBal + val;
+                database.ref('users/' + phone).update({ balance: newBal }).then(() => {
+                    alert("সফলভাবে ইউজারের ব্যালেন্স আপডেট করা হয়েছে!");
+                    document.getElementById(inputId).value = '';
+                    openPlanUsersModal(currentOpenPlanId, currentOpenPlanName); // refresh modal list
+                });
+            });
+        }
+
+        // Delete purchased plan from specific user
+        function deleteUserPurchasedPlan(phone, purchaseKey) {
+            if(confirm("আপনি কি নিশ্চিতভাবে এই ইউজারের কেনا প্ল্যানটি ডিলিট করতে চান?")) {
+                database.ref('users/' + phone + '/purchased_plans/' + purchaseKey).remove().then(() => {
+                    alert("ইউজারের প্ল্যান সফলভাবে ডিলিট করা হয়েছে!");
+                    openPlanUsersModal(currentOpenPlanId, currentOpenPlanName); // refresh modal list
+                });
+            }
+        }
+
+        function saveAllGamesControl(e) {
+            e.preventDefault();
+            database.ref('settings').update({
+                spinWinPercentage: parseFloat(document.getElementById('adminSpinWinPercent').value),
+                ludoWinPercentage: parseFloat(document.getElementById('adminLudoWinPercent').value),
+                minesWinPercentage: parseFloat(document.getElementById('adminMinesWinPercent').value),
+                headTailWinPercentage: parseFloat(document.getElementById('adminHeadTailWinPercent').value),
+                slotWinPercentage: parseFloat(document.getElementById('adminSlotWinPercent').value),
+                colorWinPercentage: parseFloat(document.getElementById('adminColorWinPercent').value)
+            }).then(() => {
+                alert("All Games Win % updated successfully!");
+            });
+        }
+
+        function saveReferralSettings(e) {
+            e.preventDefault();
+            const bonus = parseFloat(document.getElementById('adminRefBonus').value);
+            const text = document.getElementById('adminRefText').value.trim();
+            database.ref('settings').update({ referralBonus: bonus, referralText: text }).then(() => {
+                alert("Referral settings updated successfully!");
+            });
+        }
+
+        function handleAddAgentTask(e) {
+            e.preventDefault();
+            const title = document.getElementById('taskTitle').value;
+            const desc = document.getElementById('taskDesc').value;
+            const reqCount = parseInt(document.getElementById('taskReqCount').value || 5);
+
+            database.ref('tasks').push({ title, desc, requiredCount: reqCount, timestamp: Date.now() }).then(() => {
+                alert("Agent Task Added Successfully!");
+                document.getElementById('taskTitle').value = '';
+                document.getElementById('taskDesc').value = '';
+                document.getElementById('taskReqCount').value = '5';
+            });
+        }
+
+        database.ref('tasks').on('value', (snapshot) => {
+            const container = document.getElementById('adminTaskList');
+            const data = snapshot.val();
+            container.innerHTML = '';
+            if (data) {
+                Object.keys(data).reverse().forEach(key => {
+                    const t = data[key];
+                    container.innerHTML += `
+                        <div style="background: #0d131d; padding: 10px; border-radius: 6px; border: 1px solid #2a3746; display: flex; justify-content: space-between; align-items: center;">
+                            <div><strong style="color: #2ecc71; font-size: 13px;">${t.title}</strong> (শর্ত: ${t.requiredCount || 5} জন রেফার)<p style="font-size: 11px; color: #ccc;">${t.desc}</p></div>
+                            <button class="btn-sm" style="background: #c0392b; color: #fff;" onclick="database.ref('tasks/${key}').remove()">Delete</button>
+                        </div>
+                    `;
+                });
+            } else { container.innerHTML = '<p style="color: #888; font-size: 12px;">No active tasks.</p>'; }
+        });
+
+        database.ref('completed_tasks').on('value', (snapshot) => {
+            const tbody = document.getElementById('taskSubmissionsTable');
+            const data = snapshot.val();
+            tbody.innerHTML = '';
+            if (data) {
+                Object.keys(data).reverse().forEach(key => {
+                    const sub = data[key];
+                    const status = sub.status || 'pending';
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${sub.phone}</td>
+                            <td>${sub.username}</td>
+                            <td><code>${sub.randomId}</code></td>
+                            <td>${sub.taskTitle}</td>
+                            <td><span class="status-badge status-${status}">${status}</span></td>
+                            <td>
+                                <button class="btn-sm btn-approve" onclick="database.ref('completed_tasks/${key}').update({status: 'approved'})">Approve</button>
+                                <button class="btn-sm btn-reject" onclick="database.ref('completed_tasks/${key}').update({status: 'rejected'})">Reject</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else { tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #888;">No task submissions yet.</td></tr>'; }
+        });
+
+        database.ref('notices').on('value', snap => {
+            const data = snap.val() || {};
+            if(data.deposit) document.getElementById('noticeDeposit').value = data.deposit;
+            if(data.withdraw) document.getElementById('noticeWithdraw').value = data.withdraw;
+        });
+
+        function saveNotices(e) {
+            e.preventDefault();
+            const deposit = document.getElementById('noticeDeposit').value.trim();
+            const withdraw = document.getElementById('noticeWithdraw').value.trim();
+            database.ref('notices').set({ deposit, withdraw }).then(() => alert("Notices Updated!"));
+        }
+
+        database.ref('payment_settings').on('value', (snap) => {
+            const data = snap.val() || {};
+            if(data.bKash) { document.getElementById('bkashNum').value = data.bKash.number || ''; document.getElementById('bkashType').value = data.bKash.type || 'Send Money'; }
+            if(data.Nagad) { document.getElementById('nagadNum').value = data.Nagad.number || ''; document.getElementById('nagadType').value = data.Nagad.type || 'Send Money'; }
+            if(data.Rocket) { document.getElementById('rocketNum').value = data.Rocket.number || ''; document.getElementById('rocketType').value = data.Rocket.type || 'Send Money'; }
+        });
+
+        function savePaymentSettings(e) {
+            e.preventDefault();
+            database.ref('payment_settings').set({
+                bKash: { number: document.getElementById('bkashNum').value.trim(), type: document.getElementById('bkashType').value },
+                Nagad: { number: document.getElementById('nagadNum').value.trim(), type: document.getElementById('nagadType').value },
+                Rocket: { number: document.getElementById('rocketNum').value.trim(), type: document.getElementById('rocketType').value }
+            }).then(() => alert("Gateway Settings Updated!"));
+        }
+
+        function handleBalanceUpdate(e) {
+            e.preventDefault();
+            const phone = document.getElementById('targetUserPhone').value.trim();
+            const newBal = parseFloat(document.getElementById('newBalanceAmount').value);
+            database.ref('users/' + phone).update({ balance: newBal }).then(() => {
+                alert("Balance updated!");
+                document.getElementById('targetUserPhone').value = '';
+                document.getElementById('newBalanceAmount').value = '';
+            });
+        }
+
+        database.ref('deposits').on('value', (snapshot) => {
+            const tbody = document.getElementById('depositTableBody');
+            const data = snapshot.val();
+            tbody.innerHTML = '';
+            if (data) {
+                Object.keys(data).reverse().forEach(key => {
+                    const dep = data[key];
+                    const status = dep.status || 'pending';
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${dep.phone}</td>
+                            <td>${dep.method}</td>
+                            <td>৳${dep.amount}</td>
+                            <td><code>${dep.trxId}</code></td>
+                            <td><span class="status-badge status-${status}">${status}</span></td>
+                            <td>
+                                <button class="btn-sm btn-approve" onclick="updateDepositStatus('${key}', '${dep.phone}', ${dep.amount}, 'success')">Success</button>
+                                <button class="btn-sm" style="background:#d35400; color:#fff;" onclick="updateDepositStatus('${key}', '${dep.phone}', ${dep.amount}, 'pending')">Pending</button>
+                                <button class="btn-sm btn-reject" onclick="updateDepositStatus('${key}', '${dep.phone}', ${dep.amount}, 'rejected')">Reject</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else { tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #888;">No deposit requests.</td></tr>'; }
+        });
+
+        function updateDepositStatus(key, phone, amount, newStatus) {
+            database.ref('deposits/' + key).once('value').then(snap => {
+                const currentData = snap.val();
+                const oldStatus = currentData.status;
+
+                if(newStatus === 'success' && oldStatus !== 'success') {
+                    database.ref('users/' + phone).once('value').then(uSnap => {
+                        const userData = uSnap.val() || {};
+                        const currentBal = Number(userData.balance || 0);
+                        let updates = { balance: currentBal + parseFloat(amount) };
+                        if(parseFloat(amount) >= 500) {
+                            updates.hasDeposited500 = true;
+                        }
+                        database.ref('users/' + phone).update(updates);
+                    });
+                } else if(oldStatus === 'success' && newStatus !== 'success') {
+                    database.ref('users/' + phone + '/balance').once('value').then(bSnap => {
+                        const currentBal = bSnap.val() || 0;
+                        database.ref('users/' + phone).update({ balance: Math.max(0, currentBal - parseFloat(amount)) });
+                    });
+                }
+                database.ref('deposits/' + key).update({ status: newStatus }).then(() => alert(`Status changed to ${newStatus}!`));
+            });
+        }
+
+        database.ref('withdrawals').on('value', (snapshot) => {
+            const tbody = document.getElementById('withdrawTableBody');
+            const data = snapshot.val();
+            tbody.innerHTML = '';
+            if (data) {
+                Object.keys(data).reverse().forEach(key => {
+                    const wd = data[key];
+                    const status = wd.status || 'pending';
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${wd.phone}</td>
+                            <td>${wd.method}</td>
+                            <td>৳${wd.amount}</td>
+                            <td><code>${wd.accountNum}</code></td>
+                            <td><span class="status-badge status-${status}">${status}</span></td>
+                            <td>
+                                <button class="btn-sm btn-approve" onclick="updateWithdrawStatus('${key}', '${wd.phone}', ${wd.amount}, 'success')">Success</button>
+                                <button class="btn-sm" style="background:#d35400; color:#fff;" onclick="updateWithdrawStatus('${key}', '${wd.phone}', ${wd.amount}, 'pending')">Pending</button>
+                                <button class="btn-sm btn-reject" onclick="updateWithdrawStatus('${key}', '${wd.phone}', ${wd.amount}, 'rejected')">Reject & Refund</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else { tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #888;">No withdrawal requests.</td></tr>'; }
+        });
+
+        function updateWithdrawStatus(key, phone, amount, newStatus) {
+            database.ref('withdrawals/' + key).once('value').then(snap => {
+                const currentData = snap.val();
+                const oldStatus = currentData.status;
+
+                if(newStatus === 'rejected' && oldStatus !== 'rejected') {
+                    database.ref('users/' + phone + '/balance').once('value').then(bSnap => {
+                        const currentBal = bSnap.val() || 0;
+                        database.ref('users/' + phone).update({ balance: currentBal + parseFloat(amount) });
+                    });
+                } else if(oldStatus === 'rejected' && newStatus !== 'rejected') {
+                    database.ref('users/' + phone + '/balance').once('value').then(bSnap => {
+                        const currentBal = bSnap.val() || 0;
+                        database.ref('users/' + phone).update({ balance: Math.max(0, currentBal - parseFloat(amount)) });
+                    });
+                }
+                database.ref('withdrawals/' + key).update({ status: newStatus }).then(() => alert(`Status changed to ${newStatus}!`));
+            });
+        }
+
+        database.ref('users').on('value', (snapshot) => {
+            const userContainer = document.getElementById('userCardList');
+            const users = snapshot.val() || {};
+            userContainer.innerHTML = '';
+            if (Object.keys(users).length > 0) {
+                Object.keys(users).forEach(phoneKey => {
+                    const user = users[phoneKey];
+                    const randId = user.randomId || 'N/A';
+                    const isBlocked = user.isBlocked || false;
+                    const warningMsg = user.warningMsg || '';
+
+                    userContainer.innerHTML += `
+                        <div class="user-card" data-phone="${phoneKey}" data-name="${user.username || ''}" data-rid="${randId}">
+                            <div class="user-card-header">
+                                <span>📁 ${user.username || 'User'}</span>
+                                <span style="color: #ffd700; font-size: 12px; background: #17212d; padding: 2px 6px; border-radius: 4px;">ID: ${randId}</span>
+                            </div>
+                            <div class="user-detail-row"><span class="label">Phone:</span><strong>${user.phone || phoneKey}</strong></div>
+                            <div class="user-detail-row"><span class="label">Password:</span><span class="val-pass">${user.password || 'N/A'}</span></div>
+                            <div class="user-detail-row"><span class="label">Balance:</span><strong style="color: #27ae60;">৳ ${(user.balance || 0).toFixed(2)}</strong></div>
+                            <div class="user-detail-row"><span class="label">Status:</span><strong style="color: ${isBlocked ? '#c0392b' : '#27ae60'};">${isBlocked ? 'BLOCKED 🚫' : 'ACTIVE ✅'}</strong></div>
+                            
+                            <div style="margin-top: 8px;">
+                                <label style="font-size: 11px; color: #aaa;">Warning Message for Game:</label>
+                                <input type="text" id="warnMsg_${phoneKey}" value="${warningMsg}" placeholder="Warning message..." style="width:100%; padding:6px; font-size:11px; border-radius:4px; border:1px solid #2a3746; background:#17212d; color:#fff; margin-top:3px; margin-bottom:5px;">
+                            </div>
+
+                            <div style="display: flex; gap: 5px; margin-bottom: 8px;">
+                                <button class="btn-sm" style="flex: 1; background: ${isBlocked ? '#27ae60' : '#c0392b'}; color: #fff;" onclick="toggleUserBlock('${phoneKey}', ${!isBlocked})">${isBlocked ? 'Unblock User' : 'Block / Stop Game'}</button>
+                                <button class="btn-sm" style="background: #2980b9; color: #fff;" onclick="saveWarningMessage('${phoneKey}')">Save Msg</button>
+                            </div>
+
+                            <div class="pass-reset-box">
+                                <input type="text" id="newPass_${phoneKey}" placeholder="New Password">
+                                <button class="btn-reset-pass" onclick="resetUserPassword('${phoneKey}')">Set Pass</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else { userContainer.innerHTML = '<p style="color: #888; font-size: 12px;">No registered users.</p>'; }
+        });
+
+        function toggleUserBlock(phone, status) {
+            database.ref('users/' + phone).update({ isBlocked: status }).then(() => alert("Status updated!"));
+        }
+
+        function saveWarningMessage(phone) {
+            const msg = document.getElementById('warnMsg_' + phone).value.trim();
+            database.ref('users/' + phone).update({ warningMsg: msg }).then(() => alert("Warning saved!"));
+        }
+
+        function filterUsers() {
+            const query = document.getElementById('searchUser').value.toLowerCase();
+            document.querySelectorAll('.user-card').forEach(card => {
+                const phone = card.getAttribute('data-phone').toLowerCase();
+                const name = card.getAttribute('data-name').toLowerCase();
+                const rid = card.getAttribute('data-rid').toLowerCase();
+                card.style.display = (phone.includes(query) || name.includes(query) || rid.includes(query)) ? 'block' : 'none';
+            });
+        }
+
+        function resetUserPassword(phone) {
+            const newPass = document.getElementById('newPass_' + phone).value;
+            if (!newPass) { alert("Enter new password!"); return; }
+            database.ref('users/' + phone).update({ password: newPass }).then(() => {
+                alert("Password updated!");
+                document.getElementById('newPass_' + phone).value = '';
+            });
+        }
+
+        function handleAddPromotion(e) {
+            e.preventDefault();
+            const title = document.getElementById('promoTitle').value;
+            const desc = document.getElementById('promoDesc').value;
+            database.ref('promotions').push({ title, desc, timestamp: Date.now() }).then(() => {
+                alert("Promotion Added!");
+                document.getElementById('promoTitle').value = '';
+                document.getElementById('promoDesc').value = '';
+            });
+        }
+
+        database.ref('promotions').on('value', (snapshot) => {
+            const promoContainer = document.getElementById('adminPromoList');
+            const data = snapshot.val();
+            promoContainer.innerHTML = '';
+            if (data) {
+                Object.keys(data).reverse().forEach(key => {
+                    const p = data[key];
+                    promoContainer.innerHTML += `
+                        <div style="background: #0d131d; padding: 10px; border-radius: 6px; border: 1px solid #2a3746; display: flex; justify-content: space-between; align-items: center;">
+                            <div><strong style="color: #ffb400; font-size: 13px;">${p.title}</strong><p style="font-size: 11px; color: #ccc;">${p.desc}</p></div>
+                            <button class="btn-sm" style="background: #c0392b; color: #fff;" onclick="database.ref('promotions/${key}').remove()">Delete</button>
+                        </div>
+                    `;
+                });
+            } else { promoContainer.innerHTML = '<p style="color: #888; font-size: 12px;">No promotions active.</p>'; }
+        });
+    </script>
+</body>
+</html>
