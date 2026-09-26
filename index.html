@@ -364,10 +364,10 @@
         </div>
 
         <div class="profile-action-grid">
-            <div class="p-action-item" onclick="protectedAction('ডিপোজিট করতে লগইন করুন', () => openModal('depositModal'))">
+            <div class="p-action-item" onclick="openModal('depositModal')">
                 <div>💳</div>ডিপোজিট
             </div>
-            <div class="p-action-item" onclick="protectedAction('উইথড্র করতে লগইন করুন', () => openModal('withdrawModal'))">
+            <div class="p-action-item" onclick="openModal('withdrawModal')">
                 <div>💸</div>উইথড্র
             </div>
             <div class="p-action-item" onclick="openModal('promoModal')">
@@ -381,9 +381,9 @@
         <div class="profile-menu-list">
             <div class="p-menu-item" onclick="openModal('passwordModal')">🔒 নিরাপত্তা কেন্দ্র <span>›</span></div>
             <div class="p-menu-item" onclick="openReferralModal()">🔗 রেফারেল লিংক ও কোড <span>›</span></div>
-            <div class="p-menu-item" onclick="protectedAction('লগইন করুন', () => openModal('depositModal'))">📥 জমা রেকর্ড <span>›</span></div>
-            <div class="p-menu-item" onclick="protectedAction('লগইন করুন', () => openModal('withdrawModal'))">📤 উত্তোলন রেকর্ড <span>›</span></div>
-            <div class="p-menu-item" onclick="openModal('chatModal')">🎧 কাস্টমার সার্ভিস <span>›</span></div>
+            <div class="p-menu-item" onclick="openModal('depositModal')">📥 জমা রেকর্ড <span>›</span></div>
+            <div class="p-menu-item" onclick="openModal('withdrawModal')">📤 উত্তোলন রেকর্ড <span>›</span></div>
+            <div class="p-menu-item" onclick="alert('কাস্টমার সার্ভিস শীঘ্রই চালু হবে!')">🎧 কাস্টমার সার্ভিস <span>›</span></div>
             <div class="p-menu-item" onclick="logout()" style="color: #e74c3c; font-weight: bold;">🚪 অ্যাকাউন্ট লগআউট <span>›</span></div>
         </div>
     </div>
@@ -560,7 +560,6 @@
         let currentBetAmount = betSteps[currentBetIndex];
         let adminWinPercentage = 50;
 
-        // বর্তমান অ্যাপ ভার্সন (অটো আপডেট চেকের জন্য)
         const currentAppVersion = "1.0.0";
 
         window.onload = function() {
@@ -597,23 +596,19 @@
             checkAppVersionAndPopup();
         };
 
-        // ওয়েবসাইট ওপেন হওয়ার পর অ্যাপ ডাউনলোড পপ-আপ দেখানোর লজিক
         function checkAppVersionAndPopup() {
             db.ref('app_settings').on('value', snap => {
                 const appData = snap.val() || {};
                 const latestVersion = appData.latestVersion || "1.0.0";
                 const apkUrl = appData.apkUrl || "#";
 
-                // ডাউনলোড লিংকে ফায়ারবেসের দেওয়া এপিকে লিংক সেট করা
                 document.getElementById('apkDownloadBtnLink').href = apkUrl;
 
-                // যদি নতুন ভার্সন আসে অ্যালার্ট দেওয়া
                 if (latestVersion !== currentAppVersion) {
                     alert(`⚠️ নতুন অ্যাপ আপডেট উপলব্ধ (${latestVersion})!\n\nদয়া করে লেটেস্ট ভার্সন ডাউনলোড করে নিন।`);
                 }
             });
 
-            // প্রথমবার ভিজিট করলে পপ-আপ শো করা
             if (!sessionStorage.getItem('app_popup_shown')) {
                 setTimeout(() => {
                     const modal = document.getElementById('appDownloadModal');
@@ -623,7 +618,6 @@
             }
         }
 
-        // ফোনের ব্যাক বাটন হ্যান্ডেল করার জন্য হিস্ট্রি লিসেনার
         window.addEventListener('popstate', function (event) {
             document.querySelectorAll('.fullscreen-game').forEach(s => s.style.display = 'none');
             switchPage('home');
@@ -697,7 +691,6 @@
             });
         }
 
-        // Load VIP Plans from Firebase Admin Panel
         function loadVipPlans() {
             db.ref('vip_plans').on('value', snap => {
                 const listEl = document.getElementById('userPlanList');
@@ -727,7 +720,6 @@
             });
         }
 
-        // Buy VIP Plan Logic with Duplicate Check & Balance Check
         function buyVipPlan(planId, price, planName, dailyIncome) {
             if(!activeUserPhone) {
                 alert("প্ল্যান কিনতে প্রথমে লগইন করুন!");
@@ -771,7 +763,6 @@
             });
         }
 
-        // Load User Purchased Plans and Tasks
         function loadPurchasedPlans() {
             if(!activeUserPhone) return;
             db.ref('users/' + activeUserPhone + '/purchased_plans').on('value', snap => {
@@ -808,7 +799,6 @@
             });
         }
 
-        // Claim Daily Task Income
         function claimDailyTask(pushKey, dailyIncome) {
             if(!activeUserPhone) return;
             const todayStr = new Date().toDateString();
@@ -920,7 +910,6 @@
             document.getElementById('spinBetAmount').innerText = currentBetAmount;
         }
 
-        // Controlled Spin Game
         function executeSpinGame() {
             db.ref('users/' + activeUserPhone + '/balance').once('value').then(snap => {
                 let currentBal = Number(snap.val() || 0);
@@ -947,7 +936,6 @@
             });
         }
 
-        // Controlled Ludo Game
         function playLudo() {
             let bet = parseFloat(document.getElementById('ludoBet').value);
             db.ref('users/' + activeUserPhone + '/balance').once('value').then(snap => {
@@ -975,7 +963,6 @@
             });
         }
 
-        // Controlled Mines Sweeper Game
         function setupMinesGrid() {
             const grid = document.getElementById('minesGrid');
             grid.innerHTML = '';
@@ -1013,7 +1000,6 @@
             });
         }
 
-        // Controlled Head or Tail Game
         function playHeadTail(choice) {
             let bet = parseFloat(document.getElementById('htBetAmount').value);
             db.ref('users/' + activeUserPhone + '/balance').once('value').then(snap => {
@@ -1041,7 +1027,6 @@
             });
         }
 
-        // Controlled Fruit Slot Game
         function spinFruitSlot() {
             let bet = parseFloat(document.getElementById('slotBet').value);
             db.ref('users/' + activeUserPhone + '/balance').once('value').then(snap => {
@@ -1079,7 +1064,6 @@
             });
         }
 
-        // Controlled Color Prediction Game
         function playColorGame(chosenColor) {
             let bet = parseFloat(document.getElementById('colorBetAmount').value);
             db.ref('users/' + activeUserPhone + '/balance').once('value').then(snap => {
@@ -1126,7 +1110,6 @@
             loadPurchasedPlans();
         }
 
-        // ফিক্সড ও নিখুঁত loadUserRecords ফাংশন যা ডিপোজিট ও উইথড্র হিস্ট্রি দেখাবে
         function loadUserRecords(phone) {
             if (!phone) return;
 
