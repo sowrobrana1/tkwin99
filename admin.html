@@ -107,6 +107,7 @@ table.tbl tbody td{padding:13px 16px;border-bottom:1px solid rgba(34,43,69,.5);c
 .badge.withdraw{background:rgba(239,68,68,.14);color:var(--red)}
 .badge.buy_plan{background:rgba(139,92,246,.14);color:var(--purple)}
 .badge.plan_earn{background:rgba(6,182,212,.14);color:var(--cyan)}
+.badge.referral{background:rgba(236,72,153,.14);color:#ec4899}
 .badge.vip{background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff}
 .amt{font-variant-numeric:tabular-nums;font-weight:700}
 .amt.plus{color:var(--green)}.amt.minus{color:var(--red)}
@@ -118,7 +119,6 @@ table.tbl tbody td{padding:13px 16px;border-bottom:1px solid rgba(34,43,69,.5);c
 .act-btn.purple{color:var(--purple)}
 .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .form-grid .full{grid-column:1/-1}
-.form-grid-3{grid-template-columns:repeat(3,1fr)}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;font-weight:700;color:var(--text-2);margin-bottom:6px}
 .form-control{width:100%;padding:11px 14px;border-radius:10px;background:var(--bg-2);border:1px solid var(--border);color:var(--text);font-size:13.5px;outline:none}
@@ -136,7 +136,6 @@ textarea.form-control{min-height:90px;resize:vertical}
 .act-dot.w{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2)}
 .act-dot.b{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.2)}
 .act-dot.v{background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.2)}
-.act-dot.c{background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.2)}
 .act-body{flex:1;min-width:0}
 .act-body .t{font-size:13px;font-weight:600}
 .act-body .s{font-size:11px;color:var(--muted);margin-top:2px}
@@ -167,19 +166,29 @@ textarea.form-control{min-height:90px;resize:vertical}
 .plan-edit-icon.gold{background:linear-gradient(135deg,rgba(255,179,0,.22),rgba(255,179,0,.04))}
 .plan-edit-icon.platinum{background:linear-gradient(135deg,rgba(139,92,246,.24),rgba(236,72,153,.08))}
 .plan-edit-icon.diamond{background:linear-gradient(135deg,rgba(6,182,212,.24),rgba(59,130,246,.06))}
+.plan-edit-icon.emerald{background:linear-gradient(135deg,rgba(16,185,129,.24),rgba(16,185,129,.06))}
+.plan-edit-icon.ruby{background:linear-gradient(135deg,rgba(239,68,68,.24),rgba(239,68,68,.06))}
 .plan-edit-info{flex:1;min-width:0}
 .plan-edit-info .n{font-size:14px;font-weight:800}
 .plan-edit-info .s{font-size:11px;color:var(--muted);margin-top:2px}
 .plan-edit-info .d{font-size:11px;color:var(--green);font-weight:700;margin-top:2px}
-/* Popup preview */
-.popup-preview{background:linear-gradient(135deg,#4c1d95,#7c3aed 40%,#ec4899);border-radius:18px;padding:24px 20px;text-align:center;position:relative;overflow:hidden;margin-bottom:14px;box-shadow:0 20px 40px -14px rgba(139,92,246,.5)}
+.popup-preview{background:linear-gradient(135deg,#4c1d95,#7c3aed 40%,#ec4899);border-radius:18px;padding:24px 20px;text-align:center;position:relative;overflow:hidden;margin-bottom:14px}
 .popup-preview .pp-icon{font-size:56px;margin-bottom:12px;display:inline-block}
 .popup-preview .pp-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:999px;background:linear-gradient(135deg,#ff5a1f,#ff8f00);color:#fff;margin-bottom:12px;text-transform:uppercase}
 .popup-preview .pp-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:10px}
 .popup-preview .pp-msg{font-size:13px;color:rgba(255,255,255,.9);line-height:1.6;margin-bottom:16px;white-space:pre-line}
 .popup-preview .pp-btn{padding:12px 22px;border-radius:12px;background:#fff;color:#1a1200;font-weight:900;font-size:13.5px;display:inline-block}
+.img-upload-area{border:2px dashed var(--border-2);border-radius:14px;padding:30px 20px;text-align:center;cursor:pointer;background:var(--bg-2);margin-bottom:14px}
+.img-upload-area:hover{border-color:var(--brand)}
+.img-upload-area .up-ic{font-size:48px;margin-bottom:10px;opacity:.7}
+.img-upload-area .up-t{font-size:14px;font-weight:700}
+.img-upload-area .up-s{font-size:11.5px;color:var(--muted);margin-top:4px}
+.img-preview-box{background:var(--bg-2);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;margin-bottom:14px;min-height:200px;display:grid;place-items:center;position:relative}
+.img-preview-box img{max-width:100%;max-height:400px;border-radius:10px}
+.img-preview-box .no-img{color:var(--muted);font-size:13px}
+.img-preview-box .del-img{position:absolute;top:10px;right:10px;width:34px;height:34px;border-radius:10px;background:rgba(239,68,68,.9);color:#fff;display:grid;place-items:center;font-size:16px;cursor:pointer;z-index:3}
 @media (max-width:1100px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.menu-toggle{display:grid}.content{padding:16px}.form-grid{grid-template-columns:1fr}.form-grid-3{grid-template-columns:1fr}}
+@media (max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.menu-toggle{display:grid}.content{padding:16px}.form-grid{grid-template-columns:1fr}}
 @media (max-width:600px){.stat-grid{grid-template-columns:1fr}.tb-title{font-size:16px}.tb-sub{display:none}.tb-chip{display:none}.topbar{padding:12px 14px}.panel-head{padding:14px 16px}.panel-body{padding:14px}table.tbl thead th,table.tbl tbody td{padding:10px 12px}}
 </style>
 </head>
@@ -209,8 +218,10 @@ textarea.form-control{min-height:90px;resize:vertical}
       <div class="side-item" data-page="plans" onclick="gotoPage('plans')"><span class="si">👑</span> VIP প্ল্যান</div>
       <div class="side-item" data-page="userPlans" onclick="gotoPage('userPlans')"><span class="si">📋</span> ইউজার প্ল্যান</div>
       <div class="side-item" data-page="addPlan" onclick="gotoPage('addPlan')"><span class="si">➕</span> প্ল্যান অ্যাসাইন</div>
+      <div class="side-item" data-page="referrals" onclick="gotoPage('referrals')"><span class="si">🎁</span> রেফারেল সিস্টেম</div>
       <div class="menu-label">Settings</div>
-      <div class="side-item" data-page="popup" onclick="gotoPage('popup')"><span class="si">📢</span> ঘোষণা পপআপ</div>
+      <div class="side-item" data-page="popup" onclick="gotoPage('popup')"><span class="si">📢</span> টেক্সট ঘোষণা</div>
+      <div class="side-item" data-page="imagePopup" onclick="gotoPage('imagePopup')"><span class="si">📸</span> ছবি ঘোষণা</div>
       <div class="side-item" data-page="payment" onclick="gotoPage('payment')"><span class="si">🏦</span> পেমেন্ট নাম্বার</div>
       <div class="side-item" data-page="notifications" onclick="gotoPage('notifications')"><span class="si">🔔</span> নোটিফিকেশন</div>
       <div class="menu-label">System</div>
@@ -233,7 +244,6 @@ textarea.form-control{min-height:90px;resize:vertical}
       <div class="tb-right"><div class="tb-chip"><span class="dot"></span> অনলাইন</div></div>
     </div>
     <div class="content">
-
       <div class="page active" id="page-dashboard">
         <div class="stat-grid">
           <div class="stat-card"><div class="sc-head"><div class="sc-ic">👥</div></div><div class="sc-value" id="statUsers">0</div><div class="sc-label">মোট ইউজার</div></div>
@@ -262,14 +272,7 @@ textarea.form-control{min-height:90px;resize:vertical}
       <div class="page" id="page-transactions">
         <div class="toolbar">
           <div class="search-box"><span class="s-ic">🔍</span><input type="text" placeholder="TX ID / ইউজার..." oninput="renderTx()" id="txSearch"></div>
-          <select class="filter-select" id="txFilter" onchange="renderTx()">
-            <option value="all">সব</option>
-            <option value="deposit">ডিপোজিট</option>
-            <option value="withdraw">উইথড্র</option>
-            <option value="buy_plan">প্ল্যান ক্রয়</option>
-            <option value="plan_earn">প্ল্যান আয়</option>
-            <option value="pending">পেন্ডিং</option>
-          </select>
+          <select class="filter-select" id="txFilter" onchange="renderTx()"><option value="all">সব</option><option value="deposit">ডিপোজিট</option><option value="withdraw">উইথড্র</option><option value="buy_plan">প্ল্যান ক্রয়</option><option value="plan_earn">প্ল্যান আয়</option><option value="referral">রেফারেল</option><option value="pending">পেন্ডিং</option></select>
         </div>
         <div class="panel"><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th>TX ID</th><th>ইউজার</th><th>টাইপ</th><th>পরিমাণ</th><th>স্ট্যাটাস</th><th>সময়</th><th>অ্যাকশন</th></tr></thead><tbody id="txTable"></tbody></table></div></div></div>
       </div>
@@ -294,52 +297,56 @@ textarea.form-control{min-height:90px;resize:vertical}
         <div class="panel">
           <div class="panel-head"><h3>➕ ইউজারকে প্ল্যান অ্যাসাইন</h3></div>
           <div class="panel-body">
-            <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px;">Admin হিসেবে যেকোনো ইউজারকে ফ্রিতে VIP প্ল্যান দিতে পারবেন। ইউজার কোনো টাকা দেবে না।</p>
+            <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px;">Admin হিসেবে যেকোনো ইউজারকে ফ্রিতে VIP প্ল্যান দিতে পারবেন।</p>
             <div class="form-grid">
-              <div class="form-group full">
-                <label>ইউজার নির্বাচন করুন *</label>
-                <select class="form-control" id="assignUser">
-                  <option value="">-- ইউজার বাছুন --</option>
-                </select>
-              </div>
-              <div class="form-group full">
-                <label>প্ল্যান নির্বাচন করুন *</label>
-                <select class="form-control" id="assignPlan">
-                  <option value="">-- প্ল্যান বাছুন --</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>মেয়াদ (দিন)</label>
-                <input class="form-control" type="number" id="assignDays" placeholder="খালি রাখলে প্ল্যানের মেয়াদ">
-              </div>
-              <div class="form-group">
-                <label>Reset করুন? (আগের থাকলে)</label>
-                <select class="form-control" id="assignReset">
-                  <option value="no">না — আগের ডাটা থাকলে error</option>
-                  <option value="yes">হ্যাঁ — আগের ডাটা মুছে নতুন</option>
-                </select>
-              </div>
+              <div class="form-group full"><label>ইউজার *</label><select class="form-control" id="assignUser"><option value="">-- বাছুন --</option></select></div>
+              <div class="form-group full"><label>প্ল্যান *</label><select class="form-control" id="assignPlan"><option value="">-- বাছুন --</option></select></div>
+              <div class="form-group"><label>মেয়াদ (দিন)</label><input class="form-control" type="number" id="assignDays" placeholder="খালি রাখলে ডিফল্ট"></div>
+              <div class="form-group"><label>Reset?</label><select class="form-control" id="assignReset"><option value="no">না</option><option value="yes">হ্যাঁ</option></select></div>
             </div>
-            <button class="btn" style="margin-top:16px;" onclick="assignPlanToUser()">👑 প্ল্যান অ্যাসাইন করুন</button>
+            <button class="btn" style="margin-top:16px;" onclick="assignPlanToUser()">👑 অ্যাসাইন</button>
           </div>
         </div>
-        <div class="panel">
-          <div class="panel-head"><h3>📋 সাম্প্রতিক অ্যাসাইনমেন্ট</h3></div>
-          <div class="panel-body p0"><div class="activity-list" id="assignHistory"></div></div>
+        <div class="panel"><div class="panel-head"><h3>📋 সাম্প্রতিক</h3></div><div class="panel-body p0"><div class="activity-list" id="assignHistory"></div></div></div>
+      </div>
+
+      <div class="page" id="page-referrals">
+        <div class="stat-grid">
+          <div class="stat-card purple"><div class="sc-head"><div class="sc-ic">🎁</div></div><div class="sc-value" id="refTotalUsers">0</div><div class="sc-label">রেফার হয়েছে</div></div>
+          <div class="stat-card green"><div class="sc-head"><div class="sc-ic">💰</div></div><div class="sc-value" id="refTotalPaid">৳ 0</div><div class="sc-label">মোট কমিশন</div></div>
+          <div class="stat-card blue"><div class="sc-head"><div class="sc-ic">👥</div></div><div class="sc-value" id="refActiveRefs">0</div><div class="sc-label">সক্রিয় রেফারার</div></div>
+          <div class="stat-card red"><div class="sc-head"><div class="sc-ic">📊</div></div><div class="sc-value" id="refTodayPaid">৳ 0</div><div class="sc-label">আজকের কমিশন</div></div>
         </div>
+        <div class="panel">
+          <div class="panel-head"><h3>⚙️ কমিশন Rates</h3></div>
+          <div class="panel-body">
+            <div style="background:var(--bg-2);padding:14px;border-radius:12px;border:1px solid var(--border);margin-bottom:14px;">
+              <div style="font-size:14px;font-weight:700;margin-bottom:10px;">📦 প্ল্যান কেনার সময়</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+                <div class="form-group" style="margin:0;"><label>Level 1 (%)</label><input class="form-control" type="number" id="cPlanL1" step="0.1" min="0" max="100" value="5"></div>
+                <div class="form-group" style="margin:0;"><label>Level 2 (%)</label><input class="form-control" type="number" id="cPlanL2" step="0.1" min="0" max="100" value="3"></div>
+                <div class="form-group" style="margin:0;"><label>Level 3 (%)</label><input class="form-control" type="number" id="cPlanL3" step="0.1" min="0" max="100" value="1"></div>
+              </div>
+            </div>
+            <div style="background:var(--bg-2);padding:14px;border-radius:12px;border:1px solid var(--border);margin-bottom:14px;">
+              <div style="font-size:14px;font-weight:700;margin-bottom:10px;">🎁 ডেইলি ক্লেইমে</div>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;">
+                <div class="form-group" style="margin:0;"><label>Level 1 (%)</label><input class="form-control" type="number" id="cDailyL1" step="0.1" min="0" max="100" value="5"></div>
+                <div class="form-group" style="margin:0;"><label>Level 2 (%)</label><input class="form-control" type="number" id="cDailyL2" step="0.1" min="0" max="100" value="3"></div>
+                <div class="form-group" style="margin:0;"><label>Level 3 (%)</label><input class="form-control" type="number" id="cDailyL3" step="0.1" min="0" max="100" value="1"></div>
+              </div>
+            </div>
+            <button class="btn" onclick="saveCommissionRates()">💾 সেভ</button>
+          </div>
+        </div>
+        <div class="panel"><div class="panel-head"><h3>🎁 টপ রেফারার</h3></div><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th>ইউজার</th><th>কোড</th><th>রেফার</th><th>কমিশন</th></tr></thead><tbody id="topReferrersTable"></tbody></table></div></div></div>
+        <div class="panel"><div class="panel-head"><h3>📋 সাম্প্রতিক কমিশন</h3></div><div class="panel-body p0"><div class="activity-list" id="refHistoryList"></div></div></div>
       </div>
 
       <div class="page" id="page-popup">
         <div class="panel">
-          <div class="panel-head">
-            <h3>📢 Full Screen Popup</h3>
-            <label class="toggle" style="margin:0;">
-              <input type="checkbox" id="popupActive" onchange="savePopup()">
-              <span class="slider"></span>
-            </label>
-          </div>
+          <div class="panel-head"><h3>📢 টেক্সট ঘোষণা</h3><label class="toggle" style="margin:0;"><input type="checkbox" id="popupActive" onchange="savePopup()"><span class="slider"></span></label></div>
           <div class="panel-body">
-            <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px;">সব ইউজার সাইটে ঢুকলে এই popup দেখবে। একবার দেখলে আর আসবে না (নতুন ID দিলে আবার আসবে)।</p>
             <div class="popup-preview" id="popupPreview">
               <span class="pp-badge" id="prevBadge">🎉 ঘোষণা</span>
               <div class="pp-icon" id="prevIcon">🎁</div>
@@ -348,16 +355,40 @@ textarea.form-control{min-height:90px;resize:vertical}
               <span class="pp-btn" id="prevBtn">✅ বুঝেছি</span>
             </div>
             <div class="form-grid">
-              <div class="form-group"><label>Popup ID (unique)</label><input class="form-control" id="popupId" placeholder="popup_123456"></div>
-              <div class="form-group"><label>Badge টেক্সট</label><input class="form-control" id="popupBadge" placeholder="🎉 ঘোষণা"></div>
-              <div class="form-group"><label>Icon (Emoji)</label><input class="form-control" id="popupIcon" placeholder="🎁"></div>
-              <div class="form-group"><label>Button টেক্সট</label><input class="form-control" id="popupBtn" placeholder="✅ বুঝেছি"></div>
+              <div class="form-group"><label>ID</label><input class="form-control" id="popupId" placeholder="popup_123"></div>
+              <div class="form-group"><label>Badge</label><input class="form-control" id="popupBadge" placeholder="🎉 ঘোষণা"></div>
+              <div class="form-group"><label>Icon</label><input class="form-control" id="popupIcon" placeholder="🎁"></div>
+              <div class="form-group"><label>Button</label><input class="form-control" id="popupBtn" placeholder="✅ বুঝেছি"></div>
               <div class="form-group full"><label>টাইটেল</label><input class="form-control" id="popupTitle" placeholder="বড় ঘোষণা!"></div>
-              <div class="form-group full"><label>মেসেজ</label><textarea class="form-control" id="popupMsg" placeholder="বিস্তারিত লিখুন..."></textarea></div>
+              <div class="form-group full"><label>মেসেজ</label><textarea class="form-control" id="popupMsg"></textarea></div>
             </div>
             <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
-              <button class="btn" onclick="savePopup()">💾 সেভ করুন</button>
-              <button class="btn green sm" onclick="regeneratePopupId()">🔄 নতুন ID (আবার সবাই দেখবে)</button>
+              <button class="btn" onclick="savePopup()">💾 সেভ</button>
+              <button class="btn green sm" onclick="regeneratePopupId()">🔄 নতুন ID</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page" id="page-imagePopup">
+        <div class="panel">
+          <div class="panel-head"><h3>📸 ছবি ঘোষণা</h3><label class="toggle" style="margin:0;"><input type="checkbox" id="imgPopupActive" onchange="saveImagePopup()"><span class="slider"></span></label></div>
+          <div class="panel-body">
+            <div class="img-preview-box" id="imgPreviewBox"><div class="no-img">📷 এখনো কোনো ছবি নেই</div></div>
+            <input type="file" id="imgFileInput" accept="image/*" style="display:none;" onchange="handleImageUpload(event)">
+            <div class="img-upload-area" onclick="document.getElementById('imgFileInput').click()">
+              <div class="up-ic">📤</div>
+              <div class="up-t">ছবি আপলোড করুন</div>
+              <div class="up-s">JPG, PNG — সর্বোচ্চ 5MB</div>
+            </div>
+            <input type="hidden" id="imgPopupData">
+            <div class="form-grid">
+              <div class="form-group"><label>ID</label><input class="form-control" id="imgPopupId" placeholder="img_123"></div>
+              <div class="form-group"><label>Button</label><input class="form-control" id="imgPopupBtn" placeholder="✅ বুঝেছি"></div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
+              <button class="btn" onclick="saveImagePopup()">💾 সেভ</button>
+              <button class="btn green sm" onclick="regenerateImgPopupId()">🔄 নতুন ID</button>
             </div>
           </div>
         </div>
@@ -368,17 +399,17 @@ textarea.form-control{min-height:90px;resize:vertical}
           <div class="panel-head"><h3>🏦 পেমেন্ট নাম্বার</h3></div>
           <div class="panel-body">
             <div class="form-grid">
-              <div class="form-group"><label>🅱️ bKash ডিপোজিট</label><input class="form-control" id="payBkashDep" placeholder="01712-345678"></div>
-              <div class="form-group"><label>🅱️ bKash উইথড্র</label><input class="form-control" id="payBkashWd" placeholder="01712-345678"></div>
-              <div class="form-group"><label>🟠 Nagad ডিপোজিট</label><input class="form-control" id="payNagadDep" placeholder="01812-345678"></div>
-              <div class="form-group"><label>🟠 Nagad উইথড্র</label><input class="form-control" id="payNagadWd" placeholder="01812-345678"></div>
-              <div class="form-group"><label>🚀 Rocket ডিপোজিট</label><input class="form-control" id="payRocketDep" placeholder="01912-345678-1"></div>
-              <div class="form-group"><label>🚀 Rocket উইথড্র</label><input class="form-control" id="payRocketWd" placeholder="01912-345678-1"></div>
+              <div class="form-group"><label>🅱️ bKash ডিপোজিট</label><input class="form-control" id="payBkashDep"></div>
+              <div class="form-group"><label>🅱️ bKash উইথড্র</label><input class="form-control" id="payBkashWd"></div>
+              <div class="form-group"><label>🟠 Nagad ডিপোজিট</label><input class="form-control" id="payNagadDep"></div>
+              <div class="form-group"><label>🟠 Nagad উইথড্র</label><input class="form-control" id="payNagadWd"></div>
+              <div class="form-group"><label>🚀 Rocket ডিপোজিট</label><input class="form-control" id="payRocketDep"></div>
+              <div class="form-group"><label>🚀 Rocket উইথড্র</label><input class="form-control" id="payRocketWd"></div>
               <div class="form-group"><label>একাউন্ট টাইপ</label><select class="form-control" id="payAccType"><option value="Personal">Personal</option><option value="Agent">Agent</option><option value="Merchant">Merchant</option></select></div>
-              <div class="form-group"><label>সর্বনিম্ন ডিপোজিট (৳)</label><input class="form-control" type="number" id="payMinDep" value="100"></div>
-              <div class="form-group"><label>সর্বনিম্ন উইথড্র (৳)</label><input class="form-control" type="number" id="payMinWd" value="500"></div>
+              <div class="form-group"><label>সর্বনিম্ন ডিপোজিট</label><input class="form-control" type="number" id="payMinDep" value="100"></div>
+              <div class="form-group"><label>সর্বনিম্ন উইথড্র</label><input class="form-control" type="number" id="payMinWd" value="500"></div>
             </div>
-            <button class="btn" style="margin-top:16px;" onclick="savePaymentSettings()">💾 সেভ করুন</button>
+            <button class="btn" style="margin-top:16px;" onclick="savePaymentSettings()">💾 সেভ</button>
           </div>
         </div>
       </div>
@@ -388,7 +419,7 @@ textarea.form-control{min-height:90px;resize:vertical}
           <div class="panel-head"><h3>📢 নোটিফিকেশন পাঠান</h3></div>
           <div class="panel-body">
             <div class="form-group"><label>টাইটেল</label><input class="form-control" id="notifTitle" placeholder="নতুন বোনাস!"></div>
-            <div class="form-group"><label>মেসেজ</label><textarea class="form-control" id="notifMsg" placeholder="বিস্তারিত..."></textarea></div>
+            <div class="form-group"><label>মেসেজ</label><textarea class="form-control" id="notifMsg"></textarea></div>
             <div class="form-group"><label>টাইপ</label><select class="form-control" id="notifType"><option value="gold|🎁">🎁 বোনাস</option><option value="green|💰">💰 ডিপোজিট</option><option value="red|⚡">⚡ জরুরি</option><option value="purple|👑">👑 VIP</option></select></div>
             <button class="btn" onclick="sendNotif()">📢 পাঠান</button>
           </div>
@@ -398,8 +429,8 @@ textarea.form-control{min-height:90px;resize:vertical}
 
       <div class="page" id="page-reports">
         <div class="stat-grid">
-          <div class="stat-card green"><div class="sc-head"><div class="sc-ic">💵</div></div><div class="sc-value" id="repDeposit">৳ 0</div><div class="sc-label">মোট ডিপোজিট</div></div>
-          <div class="stat-card red"><div class="sc-head"><div class="sc-ic">📤</div></div><div class="sc-value" id="repWithdraw">৳ 0</div><div class="sc-label">মোট উইথড্র</div></div>
+          <div class="stat-card green"><div class="sc-head"><div class="sc-ic">💵</div></div><div class="sc-value" id="repDeposit">৳ 0</div><div class="sc-label">ডিপোজিট</div></div>
+          <div class="stat-card red"><div class="sc-head"><div class="sc-ic">📤</div></div><div class="sc-value" id="repWithdraw">৳ 0</div><div class="sc-label">উইথড্র</div></div>
           <div class="stat-card purple"><div class="sc-head"><div class="sc-ic">👑</div></div><div class="sc-value" id="repPlanBuy">৳ 0</div><div class="sc-label">প্ল্যান বিক্রি</div></div>
           <div class="stat-card blue"><div class="sc-head"><div class="sc-ic">💎</div></div><div class="sc-value" id="repPlanPay">৳ 0</div><div class="sc-label">প্ল্যান পেমেন্ট</div></div>
         </div>
@@ -418,9 +449,8 @@ textarea.form-control{min-height:90px;resize:vertical}
             <button class="btn" style="margin-top:8px;" onclick="updateAdminCreds()">💾 আপডেট</button>
           </div>
         </div>
-        <div class="panel"><div class="panel-head"><h3>ডাটা রিসেট</h3></div><div class="panel-body"><button class="btn red sm" onclick="resetAllData()">🗑️ সব রিসেট</button></div></div>
+        <div class="panel"><div class="panel-head"><h3>রিসেট</h3></div><div class="panel-body"><button class="btn red sm" onclick="resetAllData()">🗑️ সব রিসেট</button></div></div>
       </div>
-
     </div>
   </main>
 </div>
@@ -435,9 +465,8 @@ textarea.form-control{min-height:90px;resize:vertical}
 <div class="toast" id="toast"></div>
 
 <script>
-/* ===== STORE ===== */
 (function(global){
-const K_USERS='tkwin_users_v1',K_TXS='tkwin_txs_v1',K_NOTIFS='tkwin_notifs_v1',K_ADMIN='tkwin_admin_v1',K_PAYMENT='tkwin_payment_v1',K_PLANS='tkwin_plans_v1';
+const K_USERS='tkwin_users_v1',K_TXS='tkwin_txs_v1',K_NOTIFS='tkwin_notifs_v1',K_ADMIN='tkwin_admin_v1',K_PAYMENT='tkwin_payment_v1',K_PLANS='tkwin_plans_v1',K_COMMISSION='tkwin_commission_v1';
 function read(k,d){try{const r=localStorage.getItem(k);return r?JSON.parse(r):d}catch{return d}}
 function write(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
 const fbReady=(typeof window.db!=='undefined'&&window.db!==null);
@@ -453,6 +482,7 @@ function startListeners(){
   window.db.ref('config/notifs').on('value',s=>{const v=s.val();if(v){write(K_NOTIFS,v);notify()}});
   window.db.ref('config/paymentNumbers').on('value',s=>{const v=s.val();if(v){write(K_PAYMENT,v);notify()}});
   window.db.ref('config/vipPlans').on('value',s=>{const v=s.val();if(v){write(K_PLANS,v);notify()}});
+  window.db.ref('config/commissionRates').on('value',s=>{const v=s.val();if(v){write(K_COMMISSION,v);notify()}});
   window.db.ref('admin/credentials').on('value',s=>{const v=s.val();if(v){write(K_ADMIN,v);notify()}});
 }
 startListeners();
@@ -460,14 +490,14 @@ function getUsers(){return read(K_USERS,[])}
 function saveUsers(l){write(K_USERS,l);notify()}
 function findUserByName(n){return getUsers().find(u=>u.name===n)}
 function findUserById(id){return getUsers().find(u=>u.id===id)}
-function addUser(name,pass){const l=getUsers();if(l.find(u=>u.name===name))return null;const id='TK'+String(100000+l.length+1).slice(-6);const u={id,name,pass,email:name.toLowerCase().replace(/\s+/g,'')+'@demo.local',bal:0,st:'active',joined:new Date().toISOString().slice(0,10),vipPlans:{}};l.push(u);saveUsers(l);fbSet('users/'+id,u);return u}
+function addUser(name,pass){const l=getUsers();if(l.find(u=>u.name===name))return null;const id='TK'+String(100000+l.length+1).slice(-6);const u={id,name,pass,referralCode:id,email:name.toLowerCase().replace(/\s+/g,'')+'@demo.local',bal:0,st:'active',joined:new Date().toISOString().slice(0,10),vipPlans:{},referredBy:null,referralChain:[],referrals:[]};l.push(u);saveUsers(l);fbSet('users/'+id,u);return u}
 function updateUser(id,patch){const l=getUsers();const i=l.findIndex(u=>u.id===id);if(i<0)return null;l[i]=Object.assign({},l[i],patch);saveUsers(l);fbUpdate('users/'+id,patch);return l[i]}
 function deleteUser(id){saveUsers(getUsers().filter(u=>u.id!==id));fbRemove('users/'+id)}
 function addBalance(id,amt){const u=findUserById(id);if(!u)return null;const b=Math.max(0,(Number(u.bal)||0)+Number(amt));return updateUser(id,{bal:b})}
 function setBalance(id,amt){return updateUser(id,{bal:Number(amt)||0})}
 function getTxs(){return read(K_TXS,[])}
 function saveTxs(l){write(K_TXS,l);notify()}
-function addTx(tx){const id='TX'+(100000+getTxs().length+1)+Math.floor(Math.random()*1000);const rec={id,user:tx.user,t:tx.t,amt:Number(tx.amt)||0,st:tx.st||'active',time:tx.time||new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'}),method:tx.method||'',trx:tx.trx||'',account:tx.account||'',name:tx.name||''};const l=getTxs();l.unshift(rec);saveTxs(l);fbSet('transactions/'+id,rec);return rec}
+function addTx(tx){const id='TX'+(100000+getTxs().length+1)+Math.floor(Math.random()*1000);const rec={id,user:tx.user,t:tx.t,amt:Number(tx.amt)||0,st:tx.st||'active',time:tx.time||new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'}),method:tx.method||'',trx:tx.trx||'',account:tx.account||'',name:tx.name||'',createdAt:Date.now()};const l=getTxs();l.unshift(rec);saveTxs(l);fbSet('transactions/'+id,rec);return rec}
 function updateTxStatus(id,s){const l=getTxs();const i=l.findIndex(t=>t.id===id);if(i<0)return null;l[i].st=s;saveTxs(l);fbUpdate('transactions/'+id,{st:s});return l[i]}
 function getNotifs(){return read(K_NOTIFS,[])}
 function saveNotifs(v){write(K_NOTIFS,v);notify();fbSet('config/notifs',v)}
@@ -477,14 +507,15 @@ function getPayment(){return read(K_PAYMENT,null)}
 function savePayment(v){write(K_PAYMENT,v);notify();fbSet('config/paymentNumbers',v)}
 function getPlans(){return read(K_PLANS,null)}
 function savePlans(v){write(K_PLANS,v);notify();fbSet('config/vipPlans',v)}
+function getCommissionRates(){const r=read(K_COMMISSION,null);if(r&&r.plan&&r.daily)return r;return{plan:{l1:5,l2:3,l3:1},daily:{l1:5,l2:3,l3:1}}}
+function saveCommissionRates(v){write(K_COMMISSION,v);notify();fbSet('config/commissionRates',v)}
 const listeners=[];
 function onChange(fn){listeners.push(fn)}
 function notify(){listeners.forEach(fn=>{try{fn()}catch(e){}})}
 window.addEventListener('storage',e=>{if(e.key&&e.key.indexOf('tkwin_')===0)notify()});
-global.Store={getUsers,saveUsers,findUserByName,findUserById,addUser,updateUser,deleteUser,addBalance,setBalance,getTxs,saveTxs,addTx,updateTxStatus,getNotifs,saveNotifs,getAdminCreds,saveAdminCreds,getPayment,savePayment,getPlans,savePlans,onChange,notify};
+global.Store={getUsers,saveUsers,findUserByName,findUserById,addUser,updateUser,deleteUser,addBalance,setBalance,getTxs,saveTxs,addTx,updateTxStatus,getNotifs,saveNotifs,getAdminCreds,saveAdminCreds,getPayment,savePayment,getPlans,savePlans,getCommissionRates,saveCommissionRates,onChange,notify};
 })(window);
 
-/* ===== DEFAULTS ===== */
 const DEFAULT_PLANS=[
   {id:'starter',name:'Starter',icon:'🥉',color:'bronze',price:500,daily:10,days:60,badge:''},
   {id:'silver',name:'Silver',icon:'🥈',color:'silver',price:1000,daily:25,days:60,badge:'hot'},
@@ -494,10 +525,9 @@ const DEFAULT_PLANS=[
 ];
 function getPlansData(){const r=Store.getPlans();return(Array.isArray(r)&&r.length)?r:DEFAULT_PLANS}
 function findPlan(id){return getPlansData().find(p=>p.id===id)}
-function getToday(){return new Date().toISOString().slice(0,10)}
 
-const VALID_PAGES=['dashboard','users','transactions','plans','userPlans','addPlan','popup','payment','notifications','reports','security'];
-const PAGE_META={dashboard:{t:'ড্যাশবোর্ড',s:'সিস্টেম ওভারভিউ'},users:{t:'ইউজার',s:'সব ইউজার'},transactions:{t:'ট্রানজেকশন',s:'ডিপোজিট, উইথড্র, প্ল্যান'},plans:{t:'VIP প্ল্যান',s:'প্ল্যান এডিট'},userPlans:{t:'ইউজার প্ল্যান',s:'কোন ইউজার কোন প্ল্যান কিনেছে'},addPlan:{t:'প্ল্যান অ্যাসাইন',s:'ইউজারকে ফ্রি প্ল্যান দিন'},popup:{t:'ঘোষণা পপআপ',s:'Full screen popup manage'},payment:{t:'পেমেন্ট নাম্বার',s:'bKash/Nagad/Rocket'},notifications:{t:'নোটিফিকেশন',s:'ইউজারদের পাঠান'},reports:{t:'রিপোর্ট',s:'অ্যানালিটিক্স'},security:{t:'সিকিউরিটি',s:'নিরাপত্তা'}};
+const VALID_PAGES=['dashboard','users','transactions','plans','userPlans','addPlan','referrals','popup','imagePopup','payment','notifications','reports','security'];
+const PAGE_META={dashboard:{t:'ড্যাশবোর্ড',s:'সিস্টেম ওভারভিউ'},users:{t:'ইউজার',s:'সব ইউজার'},transactions:{t:'ট্রানজেকশন',s:'ডিপোজিট, উইথড্র, প্ল্যান'},plans:{t:'VIP প্ল্যান',s:'প্ল্যান এডিট'},userPlans:{t:'ইউজার প্ল্যান',s:'কোন ইউজার কোন প্ল্যান'},addPlan:{t:'প্ল্যান অ্যাসাইন',s:'ফ্রি প্ল্যান দিন'},referrals:{t:'রেফারেল সিস্টেম',s:'কমিশন সেটিংস'},popup:{t:'টেক্সট ঘোষণা',s:'Text popup'},imagePopup:{t:'ছবি ঘোষণা',s:'Image popup'},payment:{t:'পেমেন্ট নাম্বার',s:'bKash/Nagad/Rocket'},notifications:{t:'নোটিফিকেশন',s:'ইউজারদের পাঠান'},reports:{t:'রিপোর্ট',s:'অ্যানালিটিক্স'},security:{t:'সিকিউরিটি',s:'নিরাপত্তা'}};
 
 let currentPage='dashboard';
 let adminLoggedIn=false;
@@ -579,7 +609,6 @@ window.addEventListener('popstate',e=>{
   if(e.state&&e.state.app==='vip_admin'&&e.state.page&&VALID_PAGES.includes(e.state.page)){if(e.state.page!==currentPage)gotoPage(e.state.page,true)}
   else{if(currentPage!=='dashboard'){gotoPage('dashboard',true);history.pushState({page:'dashboard',app:'vip_admin'},'','#dashboard')}}
 });
-
 function updateStats(){
   const users=Store.getUsers(),txs=Store.getTxs();
   const dep=txs.filter(t=>t.t==='deposit'&&t.st==='active').reduce((s,t)=>s+Number(t.amt||0),0);
@@ -602,18 +631,18 @@ function updateBadges(){
 function renderAll(){
   updateStats();updateBadges();
   renderRecentTx();renderUsers();renderTx();renderPlanEdit();renderUserPlans();
-  renderPaymentSettings();renderNotifHistory();renderAssignDropdowns();renderAssignHistory();loadPopup();
+  renderPaymentSettings();renderNotifHistory();renderAssignDropdowns();renderAssignHistory();
+  loadPopup();loadImagePopup();renderReferrals();
 }
+function isPlus(t){return t==='deposit'||t==='win'||t==='plan_earn'||t==='referral'}
+function txLabel(t){return{deposit:'ডিপোজিট',withdraw:'উইথড্র',buy_plan:'প্ল্যান ক্রয়',plan_earn:'প্ল্যান আয়',referral:'রেফারেল',bet:'বেট',win:'উইন'}[t]||t}
+function stLabel(s){return{active:'সক্রিয়',pending:'পেন্ডিং',blocked:'ব্লকড'}[s]||s}
 function renderRecentTx(){
   const tb=document.getElementById('recentTxTable');if(!tb)return;
   const list=Store.getTxs().slice(0,6);
   if(!list.length){tb.innerHTML='<tr><td colspan="4" style="text-align:center;padding:24px;color:var(--muted);">কিছু নেই</td></tr>';return}
   tb.innerHTML=list.map(t=>`<tr><td><div class="u-cell"><div class="u-ava">${(t.user||'?').charAt(0)}</div><div class="u-info"><div class="un">${t.user}</div><div class="uid">${t.id}</div></div></div></td><td><span class="badge ${t.t}">${txLabel(t.t)}</span></td><td><span class="amt ${isPlus(t.t)?'plus':'minus'}">৳ ${Number(t.amt).toLocaleString()}</span></td><td><span class="badge ${t.st}">${stLabel(t.st)}</span></td></tr>`).join('');
 }
-function isPlus(t){return t==='deposit'||t==='win'||t==='plan_earn'}
-function txLabel(t){return{deposit:'ডিপোজিট',withdraw:'উইথড্র',buy_plan:'প্ল্যান ক্রয়',plan_earn:'প্ল্যান আয়',bet:'বেট',win:'উইন'}[t]||t}
-function stLabel(s){return{active:'সক্রিয়',pending:'পেন্ডিং',blocked:'ব্লকড'}[s]||s}
-
 function renderUsers(){
   const tb=document.getElementById('usersTable');if(!tb)return;
   const q=(document.getElementById('userSearch')?.value||'').toLowerCase();
@@ -628,29 +657,21 @@ function renderUsers(){
     return `<tr><td><div class="u-cell"><div class="u-ava">${u.name.charAt(0)}</div><div class="u-info"><div class="un">${u.name}</div><div class="uid">${u.id}</div></div></div></td><td>${u.email||'-'}</td><td><span class="amt plus">৳ ${Number(u.bal||0).toLocaleString()}</span></td><td><span class="badge vip">${planCount}</span></td><td><span class="badge ${u.st}">${stLabel(u.st)}</span></td><td><div class="row-actions"><button class="act-btn blue" onclick="viewUser('${u.id}')">👁️</button><button class="act-btn green" onclick="adjustBalance('${u.id}')">💰</button><button class="act-btn purple" onclick="quickAssign('${u.id}')">👑</button><button class="act-btn ${u.st==='blocked'?'green':'red'}" onclick="toggleBlock('${u.id}')">${u.st==='blocked'?'✅':'🚫'}</button><button class="act-btn red" onclick="deleteUser('${u.id}')">🗑️</button></div></td></tr>`;
   }).join('');
 }
-function adminAddUser(){
-  const n=prompt('নাম:');if(!n)return;
-  const p=prompt('পাসওয়ার্ড:','1234');if(!p)return;
-  const u=Store.addUser(n.trim(),p);
-  if(!u){showToast('আগেই আছে');return}
-  showToast('✅ যোগ: '+n);renderUsers();updateStats();
-}
+function adminAddUser(){const n=prompt('নাম:');if(!n)return;const p=prompt('পাসওয়ার্ড:','1234');if(!p)return;const u=Store.addUser(n.trim(),p);if(!u){showToast('আগেই আছে');return}showToast('✅ যোগ: '+n);renderUsers();updateStats()}
 function viewUser(id){
   const u=Store.findUserById(id);if(!u)return;
   const plans=u.vipPlans||{};
-  const planList=Object.keys(plans).map(pid=>{
-    const p=findPlan(pid);if(!p)return'';
-    const d=plans[pid];
-    return '<div style="background:var(--bg-2);padding:10px;border-radius:10px;margin-bottom:8px;font-size:12px;"><b>'+p.icon+' '+p.name+'</b> — দৈনিক ৳'+p.daily+' · '+((d.daysClaimed||0))+'/'+p.days+' দিন · মোট ৳'+(d.totalClaimed||0)+'</div>';
-  }).join('');
+  const planList=Object.keys(plans).map(pid=>{const p=findPlan(pid);if(!p)return'';const d=plans[pid];return '<div style="background:var(--bg-2);padding:10px;border-radius:10px;margin-bottom:8px;font-size:12px;"><b>'+p.icon+' '+p.name+'</b> — ৳'+p.daily+' · '+((d.daysClaimed||0))+'/'+p.days+' দিন · ৳'+(d.totalClaimed||0)+'</div>'}).join('');
+  const refCode=u.referralCode||u.id,refCount=(u.referrals||[]).length;
+  const refEarn=Store.getTxs().filter(t=>t.user===u.name&&t.t==='referral').reduce((s,t)=>s+Number(t.amt||0),0);
+  const referredBy=u.referredBy?Store.findUserById(u.referredBy):null;
   document.getElementById('modalTitle').textContent='ইউজার: '+u.name;
-  document.getElementById('modalBody').innerHTML=`<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;"><div style="width:60px;height:60px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:24px;font-weight:800;color:#1a1200;">${u.name.charAt(0)}</div><div><div style="font-size:17px;font-weight:800;">${u.name}</div><div style="font-size:12px;color:var(--muted);">${u.email||''}</div><div style="font-size:11px;color:var(--muted);">ID: ${u.id}</div></div></div><div style="background:var(--bg-2);padding:12px;border-radius:10px;margin-bottom:14px;"><div style="color:var(--muted);font-size:11px;">ব্যালেন্স</div><div style="color:var(--green);font-weight:800;font-size:16px;">৳ ${Number(u.bal||0).toLocaleString()}</div></div><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;">👑 প্ল্যানসমূহ:</div>${planList||'<div style="color:var(--muted);font-size:12px;">কোনো প্ল্যান নেই</div>'}`;
+  document.getElementById('modalBody').innerHTML=`<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;"><div style="width:60px;height:60px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:24px;font-weight:800;color:#1a1200;">${u.name.charAt(0)}</div><div><div style="font-size:17px;font-weight:800;">${u.name}</div><div style="font-size:12px;color:var(--muted);">${u.email||''}</div><div style="font-size:11px;color:var(--muted);">ID: ${u.id}</div></div></div><div style="background:var(--bg-2);padding:12px;border-radius:10px;margin-bottom:14px;"><div style="color:var(--muted);font-size:11px;">ব্যালেন্স</div><div style="color:var(--green);font-weight:800;font-size:16px;">৳ ${Number(u.bal||0).toLocaleString()}</div></div><div style="font-size:12px;font-weight:700;margin-bottom:8px;">👑 প্ল্যান:</div>${planList||'<div style="color:var(--muted);font-size:12px;">নেই</div>'}<div style="background:var(--bg-2);padding:12px;border-radius:10px;margin-top:14px;font-size:12px;"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;">🎁 রেফারেল</div><div style="display:flex;justify-content:space-between;padding:4px 0;"><span>কোড</span><b style="color:var(--brand);">${refCode}</b></div><div style="display:flex;justify-content:space-between;padding:4px 0;"><span>মোট রেফার</span><b>${refCount}</b></div><div style="display:flex;justify-content:space-between;padding:4px 0;"><span>কমিশন</span><b style="color:var(--green);">৳${refEarn.toLocaleString()}</b></div>${referredBy?'<div style="display:flex;justify-content:space-between;padding:4px 0;"><span>রেফার করেছে</span><b>'+referredBy.name+'</b></div>':''}</div>`;
   document.getElementById('modalMask').classList.add('show');
 }
 function toggleBlock(id){const u=Store.findUserById(id);if(!u)return;const s=u.st==='blocked'?'active':'blocked';Store.updateUser(id,{st:s});showToast(s==='blocked'?'🚫 ব্লকড':'✅ আনব্লকড');renderUsers()}
 function adjustBalance(id){const u=Store.findUserById(id);if(!u)return;const a=prompt(`${u.name}-এর নতুন ব্যালেন্স:`,u.bal);if(a===null)return;const v=parseFloat(a);if(isNaN(v)){showToast('ভুল');return}Store.setBalance(id,v);showToast('✅ ৳'+v);renderUsers();updateStats()}
 function deleteUser(id){const u=Store.findUserById(id);if(!u)return;if(!confirm(`${u.name} ডিলিট?`))return;Store.deleteUser(id);showToast('🗑️ ডিলিট');renderUsers();updateStats()}
-
 function renderTx(){
   const tb=document.getElementById('txTable');if(!tb)return;
   const q=(document.getElementById('txSearch')?.value||'').toLowerCase();
@@ -675,51 +696,16 @@ function approveTx(txId){
   showToast('✅ অ্যাপ্রুভ');renderAll();
 }
 function rejectTx(txId){if(!confirm('রিজেক্ট?'))return;Store.updateTxStatus(txId,'blocked');showToast('❌ রিজেক্ট');renderAll()}
-
-/* ===== PLANS EDIT ===== */
 function renderPlanEdit(){
   const el=document.getElementById('planEditList');if(!el)return;
   const plans=getPlansData();
-  el.innerHTML=plans.map((p,i)=>`
-    <div class="plan-edit-row">
-      <div class="plan-edit-icon ${p.color}">${p.icon}</div>
-      <div class="plan-edit-info">
-        <div class="n">${p.name}${p.badge?' <span class="badge '+(p.badge==='hot'?'pending':'vip')+'" style="margin-left:6px;">'+p.badge.toUpperCase()+'</span>':''}</div>
-        <div class="s">💰 ৳${p.price.toLocaleString()} · দৈনিক ৳${p.daily} · ${p.days} দিন</div>
-        <div class="d">মোট রিটার্ন ৳${(p.daily*p.days).toLocaleString()}</div>
-      </div>
-      <div class="row-actions">
-        <button class="act-btn blue" onclick="openPlanEdit(${i})">✏️</button>
-        <button class="act-btn red" onclick="deletePlan(${i})">🗑️</button>
-      </div>
-    </div>
-  `).join('');
+  el.innerHTML=plans.map((p,i)=>`<div class="plan-edit-row"><div class="plan-edit-icon ${p.color}">${p.icon}</div><div class="plan-edit-info"><div class="n">${p.name}${p.badge?' <span class="badge '+(p.badge==='hot'?'pending':'vip')+'" style="margin-left:6px;">'+p.badge.toUpperCase()+'</span>':''}</div><div class="s">💰 ৳${p.price.toLocaleString()} · দৈনিক ৳${p.daily} · ${p.days} দিন</div><div class="d">মোট রিটার্ন ৳${(p.daily*p.days).toLocaleString()}</div></div><div class="row-actions"><button class="act-btn blue" onclick="openPlanEdit(${i})">✏️</button><button class="act-btn red" onclick="deletePlan(${i})">🗑️</button></div></div>`).join('');
 }
 function openPlanEdit(idx){
   editingPlanIdx=idx!==undefined?idx:-1;
   const p=idx!==undefined?getPlansData()[idx]:{id:'plan_'+Date.now(),name:'',icon:'👑',color:'gold',price:500,daily:10,days:60,badge:''};
   document.getElementById('modalTitle').textContent=idx!==undefined?'প্ল্যান এডিট':'নতুন প্ল্যান';
-  document.getElementById('modalBody').innerHTML=`
-    <div class="form-grid">
-      <div class="form-group full"><label>নাম *</label><input class="form-control" id="pName" value="${p.name}"></div>
-      <div class="form-group"><label>আইকন</label><input class="form-control" id="pIcon" value="${p.icon}"></div>
-      <div class="form-group"><label>কালার</label><select class="form-control" id="pColor">
-        <option value="bronze" ${p.color==='bronze'?'selected':''}>Bronze</option>
-        <option value="silver" ${p.color==='silver'?'selected':''}>Silver</option>
-        <option value="gold" ${p.color==='gold'?'selected':''}>Gold</option>
-        <option value="platinum" ${p.color==='platinum'?'selected':''}>Platinum</option>
-        <option value="diamond" ${p.color==='diamond'?'selected':''}>Diamond</option>
-      </select></div>
-      <div class="form-group"><label>দাম (৳)</label><input class="form-control" type="number" id="pPrice" value="${p.price}"></div>
-      <div class="form-group"><label>দৈনিক (৳)</label><input class="form-control" type="number" id="pDaily" value="${p.daily}"></div>
-      <div class="form-group"><label>মেয়াদ (দিন)</label><input class="form-control" type="number" id="pDays" value="${p.days}"></div>
-      <div class="form-group"><label>ব্যাজ</label><select class="form-control" id="pBadge">
-        <option value="" ${!p.badge?'selected':''}>নেই</option>
-        <option value="hot" ${p.badge==='hot'?'selected':''}>🔥 HOT</option>
-        <option value="vip" ${p.badge==='vip'?'selected':''}>👑 VIP</option>
-      </select></div>
-    </div>
-  `;
+  document.getElementById('modalBody').innerHTML=`<div class="form-grid"><div class="form-group full"><label>নাম *</label><input class="form-control" id="pName" value="${p.name}"></div><div class="form-group"><label>আইকন</label><input class="form-control" id="pIcon" value="${p.icon}"></div><div class="form-group"><label>কালার</label><select class="form-control" id="pColor"><option value="bronze" ${p.color==='bronze'?'selected':''}>Bronze</option><option value="silver" ${p.color==='silver'?'selected':''}>Silver</option><option value="gold" ${p.color==='gold'?'selected':''}>Gold</option><option value="platinum" ${p.color==='platinum'?'selected':''}>Platinum</option><option value="diamond" ${p.color==='diamond'?'selected':''}>Diamond</option><option value="emerald" ${p.color==='emerald'?'selected':''}>Emerald</option><option value="ruby" ${p.color==='ruby'?'selected':''}>Ruby</option></select></div><div class="form-group"><label>দাম (৳)</label><input class="form-control" type="number" id="pPrice" value="${p.price}"></div><div class="form-group"><label>দৈনিক (৳)</label><input class="form-control" type="number" id="pDaily" value="${p.daily}"></div><div class="form-group"><label>মেয়াদ (দিন)</label><input class="form-control" type="number" id="pDays" value="${p.days}"></div><div class="form-group"><label>ব্যাজ</label><select class="form-control" id="pBadge"><option value="" ${!p.badge?'selected':''}>নেই</option><option value="hot" ${p.badge==='hot'?'selected':''}>🔥 HOT</option><option value="vip" ${p.badge==='vip'?'selected':''}>👑 VIP</option></select></div></div>`;
   document.getElementById('modalFoot').innerHTML=`<button class="btn ghost sm" onclick="closeModal()">বাতিল</button><button class="btn sm" onclick="savePlan()">💾 সেভ</button>`;
   document.getElementById('modalMask').classList.add('show');
 }
@@ -728,140 +714,76 @@ function savePlan(){
   const price=parseFloat(document.getElementById('pPrice').value)||0;
   const daily=parseFloat(document.getElementById('pDaily').value)||0;
   const days=parseFloat(document.getElementById('pDays').value)||0;
-  if(!name){showToast('নাম দিন');return}
-  if(price<=0){showToast('দাম');return}
-  if(daily<=0){showToast('দৈনিক');return}
-  if(days<=0){showToast('মেয়াদ');return}
+  if(!name||price<=0||daily<=0||days<=0){showToast('সব তথ্য দিন');return}
   const plans=[...getPlansData()];
-  const obj={
-    id:editingPlanIdx>=0?plans[editingPlanIdx].id:'plan_'+Date.now(),
-    name,icon:document.getElementById('pIcon').value.trim()||'👑',
-    color:document.getElementById('pColor').value,
-    price,daily,days,
-    badge:document.getElementById('pBadge').value
-  };
-  if(editingPlanIdx>=0)plans[editingPlanIdx]=obj;
-  else plans.push(obj);
-  Store.savePlans(plans);
-  showToast('✅ প্ল্যান সেভ');
-  closeModal();renderPlanEdit();renderAssignDropdowns();
+  const obj={id:editingPlanIdx>=0?plans[editingPlanIdx].id:'plan_'+Date.now(),name,icon:document.getElementById('pIcon').value.trim()||'👑',color:document.getElementById('pColor').value,price,daily,days,badge:document.getElementById('pBadge').value};
+  if(editingPlanIdx>=0)plans[editingPlanIdx]=obj;else plans.push(obj);
+  Store.savePlans(plans);showToast('✅ সেভ');closeModal();renderPlanEdit();renderAssignDropdowns();
 }
-function deletePlan(idx){
-  const plans=[...getPlansData()];
-  if(!confirm(`"${plans[idx].name}" ডিলিট?`))return;
-  plans.splice(idx,1);
-  Store.savePlans(plans);
-  showToast('🗑️ ডিলিট');
-  renderPlanEdit();renderAssignDropdowns();
-}
-function resetPlansToDefault(){
-  if(!confirm('ডিফল্ট প্ল্যানে রিসেট?'))return;
-  Store.savePlans(DEFAULT_PLANS);
-  showToast('✅ রিসেট');
-  renderPlanEdit();renderAssignDropdowns();
-}
-
-/* ===== USER PLANS ===== */
+function deletePlan(idx){const plans=[...getPlansData()];if(!confirm(`"${plans[idx].name}" ডিলিট?`))return;plans.splice(idx,1);Store.savePlans(plans);showToast('🗑️');renderPlanEdit();renderAssignDropdowns()}
+function resetPlansToDefault(){if(!confirm('ডিফল্টে রিসেট?'))return;Store.savePlans(DEFAULT_PLANS);showToast('✅ রিসেট');renderPlanEdit();renderAssignDropdowns()}
 function renderUserPlans(){
   const tb=document.getElementById('userPlansTable');if(!tb)return;
   const q=(document.getElementById('upSearch')?.value||'').toLowerCase();
   const f=document.getElementById('upFilter')?.value||'all';
   const users=Store.getUsers().filter(u=>u.name.toLowerCase().includes(q));
   const rows=[];
-  users.forEach(u=>{
-    const plans=u.vipPlans||{};
-    Object.keys(plans).forEach(pid=>{
-      const p=findPlan(pid);if(!p)return;
-      const d=plans[pid];
-      const expired=(d.daysClaimed||0)>=p.days;
-      if(f==='live'&&expired)return;
-      if(f==='expired'&&!expired)return;
-      rows.push({user:u,plan:p,data:d,expired});
-    });
-  });
+  users.forEach(u=>{const plans=u.vipPlans||{};Object.keys(plans).forEach(pid=>{const p=findPlan(pid);if(!p)return;const d=plans[pid];const expired=(d.daysClaimed||0)>=p.days;if(f==='live'&&expired)return;if(f==='expired'&&!expired)return;rows.push({user:u,plan:p,data:d,expired})})});
   if(!rows.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);">কিছু নেই</td></tr>';return}
-  tb.innerHTML=rows.map(r=>{
-    return `<tr><td><div class="u-cell"><div class="u-ava">${r.user.name.charAt(0)}</div><div class="u-info"><div class="un">${r.user.name}</div><div class="uid">${r.user.id}</div></div></div></td><td>${r.plan.icon} ${r.plan.name}</td><td>৳${r.plan.daily}</td><td>${r.data.daysClaimed||0} / ${r.plan.days}</td><td style="color:var(--green);font-weight:800;">৳${(r.data.totalClaimed||0).toLocaleString()}</td><td><span class="badge ${r.expired?'blocked':'active'}">${r.expired?'শেষ':'লাইভ'}</span></td><td><button class="act-btn red" onclick="removeUserPlan('${r.user.id}','${r.plan.id}')">🗑️</button></td></tr>`;
-  }).join('');
+  tb.innerHTML=rows.map(r=>`<tr><td><div class="u-cell"><div class="u-ava">${r.user.name.charAt(0)}</div><div class="u-info"><div class="un">${r.user.name}</div><div class="uid">${r.user.id}</div></div></div></td><td>${r.plan.icon} ${r.plan.name}</td><td>৳${r.plan.daily}</td><td>${r.data.daysClaimed||0} / ${r.plan.days}</td><td style="color:var(--green);font-weight:800;">৳${(r.data.totalClaimed||0).toLocaleString()}</td><td><span class="badge ${r.expired?'blocked':'active'}">${r.expired?'শেষ':'লাইভ'}</span></td><td><button class="act-btn red" onclick="removeUserPlan('${r.user.id}','${r.plan.id}')">🗑️</button></td></tr>`).join('');
 }
-function removeUserPlan(userId,planId){
-  const u=Store.findUserById(userId);if(!u)return;
-  if(!confirm(`${u.name} থেকে ${planId} প্ল্যান মুছবেন?`))return;
-  const userPlans=u.vipPlans||{};
-  delete userPlans[planId];
-  Store.updateUser(userId,{vipPlans:userPlans});
-  showToast('🗑️ প্ল্যান মুছে ফেলা হয়েছে');
-  renderUserPlans();renderUsers();
-}
-
-/* ===== PLAN ASSIGN ===== */
+function removeUserPlan(userId,planId){const u=Store.findUserById(userId);if(!u)return;if(!confirm(`${u.name} থেকে ${planId} মুছবেন?`))return;const up=u.vipPlans||{};delete up[planId];Store.updateUser(userId,{vipPlans:up});showToast('🗑️ মুছে');renderUserPlans();renderUsers()}
 function renderAssignDropdowns(){
-  const uSel=document.getElementById('assignUser');
-  const pSel=document.getElementById('assignPlan');
-  if(uSel){
-    const users=Store.getUsers();
-    uSel.innerHTML='<option value="">-- ইউজার বাছুন --</option>'+users.map(u=>`<option value="${u.id}">${u.name} (${u.id}) — ৳${Number(u.bal||0).toLocaleString()}</option>`).join('');
-  }
-  if(pSel){
-    const plans=getPlansData();
-    pSel.innerHTML='<option value="">-- প্ল্যান বাছুন --</option>'+plans.map(p=>`<option value="${p.id}">${p.icon} ${p.name} — দৈনিক ৳${p.daily} × ${p.days} দিন</option>`).join('');
-  }
+  const uSel=document.getElementById('assignUser'),pSel=document.getElementById('assignPlan');
+  if(uSel){const users=Store.getUsers();uSel.innerHTML='<option value="">-- বাছুন --</option>'+users.map(u=>`<option value="${u.id}">${u.name} (${u.id}) — ৳${Number(u.bal||0).toLocaleString()}</option>`).join('')}
+  if(pSel){const plans=getPlansData();pSel.innerHTML='<option value="">-- বাছুন --</option>'+plans.map(p=>`<option value="${p.id}">${p.icon} ${p.name} — ৳${p.daily} × ${p.days}</option>`).join('')}
 }
-function quickAssign(userId){
-  gotoPage('addPlan');
-  setTimeout(()=>{
-    const sel=document.getElementById('assignUser');
-    if(sel)sel.value=userId;
-  },200);
-}
+function quickAssign(userId){gotoPage('addPlan');setTimeout(()=>{const sel=document.getElementById('assignUser');if(sel)sel.value=userId},200)}
 function assignPlanToUser(){
-  const userId=document.getElementById('assignUser').value;
-  const planId=document.getElementById('assignPlan').value;
+  const userId=document.getElementById('assignUser').value,planId=document.getElementById('assignPlan').value;
   const customDays=parseInt(document.getElementById('assignDays').value)||0;
   const doReset=document.getElementById('assignReset').value==='yes';
-  if(!userId){showToast('ইউজার বাছুন');return}
-  if(!planId){showToast('প্ল্যান বাছুন');return}
-  const u=Store.findUserById(userId);
-  const p=findPlan(planId);
+  if(!userId||!planId){showToast('ইউজার ও প্ল্যান বাছুন');return}
+  const u=Store.findUserById(userId),p=findPlan(planId);
   if(!u||!p){showToast('ভুল ডাটা');return}
   const userPlans=u.vipPlans||{};
-  if(userPlans[planId]&&!doReset){showToast('⚠️ এই ইউজারের এই প্ল্যান আগেই আছে। "Reset" অপশন দিন।');return}
+  if(userPlans[planId]&&!doReset){showToast('⚠️ আগেই আছে');return}
   const days=customDays>0?customDays:p.days;
-  const plans=getPlansData();
-  const planCopy=plans.find(x=>x.id===planId);
-  // if custom days given, override plan's days temporarily by cloning
-  userPlans[planId]={
-    purchased:Date.now(),
-    lastClaim:null,
-    daysClaimed:0,
-    totalClaimed:0,
-    adminAssigned:true,
-    customDays:customDays>0?customDays:null,
-    effectiveDays:days
-  };
+  userPlans[planId]={purchased:Date.now(),lastClaim:null,daysClaimed:0,totalClaimed:0,adminAssigned:true,customDays:customDays>0?customDays:null,effectiveDays:days};
   Store.updateUser(userId,{vipPlans:userPlans});
-  Store.addTx({user:u.name,t:'plan_earn',amt:0,st:'active',time:'Admin প্ল্যান অ্যাসাইন - '+p.name});
-  showToast('👑 '+u.name+' কে '+p.name+' দেয়া হয়েছে!');
-  document.getElementById('assignUser').value='';
-  document.getElementById('assignPlan').value='';
-  document.getElementById('assignDays').value='';
-  document.getElementById('assignReset').value='no';
-  renderAssignHistory();
-  renderUsers();renderUserPlans();
+  Store.addTx({user:u.name,t:'plan_earn',amt:0,st:'active',time:'Admin প্ল্যান - '+p.name});
+  showToast('👑 '+u.name+' কে '+p.name+'!');
+  document.getElementById('assignUser').value='';document.getElementById('assignPlan').value='';document.getElementById('assignDays').value='';document.getElementById('assignReset').value='no';
+  renderAssignHistory();renderUsers();renderUserPlans();
 }
-function renderAssignHistory(){
-  const el=document.getElementById('assignHistory');if(!el)return;
-  const txs=Store.getTxs().filter(t=>t.time&&t.time.includes('Admin প্ল্যান অ্যাসাইন')).slice(0,15);
-  if(!txs.length){el.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px;">এখনো কিছু অ্যাসাইন করা হয়নি</div>';return}
-  el.innerHTML=txs.map(t=>`<div class="activity-item"><div class="act-dot v">👑</div><div class="act-body"><div class="t">${t.user}</div><div class="s">${t.time}</div></div><div class="act-time">${t.id}</div></div>`).join('');
+function renderAssignHistory(){const el=document.getElementById('assignHistory');if(!el)return;const txs=Store.getTxs().filter(t=>t.time&&t.time.includes('Admin প্ল্যান')).slice(0,15);if(!txs.length){el.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px;">এখনো নেই</div>';return}el.innerHTML=txs.map(t=>`<div class="activity-item"><div class="act-dot v">👑</div><div class="act-body"><div class="t">${t.user}</div><div class="s">${t.time}</div></div><div class="act-time">${t.id}</div></div>`).join('')}
+function renderReferrals(){
+  const users=Store.getUsers(),txs=Store.getTxs(),refTxs=txs.filter(t=>t.t==='referral');
+  const totalUsers=users.filter(u=>u.referredBy).length,totalPaid=refTxs.reduce((s,t)=>s+Number(t.amt||0),0);
+  const activeRefs=users.filter(u=>(u.referrals||[]).length>0).length;
+  const today=new Date().toLocaleDateString('bn-BD');
+  const todayPaid=refTxs.filter(t=>t.createdAt&&new Date(t.createdAt).toLocaleDateString('bn-BD')===today).reduce((s,t)=>s+Number(t.amt||0),0);
+  const S=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  S('refTotalUsers',totalUsers);S('refTotalPaid','৳ '+totalPaid.toLocaleString());S('refActiveRefs',activeRefs);S('refTodayPaid','৳ '+todayPaid.toLocaleString());
+  const rates=Store.getCommissionRates();
+  const setV=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v};
+  setV('cPlanL1',rates.plan.l1);setV('cPlanL2',rates.plan.l2);setV('cPlanL3',rates.plan.l3);
+  setV('cDailyL1',rates.daily.l1);setV('cDailyL2',rates.daily.l2);setV('cDailyL3',rates.daily.l3);
+  const referrers=users.map(u=>{const myTxs=refTxs.filter(t=>t.user===u.name);const total=myTxs.reduce((s,t)=>s+Number(t.amt||0),0);return{user:u,count:(u.referrals||[]).length,total}}).filter(r=>r.count>0).sort((a,b)=>b.total-a.total).slice(0,20);
+  const tb=document.getElementById('topReferrersTable');
+  if(tb){if(!referrers.length){tb.innerHTML='<tr><td colspan="4" style="text-align:center;padding:24px;color:var(--muted);">এখনো নেই</td></tr>'}else{tb.innerHTML=referrers.map(r=>`<tr><td><div class="u-cell"><div class="u-ava">${r.user.name.charAt(0)}</div><div class="u-info"><div class="un">${r.user.name}</div><div class="uid">${r.user.id}</div></div></div></td><td><b style="color:var(--brand);">${r.user.referralCode||r.user.id}</b></td><td><span class="badge vip">${r.count}</span></td><td><span class="amt plus">৳${r.total.toLocaleString()}</span></td></tr>`).join('')}}
+  const hl=document.getElementById('refHistoryList');
+  if(hl){const recent=refTxs.slice(0,30);if(!recent.length){hl.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px;">এখনো নেই</div>'}else{hl.innerHTML=recent.map(t=>`<div class="activity-item"><div class="act-dot v">🎁</div><div class="act-body"><div class="t">${t.user} <b style="color:var(--brand);">৳${Number(t.amt).toLocaleString()}</b></div><div class="s">${t.time}</div></div><div class="act-time">${t.id}</div></div>`).join('')}}
 }
-
-/* ===== POPUP ===== */
+function saveCommissionRates(){
+  const v=(id)=>parseFloat(document.getElementById(id)?.value||0);
+  const rates={plan:{l1:v('cPlanL1'),l2:v('cPlanL2'),l3:v('cPlanL3')},daily:{l1:v('cDailyL1'),l2:v('cDailyL2'),l3:v('cDailyL3')}};
+  Store.saveCommissionRates(rates);showToast('✅ সেভ');
+}
 let popupRef=null;
 function loadPopup(){
   if(!window.db)return;
-  if(popupRef)return;
-  popupRef=true;
+  if(popupRef)return;popupRef=true;
   window.db.ref('config/welcomePopup').on('value',s=>{
     const v=s.val()||{active:false,id:'popup_'+Date.now(),badge:'🎉 ঘোষণা',icon:'🎁',title:'স্বাগতম!',msg:'আমাদের সাইটে আপনাকে স্বাগতম।',btn:'✅ বুঝেছি'};
     document.getElementById('popupActive').checked=!!v.active;
@@ -875,83 +797,97 @@ function loadPopup(){
   });
 }
 function updatePreview(){
-  const b=document.getElementById('popupBadge').value||'🎉 ঘোষণা';
-  const i=document.getElementById('popupIcon').value||'🎁';
-  const t=document.getElementById('popupTitle').value||'স্বাগতম!';
-  const m=document.getElementById('popupMsg').value||'আমাদের সাইটে আপনাকে স্বাগতম।';
-  const btn=document.getElementById('popupBtn').value||'✅ বুঝেছি';
-  document.getElementById('prevBadge').textContent=b;
-  document.getElementById('prevIcon').textContent=i;
-  document.getElementById('prevTitle').textContent=t;
-  document.getElementById('prevMsg').textContent=m;
-  document.getElementById('prevBtn').textContent=btn;
+  document.getElementById('prevBadge').textContent=document.getElementById('popupBadge').value||'🎉 ঘোষণা';
+  document.getElementById('prevIcon').textContent=document.getElementById('popupIcon').value||'🎁';
+  document.getElementById('prevTitle').textContent=document.getElementById('popupTitle').value||'স্বাগতম!';
+  document.getElementById('prevMsg').textContent=document.getElementById('popupMsg').value||'আমাদের সাইটে আপনাকে স্বাগতম।';
+  document.getElementById('prevBtn').textContent=document.getElementById('popupBtn').value||'✅ বুঝেছি';
 }
-['popupBadge','popupIcon','popupTitle','popupMsg','popupBtn'].forEach(id=>{
-  document.addEventListener('input',e=>{if(e.target&&e.target.id===id)updatePreview()});
-});
+['popupBadge','popupIcon','popupTitle','popupMsg','popupBtn'].forEach(id=>{document.addEventListener('input',e=>{if(e.target&&e.target.id===id)updatePreview()})});
 function savePopup(){
   if(!window.db)return showToast('Firebase নেই');
   const active=document.getElementById('popupActive').checked;
   let id=document.getElementById('popupId').value.trim()||'popup_'+Date.now();
-  const data={
-    id,active,
-    badge:document.getElementById('popupBadge').value.trim()||'🎉 ঘোষণা',
-    icon:document.getElementById('popupIcon').value.trim()||'🎁',
-    title:document.getElementById('popupTitle').value.trim()||'স্বাগতম!',
-    msg:document.getElementById('popupMsg').value.trim()||'',
-    btn:document.getElementById('popupBtn').value.trim()||'✅ বুঝেছি',
-    updated:Date.now()
+  window.db.ref('config/welcomePopup').set({id,active,badge:document.getElementById('popupBadge').value.trim()||'🎉 ঘোষণা',icon:document.getElementById('popupIcon').value.trim()||'🎁',title:document.getElementById('popupTitle').value.trim()||'স্বাগতম!',msg:document.getElementById('popupMsg').value.trim()||'',btn:document.getElementById('popupBtn').value.trim()||'✅ বুঝেছি',updated:Date.now()});
+  document.getElementById('popupId').value=id;showToast(active?'✅ চালু':'✅ বন্ধ');
+}
+function regeneratePopupId(){document.getElementById('popupId').value='popup_'+Date.now();showToast('🔄 নতুন ID');savePopup()}
+let imgPopupRef=null;
+function loadImagePopup(){
+  if(!window.db)return;if(imgPopupRef)return;imgPopupRef=true;
+  window.db.ref('config/imagePopup').on('value',s=>{
+    const v=s.val()||{active:false,id:'img_'+Date.now(),data:'',btn:'✅ বুঝেছি'};
+    document.getElementById('imgPopupActive').checked=!!v.active;
+    document.getElementById('imgPopupId').value=v.id||'';
+    document.getElementById('imgPopupBtn').value=v.btn||'✅ বুঝেছি';
+    document.getElementById('imgPopupData').value=v.data||'';
+    updateImgPreview();
+  });
+}
+function updateImgPreview(){
+  const box=document.getElementById('imgPreviewBox');if(!box)return;
+  const data=document.getElementById('imgPopupData').value;
+  if(!data){box.innerHTML='<div class="no-img">📷 এখনো কোনো ছবি নেই</div>';return}
+  box.innerHTML='<span class="del-img" onclick="removeImg()">🗑️</span><img src="'+data+'" alt="preview">';
+}
+function removeImg(){if(!confirm('ছবি মুছবেন?'))return;document.getElementById('imgPopupData').value='';updateImgPreview()}
+function handleImageUpload(e){
+  const file=e.target.files[0];if(!file)return;
+  if(!file.type.startsWith('image/')){showToast('❌ শুধু ছবি');return}
+  if(file.size>5*1024*1024){showToast('❌ ৫MB কম');return}
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    const img=new Image();
+    img.onload=function(){
+      const canvas=document.createElement('canvas');let w=img.width,h=img.height;
+      const maxW=700,maxH=1000;
+      if(w>maxW){h=h*maxW/w;w=maxW}
+      if(h>maxH){w=w*maxH/h;h=maxH}
+      canvas.width=w;canvas.height=h;
+      canvas.getContext('2d').drawImage(img,0,0,w,h);
+      document.getElementById('imgPopupData').value=canvas.toDataURL('image/jpeg',0.75);
+      updateImgPreview();showToast('✅ ছবি লোড — Save করুন');e.target.value='';
+    };
+    img.src=ev.target.result;
   };
-  window.db.ref('config/welcomePopup').set(data);
-  document.getElementById('popupId').value=id;
-  showToast(active?'✅ পপআপ চালু':'✅ পপআপ বন্ধ');
+  reader.readAsDataURL(file);
 }
-function regeneratePopupId(){
-  const newId='popup_'+Date.now();
-  document.getElementById('popupId').value=newId;
-  showToast('🔄 নতুন ID — সবাই আবার দেখবে');
-  savePopup();
+function saveImagePopup(){
+  if(!window.db)return showToast('Firebase নেই');
+  const active=document.getElementById('imgPopupActive').checked,data=document.getElementById('imgPopupData').value;
+  let id=document.getElementById('imgPopupId').value.trim()||'img_'+Date.now();
+  if(active&&!data){showToast('❌ আগে ছবি দিন');return}
+  window.db.ref('config/imagePopup').set({id,active,data:data||'',btn:document.getElementById('imgPopupBtn').value.trim()||'✅ বুঝেছি',updated:Date.now()});
+  document.getElementById('imgPopupId').value=id;showToast(active?'✅ চালু':'✅ বন্ধ');
 }
-
-/* ===== PAYMENT ===== */
+function regenerateImgPopupId(){document.getElementById('imgPopupId').value='img_'+Date.now();showToast('🔄 নতুন ID');saveImagePopup()}
 function getPaymentDefaults(){return{bkash:{dep:'01712-345678',wd:'01712-345678'},nagad:{dep:'01812-345678',wd:'01812-345678'},rocket:{dep:'01912-345678-1',wd:'01912-345678-1'},accountType:'Personal',minDep:100,minWd:500}}
 function getPaymentSettings(){return Store.getPayment()||getPaymentDefaults()}
 function renderPaymentSettings(){
   const p=getPaymentSettings();
   const s=(id,v)=>{const el=document.getElementById(id);if(el)el.value=v||''};
-  s('payBkashDep',p.bkash&&p.bkash.dep);s('payBkashWd',p.bkash&&p.bkash.wd);
-  s('payNagadDep',p.nagad&&p.nagad.dep);s('payNagadWd',p.nagad&&p.nagad.wd);
-  s('payRocketDep',p.rocket&&p.rocket.dep);s('payRocketWd',p.rocket&&p.rocket.wd);
-  s('payAccType',p.accountType||'Personal');s('payMinDep',p.minDep||100);s('payMinWd',p.minWd||500);
+  s('payBkashDep',p.bkash&&p.bkash.dep);s('payBkashWd',p.bkash&&p.bkash.wd);s('payNagadDep',p.nagad&&p.nagad.dep);s('payNagadWd',p.nagad&&p.nagad.wd);s('payRocketDep',p.rocket&&p.rocket.dep);s('payRocketWd',p.rocket&&p.rocket.wd);s('payAccType',p.accountType||'Personal');s('payMinDep',p.minDep||100);s('payMinWd',p.minWd||500);
 }
 function savePaymentSettings(){
-  const v=id=>(document.getElementById(id)?.value||'').trim();
-  const n=id=>parseFloat(document.getElementById(id)?.value||0)||0;
+  const v=id=>(document.getElementById(id)?.value||'').trim(),n=id=>parseFloat(document.getElementById(id)?.value||0)||0;
   Store.savePayment({bkash:{dep:v('payBkashDep'),wd:v('payBkashWd')},nagad:{dep:v('payNagadDep'),wd:v('payNagadWd')},rocket:{dep:v('payRocketDep'),wd:v('payRocketWd')},accountType:v('payAccType')||'Personal',minDep:n('payMinDep')||100,minWd:n('payMinWd')||500});
   showToast('✅ সেভ');
 }
-
-/* ===== NOTIFICATIONS ===== */
 function sendNotif(){
-  const title=document.getElementById('notifTitle').value.trim();
-  const msg=document.getElementById('notifMsg').value.trim();
-  const type=document.getElementById('notifType').value.split('|');
+  const title=document.getElementById('notifTitle').value.trim(),msg=document.getElementById('notifMsg').value.trim(),type=document.getElementById('notifType').value.split('|');
   if(!title||!msg){showToast('টাইটেল ও মেসেজ');return}
   const notifs=Store.getNotifs();
   notifs.unshift({id:'N'+Date.now(),title,msg,color:type[0],ic:type[1],time:new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'})});
   Store.saveNotifs(notifs);
-  document.getElementById('notifTitle').value='';
-  document.getElementById('notifMsg').value='';
+  document.getElementById('notifTitle').value='';document.getElementById('notifMsg').value='';
   showToast('📢 পাঠানো হয়েছে');renderNotifHistory();
 }
 function renderNotifHistory(){
   const el=document.getElementById('notifHistory');if(!el)return;
   const notifs=Store.getNotifs().slice(0,15);
-  if(!notifs.length){el.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px;">এখনো পাঠানো হয়নি</div>';return}
+  if(!notifs.length){el.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px;">এখনো নেই</div>';return}
   el.innerHTML=notifs.map(n=>`<div class="activity-item"><div class="act-dot v">${n.ic||'📢'}</div><div class="act-body"><div class="t">${n.title}</div><div class="s">${n.msg}</div></div><div class="act-time">${n.time}</div></div>`).join('');
 }
-
-/* ===== HELPERS ===== */
 function refreshCurrentPage(){
   updateStats();updateBadges();
   if(currentPage==='dashboard')renderRecentTx();
@@ -960,15 +896,16 @@ function refreshCurrentPage(){
   if(currentPage==='plans')renderPlanEdit();
   if(currentPage==='userPlans')renderUserPlans();
   if(currentPage==='addPlan'){renderAssignDropdowns();renderAssignHistory()}
+  if(currentPage==='referrals')renderReferrals();
   if(currentPage==='popup')loadPopup();
+  if(currentPage==='imagePopup')loadImagePopup();
   if(currentPage==='payment')renderPaymentSettings();
   if(currentPage==='notifications')renderNotifHistory();
 }
 function closeModal(){document.getElementById('modalMask').classList.remove('show')}
-function resetAllData(){if(!confirm('⚠️ সব ডাটা মুছে যাবে?'))return;localStorage.clear();if(window.db)try{window.db.ref().remove()}catch(e){}showToast('✅ রিসেট');setTimeout(()=>location.reload(),800)}
+function resetAllData(){if(!confirm('⚠️ সব মুছে যাবে?'))return;localStorage.clear();if(window.db)try{window.db.ref().remove()}catch(e){}showToast('✅ রিসেট');setTimeout(()=>location.reload(),800)}
 let toastTimer;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
-
 ['aUser','aPass','aCode'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('keydown',e=>{if(e.key==='Enter')adminLogin()})});
 Store.onChange(()=>{if(!adminLoggedIn)return;refreshCurrentPage()});
 history.replaceState({page:'login',app:'vip_admin'},'','#login');
