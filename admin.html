@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#070a12">
-<title>Tkwin99  Admin Panel</title>
+<title>Tkwin99 — Admin</title>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-database-compat.js"></script>
 <script>
@@ -12,46 +12,47 @@ const firebaseConfig={apiKey:"AIzaSyDxl1g7l_1bpBBrb-WCoZ-PLQrd3x7TVz8",authDomai
 firebase.initializeApp(firebaseConfig);window.db=firebase.database();
 </script>
 <style>
-:root{--bg:#070a12;--bg-2:#0d1220;--card:#121828;--card-2:#1a2238;--border:#222b45;--border-2:#2c3658;--text:#eef2ff;--text-2:#a8b2cc;--muted:#6c7793;--brand:#ffc107;--brand-2:#ff8f00;--gold-grad:linear-gradient(135deg,#ffd54f 0%,#ffb300 40%,#ff8f00 100%);--blue:#3b82f6;--green:#10b981;--red:#ef4444;--purple:#8b5cf6;--orange:#f97316;--cyan:#06b6d4;--radius:14px;--shadow:0 10px 30px -12px rgba(0,0,0,.6);--shadow-gold:0 8px 24px -8px rgba(255,179,0,.4);--sidebar-w:250px}
+:root{--bg:#070a12;--bg-2:#0d1220;--card:#121828;--card-2:#1a2238;--border:#222b45;--border-2:#2c3658;--text:#eef2ff;--text-2:#a8b2cc;--muted:#6c7793;--brand:#ffc107;--brand-2:#ff8f00;--gold:linear-gradient(135deg,#ffd54f 0%,#ffb300 40%,#ff8f00 100%);--blue:#3b82f6;--green:#10b981;--red:#ef4444;--purple:#8b5cf6;--cyan:#06b6d4;--sidebar-w:250px;--radius:14px;--shadow:0 10px 30px -12px rgba(0,0,0,.6)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Bengali","Hind Siliguri",sans-serif;background:radial-gradient(1200px 600px at 50% -10%,rgba(255,179,0,.06),transparent 60%),radial-gradient(800px 400px at 100% 100%,rgba(59,130,246,.05),transparent 60%),var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;font-size:14px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans Bengali","Hind Siliguri",sans-serif;background:radial-gradient(1200px 600px at 50% -10%,rgba(255,179,0,.06),transparent 60%),var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased;font-size:14px}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,select,textarea{font-family:inherit}
-a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar{width:6px;height:6px}
 ::-webkit-scrollbar-thumb{background:var(--border-2);border-radius:3px}
 #adminLogin{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,rgba(255,179,0,.12),transparent 60%),var(--bg);padding:20px}
 .login-card{width:100%;max-width:420px;background:var(--card);border:1px solid var(--border);border-radius:22px;padding:32px 26px;box-shadow:var(--shadow)}
-.login-card .mark{width:70px;height:70px;border-radius:20px;background:var(--gold-grad);display:grid;place-items:center;font-size:32px;margin:0 auto 16px;box-shadow:0 20px 40px -12px rgba(255,143,0,.5)}
-.login-card h1{text-align:center;font-size:26px;font-weight:900;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:4px}
+.login-card .mark{width:70px;height:70px;border-radius:20px;background:var(--gold);display:grid;place-items:center;font-size:32px;margin:0 auto 16px}
+.login-card h1{text-align:center;font-size:26px;font-weight:900;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:4px}
 .login-card .sub{text-align:center;font-size:12px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px}
 .field{position:relative;margin-bottom:12px}
 .field .f-ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--muted);pointer-events:none}
 .input{width:100%;padding:13px 16px 13px 42px;border-radius:12px;background:var(--bg-2);border:1px solid var(--border);color:var(--text);font-size:14px;outline:none}
-.input:focus{border-color:var(--brand);background:#0b101d}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:12px;background:var(--gold-grad);color:#1a1200;font-weight:800;font-size:14px;box-shadow:var(--shadow-gold)}
+.input:focus{border-color:var(--brand)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 18px;border-radius:12px;background:var(--gold);color:#1a1200;font-weight:800;font-size:14px}
 .btn:active{transform:scale(.98)}
 .btn.full{width:100%}
 .btn.sm{padding:8px 14px;font-size:12.5px;border-radius:10px}
 .btn.xs{padding:6px 10px;font-size:11.5px;border-radius:8px}
-.btn.ghost{background:transparent;color:var(--text-2);border:1px solid var(--border);box-shadow:none}
-.btn.red{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;box-shadow:none}
-.btn.green{background:linear-gradient(135deg,#10b981,#059669);color:#fff;box-shadow:none}
+.btn.ghost{background:transparent;color:var(--text-2);border:1px solid var(--border)}
+.btn.red{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff}
+.btn.green{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
+.btn.blue{background:linear-gradient(135deg,#3b82f6,#2563eb);color:#fff}
+.btn.purple{background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff}
 #adminApp{display:none;min-height:100vh}
 .sidebar{position:fixed;top:0;left:0;bottom:0;width:var(--sidebar-w);background:rgba(11,16,29,.97);backdrop-filter:blur(20px);border-right:1px solid var(--border);display:flex;flex-direction:column;z-index:100;transition:transform .3s}
 .sidebar-brand{padding:18px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border)}
-.sidebar-brand .sb-logo{width:34px;height:34px;border-radius:10px;background:var(--gold-grad);display:grid;place-items:center;font-size:18px;box-shadow:var(--shadow-gold)}
-.sidebar-brand .sb-name{font-weight:900;font-size:17px;background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sidebar-brand .sb-logo{width:34px;height:34px;border-radius:10px;background:var(--gold);display:grid;place-items:center;font-size:18px}
+.sidebar-brand .sb-name{font-weight:900;font-size:17px;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent}
 .sidebar-brand .sb-tag{font-size:9.5px;color:var(--muted);letter-spacing:1px;text-transform:uppercase}
 .sidebar-menu{flex:1;overflow-y:auto;padding:14px 12px}
 .menu-label{font-size:10px;font-weight:700;letter-spacing:1.2px;color:var(--muted);text-transform:uppercase;padding:14px 10px 8px}
-.side-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--text-2);margin-bottom:3px;cursor:pointer}
+.side-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--text-2);margin-bottom:3px;cursor:pointer;transition:all .15s}
 .side-item.active{background:linear-gradient(90deg,rgba(255,179,0,.14),rgba(255,143,0,.04));color:var(--brand);border-left:3px solid var(--brand);padding-left:9px}
 .side-item .si{font-size:17px;width:22px;text-align:center}
 .side-item .sbadge{margin-left:auto;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:10px}
 .sidebar-footer{padding:14px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px}
-.sf-ava{width:36px;height:36px;border-radius:50%;background:var(--gold-grad);display:grid;place-items:center;font-size:16px;color:#1a1200;font-weight:800}
+.sf-ava{width:36px;height:36px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:16px;color:#1a1200;font-weight:800}
 .sf-info{flex:1;min-width:0}
 .sf-info .n{font-size:13px;font-weight:700}
 .sf-info .r{font-size:10.5px;color:var(--muted)}
@@ -66,31 +67,28 @@ a{color:inherit;text-decoration:none}
 .tb-chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);padding:7px 12px;border-radius:999px;font-size:12px;font-weight:600}
 .tb-chip .dot{width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 1.6s infinite}
 @keyframes pulse{50%{opacity:.4;transform:scale(.75)}}
-.tb-icon{position:relative;width:38px;height:38px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:grid;place-items:center;font-size:16px}
 .content{padding:22px;max-width:1400px;margin:0 auto}
 .page{display:none}
-.page.active{display:block;animation:pageIn .3s cubic-bezier(.22,.61,.36,1)}
-@keyframes pageIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.page.active{display:block;animation:pi .3s cubic-bezier(.22,.61,.36,1)}
+@keyframes pi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
 .stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
 .stat-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;position:relative;overflow:hidden}
-.stat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold-grad)}
-.stat-card.blue::before{background:linear-gradient(90deg,#3b82f6,#06b6d4)}
+.stat-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
 .stat-card.green::before{background:linear-gradient(90deg,#10b981,#06b6d4)}
+.stat-card.blue::before{background:linear-gradient(90deg,#3b82f6,#06b6d4)}
 .stat-card.purple::before{background:linear-gradient(90deg,#8b5cf6,#ec4899)}
 .stat-card.red::before{background:linear-gradient(90deg,#ef4444,#f97316)}
 .sc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .sc-ic{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:19px;background:linear-gradient(135deg,rgba(255,179,0,.12),rgba(255,143,0,.04));border:1px solid rgba(255,179,0,.18)}
-.stat-card.blue .sc-ic{background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(59,130,246,.04));border-color:rgba(59,130,246,.2)}
 .stat-card.green .sc-ic{background:linear-gradient(135deg,rgba(16,185,129,.14),rgba(16,185,129,.04));border-color:rgba(16,185,129,.2)}
+.stat-card.blue .sc-ic{background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(59,130,246,.04));border-color:rgba(59,130,246,.2)}
 .stat-card.purple .sc-ic{background:linear-gradient(135deg,rgba(139,92,246,.14),rgba(139,92,246,.04));border-color:rgba(139,92,246,.2)}
-.sc-trend{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px}
-.sc-trend.up{color:var(--green);background:rgba(16,185,129,.12)}
 .sc-value{font-size:22px;font-weight:800;font-variant-numeric:tabular-nums}
 .sc-label{font-size:12px;color:var(--muted);margin-top:4px}
 .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:18px}
 .panel-head{display:flex;align-items:center;justify-content:space-between;padding:16px 18px;border-bottom:1px solid var(--border);gap:12px;flex-wrap:wrap}
 .panel-head h3{font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px}
-.panel-head h3::before{content:"";width:3px;height:15px;border-radius:2px;background:var(--gold-grad)}
+.panel-head h3::before{content:"";width:3px;height:15px;border-radius:2px;background:var(--gold)}
 .panel-body{padding:18px}
 .panel-body.p0{padding:0}
 .table-wrap{overflow-x:auto}
@@ -98,41 +96,29 @@ table.tbl{width:100%;border-collapse:collapse;font-size:13px}
 table.tbl thead th{text-align:left;padding:12px 16px;font-size:10.5px;font-weight:700;letter-spacing:.8px;color:var(--muted);text-transform:uppercase;background:rgba(255,255,255,.015);border-bottom:1px solid var(--border);white-space:nowrap}
 table.tbl tbody td{padding:13px 16px;border-bottom:1px solid rgba(34,43,69,.5);color:var(--text-2);font-size:12.5px;white-space:nowrap}
 .tbl .u-cell{display:flex;align-items:center;gap:10px}
-.tbl .u-ava{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:#1a1200;background:var(--gold-grad)}
+.tbl .u-ava{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-size:13px;font-weight:700;color:#1a1200;background:var(--gold)}
 .tbl .u-info .un{font-size:13px;font-weight:700;color:var(--text)}
 .tbl .u-info .uid{font-size:10.5px;color:var(--muted)}
-.tbl .g-cell{display:flex;align-items:center;gap:10px}
-.tbl .g-ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;font-size:18px;background:linear-gradient(135deg,#1a2238,#0e1424);border:1px solid var(--border)}
-.tx-detail{font-size:10.5px;color:var(--muted);margin-top:4px;line-height:1.4;white-space:normal;max-width:220px}
-.tx-detail b{color:var(--text);font-weight:700}
-.tx-detail .brand{color:var(--brand)}
 .badge{display:inline-block;padding:3px 9px;font-size:10.5px;font-weight:700;border-radius:999px;letter-spacing:.3px;text-transform:uppercase}
 .badge.active{background:rgba(16,185,129,.14);color:var(--green)}
 .badge.pending{background:rgba(255,179,0,.14);color:var(--brand)}
 .badge.blocked{background:rgba(239,68,68,.14);color:var(--red)}
-.badge.vip{background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff}
 .badge.deposit{background:rgba(16,185,129,.14);color:var(--green)}
 .badge.withdraw{background:rgba(239,68,68,.14);color:var(--red)}
-.badge.bet{background:rgba(59,130,246,.14);color:var(--blue)}
-.badge.win{background:rgba(255,179,0,.14);color:var(--brand)}
-.badge.slot{background:rgba(255,179,0,.14);color:var(--brand)}
-.badge.live{background:rgba(239,68,68,.14);color:var(--red)}
-.badge.sports{background:rgba(16,185,129,.14);color:var(--green)}
-.badge.crash{background:rgba(139,92,246,.14);color:var(--purple)}
-.badge.fish{background:rgba(6,182,212,.14);color:var(--cyan)}
-.badge.lottery{background:rgba(249,115,22,.14);color:var(--orange)}
-.badge.hot{background:linear-gradient(135deg,#ff5a1f,#ff8f00);color:#fff}
-.badge.new{background:linear-gradient(135deg,#10b981,#06b6d4);color:#fff}
+.badge.buy_plan{background:rgba(139,92,246,.14);color:var(--purple)}
+.badge.plan_earn{background:rgba(6,182,212,.14);color:var(--cyan)}
+.badge.vip{background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff}
 .amt{font-variant-numeric:tabular-nums;font-weight:700}
-.amt.plus{color:var(--green)}
-.amt.minus{color:var(--red)}
+.amt.plus{color:var(--green)}.amt.minus{color:var(--red)}
 .row-actions{display:flex;gap:6px}
 .act-btn{width:30px;height:30px;border-radius:8px;background:var(--card-2);border:1px solid var(--border);display:grid;place-items:center;font-size:13px}
 .act-btn.green{border-color:rgba(16,185,129,.3);color:var(--green)}
 .act-btn.red{border-color:rgba(239,68,68,.3);color:var(--red)}
 .act-btn.blue{color:var(--blue)}
+.act-btn.purple{color:var(--purple)}
 .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
 .form-grid .full{grid-column:1/-1}
+.form-grid-3{grid-template-columns:repeat(3,1fr)}
 .form-group{margin-bottom:14px}
 .form-group label{display:block;font-size:12px;font-weight:700;color:var(--text-2);margin-bottom:6px}
 .form-control{width:100%;padding:11px 14px;border-radius:10px;background:var(--bg-2);border:1px solid var(--border);color:var(--text);font-size:13.5px;outline:none}
@@ -143,20 +129,14 @@ textarea.form-control{min-height:90px;resize:vertical}
 .search-box .s-ic{position:absolute;left:13px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:15px}
 .search-box input{width:100%;padding:11px 14px 11px 40px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:13.5px;outline:none}
 .filter-select{padding:11px 14px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:13.5px;outline:none}
-.chart{display:flex;align-items:flex-end;gap:8px;height:200px;padding:10px 0}
-.chart .bar{flex:1;border-radius:6px 6px 0 0;background:linear-gradient(180deg,var(--brand),var(--brand-2));min-height:8px}
-.chart .bar.blue{background:linear-gradient(180deg,#60a5fa,#2563eb)}
-.chart .bar.purple{background:linear-gradient(180deg,#a78bfa,#7c3aed)}
-.chart-legend{display:flex;gap:16px;margin-top:32px;font-size:11.5px;color:var(--text-2);flex-wrap:wrap}
-.chart-legend span{display:inline-flex;align-items:center;gap:6px}
-.chart-legend .ld{width:10px;height:10px;border-radius:3px}
 .activity-list{max-height:400px;overflow-y:auto}
 .activity-item{display:flex;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid rgba(34,43,69,.4)}
 .act-dot{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:15px;flex:0 0 auto}
 .act-dot.d{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.2)}
 .act-dot.w{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.2)}
 .act-dot.b{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.2)}
-.act-dot.v{background:rgba(255,179,0,.12);border:1px solid rgba(255,179,0,.2)}
+.act-dot.v{background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.2)}
+.act-dot.c{background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.2)}
 .act-body{flex:1;min-width:0}
 .act-body .t{font-size:13px;font-weight:600}
 .act-body .s{font-size:11px;color:var(--muted);margin-top:2px}
@@ -165,7 +145,7 @@ textarea.form-control{min-height:90px;resize:vertical}
 .toggle input{opacity:0;width:0;height:0}
 .toggle .slider{position:absolute;inset:0;background:var(--card-2);border:1px solid var(--border);border-radius:24px;transition:.3s;cursor:pointer}
 .toggle .slider::before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;left:3px;top:2px;background:var(--muted);transition:.3s}
-.toggle input:checked+.slider{background:linear-gradient(135deg,var(--brand),var(--brand-2));border-color:transparent}
+.toggle input:checked+.slider{background:var(--gold);border-color:transparent}
 .toggle input:checked+.slider::before{transform:translateX(18px);background:#1a1200}
 .modal-mask{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s;display:grid;place-items:center;padding:20px}
 .modal-mask.show{opacity:1;pointer-events:auto}
@@ -176,267 +156,269 @@ textarea.form-control{min-height:90px;resize:vertical}
 .modal-head .x{width:32px;height:32px;border-radius:8px;background:var(--bg-2);border:1px solid var(--border);display:grid;place-items:center;font-size:14px}
 .modal-body{padding:22px}
 .modal-foot{padding:14px 22px;border-top:1px solid var(--border);display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
-.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(20,26,42,.98);border:1px solid var(--border-2);color:var(--text);padding:12px 22px;border-radius:14px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:all .28s cubic-bezier(.22,.61,.36,1);z-index:9999;max-width:88%;text-align:center}
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(20px);background:rgba(20,26,42,.98);border:1px solid var(--border-2);color:var(--text);padding:12px 22px;border-radius:14px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:all .28s;z-index:9999;max-width:88%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-.vip-edit-row{display:flex;align-items:center;gap:12px;padding:14px;background:var(--bg-2);border:1px solid var(--border);border-radius:12px;margin-bottom:10px}
-.vip-edit-icon{width:44px;height:44px;border-radius:11px;display:grid;place-items:center;font-size:22px;flex:0 0 auto}
-.vip-edit-icon.bronze{background:linear-gradient(135deg,rgba(180,83,9,.22),rgba(180,83,9,.04))}
-.vip-edit-icon.silver{background:linear-gradient(135deg,rgba(148,163,184,.22),rgba(148,163,184,.04))}
-.vip-edit-icon.gold{background:linear-gradient(135deg,rgba(255,179,0,.22),rgba(255,179,0,.04))}
-.vip-edit-icon.platinum{background:linear-gradient(135deg,rgba(139,92,246,.24),rgba(236,72,153,.08))}
-.vip-edit-icon.diamond{background:linear-gradient(135deg,rgba(6,182,212,.24),rgba(59,130,246,.06))}
-.vip-edit-info{flex:1;min-width:0}
-.vip-edit-info .n{font-size:13.5px;font-weight:700}
-.vip-edit-info .s{font-size:11px;color:var(--muted);margin-top:2px}
-.mini-list{display:flex;flex-direction:column;gap:8px}
-.mini-item{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--bg-2);border:1px solid var(--border);border-radius:12px}
-.mini-item .mi-rank{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:800;background:var(--card-2);border:1px solid var(--border);color:var(--muted);flex:0 0 auto}
-.mini-item .mi-rank.gold{background:var(--gold-grad);color:#1a1200;border-color:transparent}
-.mini-item .mi-rank.silver{background:linear-gradient(135deg,#cbd5e1,#94a3b8);color:#1e293b}
-.mini-item .mi-rank.bronze{background:linear-gradient(135deg,#d97706,#b45309);color:#fff}
-.mini-item .mi-info{flex:1;min-width:0}
-.mini-item .mi-name{font-size:13px;font-weight:700}
-.mini-item .mi-sub{font-size:11px;color:var(--muted);margin-top:2px}
-.mini-item .mi-amt{font-size:13px;font-weight:800;color:var(--green);font-variant-numeric:tabular-nums}
-@media (max-width:1100px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.menu-toggle{display:grid}.content{padding:16px}.form-grid{grid-template-columns:1fr}}
-@media (max-width:600px){.stat-grid{grid-template-columns:1fr}.tb-title{font-size:16px}.tb-sub{display:none}.tb-chip{display:none}.topbar{padding:12px 14px}.panel-head{padding:14px 16px}.panel-body{padding:14px}table.tbl thead th,table.tbl tbody td{padding:10px 12px}.chart{height:150px}.tx-detail{max-width:160px;font-size:10px}}
 .overlay-mask{position:fixed;inset:0;z-index:99;background:rgba(0,0,0,.5);opacity:0;pointer-events:none;transition:opacity .25s}
 .overlay-mask.show{opacity:1;pointer-events:auto}
-.chat-admin-layout{display:grid;grid-template-columns:320px 1fr;gap:16px;height:calc(100vh - 150px);min-height:500px}
-.chat-users-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-direction:column;overflow:hidden}
-.chat-users-head{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
-.chat-users-head h3{font-size:14px;font-weight:800;display:flex;align-items:center;gap:8px}
-.chat-users-head h3::before{content:"";width:3px;height:14px;border-radius:2px;background:var(--gold-grad)}
-.chat-users-list{flex:1;overflow-y:auto}
-.chat-user-item{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(34,43,69,.5);cursor:pointer}
-.chat-user-item.active{background:linear-gradient(90deg,rgba(255,179,0,.12),transparent);border-left:3px solid var(--brand);padding-left:11px}
-.cu-ava{width:40px;height:40px;border-radius:50%;background:var(--gold-grad);display:grid;place-items:center;font-size:16px;font-weight:800;color:#1a1200;flex:0 0 auto}
-.cu-info{flex:1;min-width:0}
-.cu-name{font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;color:var(--text)}
-.cu-last{font-size:11.5px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.cu-last b{color:var(--brand)}
-.cu-meta{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex:0 0 auto}
-.cu-time{font-size:10.5px;color:var(--muted)}
-.cu-badge{min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 5px}
-.chat-conv-panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-direction:column;overflow:hidden}
-.chat-conv-empty{flex:1;display:grid;place-items:center;text-align:center;color:var(--muted)}
-.chat-conv-empty .ce-ic{font-size:48px;margin-bottom:10px;opacity:.5}
-.chat-conv-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.01)}
-.chat-conv-body{flex:1;overflow-y:auto;padding:18px;display:flex;flex-direction:column;gap:10px}
-.chat-conv-msg{display:flex;flex-direction:column;max-width:80%}
-.chat-conv-msg.user{align-self:flex-start;align-items:flex-start}
-.chat-conv-msg.admin{align-self:flex-end;align-items:flex-end}
-.chat-conv-bubble{padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.45;word-break:break-word}
-.chat-conv-msg.user .chat-conv-bubble{background:var(--card-2);border:1px solid var(--border);border-bottom-left-radius:4px;color:var(--text)}
-.chat-conv-msg.admin .chat-conv-bubble{background:var(--gold-grad);color:#1a1200;border-bottom-right-radius:4px;font-weight:600}
-.chat-conv-time{font-size:10px;color:var(--muted);margin-top:4px;padding:0 4px}
-.chat-conv-input{padding:14px 18px;border-top:1px solid var(--border);display:flex;gap:10px;background:var(--bg-2)}
-.chat-conv-input input{flex:1;padding:11px 16px;border-radius:10px;background:var(--card);border:1px solid var(--border);color:var(--text);font-size:13.5px;outline:none}
-.chat-empty-note{padding:36px 20px;text-align:center;color:var(--muted);font-size:12.5px}
-.chat-empty-note .ce{font-size:36px;opacity:.4;margin-bottom:8px}
-@media (max-width:900px){.chat-admin-layout{grid-template-columns:1fr;height:auto;min-height:0}.chat-users-panel{max-height:300px}.chat-conv-panel{min-height:440px}}
+.plan-edit-row{display:flex;align-items:center;gap:14px;padding:14px;background:var(--bg-2);border:1px solid var(--border);border-radius:12px;margin-bottom:10px}
+.plan-edit-icon{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;font-size:24px;flex:0 0 auto;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid var(--border-2)}
+.plan-edit-icon.bronze{background:linear-gradient(135deg,rgba(180,83,9,.22),rgba(180,83,9,.04))}
+.plan-edit-icon.silver{background:linear-gradient(135deg,rgba(148,163,184,.22),rgba(148,163,184,.04))}
+.plan-edit-icon.gold{background:linear-gradient(135deg,rgba(255,179,0,.22),rgba(255,179,0,.04))}
+.plan-edit-icon.platinum{background:linear-gradient(135deg,rgba(139,92,246,.24),rgba(236,72,153,.08))}
+.plan-edit-icon.diamond{background:linear-gradient(135deg,rgba(6,182,212,.24),rgba(59,130,246,.06))}
+.plan-edit-info{flex:1;min-width:0}
+.plan-edit-info .n{font-size:14px;font-weight:800}
+.plan-edit-info .s{font-size:11px;color:var(--muted);margin-top:2px}
+.plan-edit-info .d{font-size:11px;color:var(--green);font-weight:700;margin-top:2px}
+/* Popup preview */
+.popup-preview{background:linear-gradient(135deg,#4c1d95,#7c3aed 40%,#ec4899);border-radius:18px;padding:24px 20px;text-align:center;position:relative;overflow:hidden;margin-bottom:14px;box-shadow:0 20px 40px -14px rgba(139,92,246,.5)}
+.popup-preview .pp-icon{font-size:56px;margin-bottom:12px;display:inline-block}
+.popup-preview .pp-badge{display:inline-block;font-size:10px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:999px;background:linear-gradient(135deg,#ff5a1f,#ff8f00);color:#fff;margin-bottom:12px;text-transform:uppercase}
+.popup-preview .pp-title{font-size:20px;font-weight:900;color:#fff;margin-bottom:10px}
+.popup-preview .pp-msg{font-size:13px;color:rgba(255,255,255,.9);line-height:1.6;margin-bottom:16px;white-space:pre-line}
+.popup-preview .pp-btn{padding:12px 22px;border-radius:12px;background:#fff;color:#1a1200;font-weight:900;font-size:13.5px;display:inline-block}
+@media (max-width:1100px){.stat-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:900px){.sidebar{transform:translateX(-100%)}.sidebar.open{transform:translateX(0)}.main{margin-left:0}.menu-toggle{display:grid}.content{padding:16px}.form-grid{grid-template-columns:1fr}.form-grid-3{grid-template-columns:1fr}}
+@media (max-width:600px){.stat-grid{grid-template-columns:1fr}.tb-title{font-size:16px}.tb-sub{display:none}.tb-chip{display:none}.topbar{padding:12px 14px}.panel-head{padding:14px 16px}.panel-body{padding:14px}table.tbl thead th,table.tbl tbody td{padding:10px 12px}}
 </style>
 </head>
 <body>
 
 <div id="adminLogin">
   <div class="login-card">
-    <div class="mark"></div>
-    <h1>Admin Panel</h1>
-    <div class="sub">Tkwin99 Control Center</div>
-    <div class="field"><span class="f-ic"></span><input class="input" type="text" id="aUser" placeholder="Admin Username" autocomplete="off"></div>
-    <div class="field"><span class="f-ic"></span><input class="input" type="password" id="aPass" placeholder="Password"></div>
-    <div class="field"><span class="f-ic"></span><input class="input" type="text" id="aCode" placeholder="2FA Code" autocomplete="off"></div>
-    <button class="btn full" style="margin-top:8px;" onclick="adminLogin()"> Sign In</button>
-    <div style="text-align:center;margin-top:16px;font-size:11.5px;color:var(--muted);"> Firebase Protected</div>
+    <div class="mark">👑</div>
+    <h1>VIP Admin</h1>
+    <div class="sub">Tkwin99 Control</div>
+    <div class="field"><span class="f-ic">👤</span><input class="input" type="text" id="aUser" placeholder="Admin Username" autocomplete="off"></div>
+    <div class="field"><span class="f-ic">🔒</span><input class="input" type="password" id="aPass" placeholder="Password"></div>
+    <div class="field"><span class="f-ic">🔑</span><input class="input" type="text" id="aCode" placeholder="2FA Code" autocomplete="off"></div>
+    <button class="btn full" style="margin-top:8px;" onclick="adminLogin()">🔓 Sign In</button>
+    <div style="text-align:center;margin-top:16px;font-size:11.5px;color:var(--muted);">🔐 Firebase Protected</div>
   </div>
 </div>
 
 <div id="adminApp">
   <aside class="sidebar" id="sidebar">
-    <div class="sidebar-brand"><div class="sb-logo"></div><div><div class="sb-name">Tkwin99</div><div class="sb-tag">Admin Panel</div></div></div>
+    <div class="sidebar-brand"><div class="sb-logo">👑</div><div><div class="sb-name">Tkwin99</div><div class="sb-tag">VIP Admin</div></div></div>
     <nav class="sidebar-menu">
       <div class="menu-label">Main</div>
-      <div class="side-item active" data-page="dashboard" onclick="gotoPage('dashboard')"><span class="si"></span> </div>
-      <div class="side-item" data-page="users" onclick="gotoPage('users')"><span class="si"></span>  </div>
-      <div class="side-item" data-page="transactions" onclick="gotoPage('transactions')"><span class="si"></span>  <span class="sbadge" id="pendingBadge">0</span></div>
-      <div class="side-item" data-page="chats" onclick="gotoPage('chats')"><span class="si"></span>   <span class="sbadge" id="chatBadge">0</span></div>
-      <div class="side-item" data-page="payment" onclick="gotoPage('payment')"><span class="si"></span>  </div>
-      <div class="menu-label">Content</div>
-      <div class="side-item" data-page="games" onclick="gotoPage('games')"><span class="si"></span>  </div>
-      <div class="side-item" data-page="promotions" onclick="gotoPage('promotions')"><span class="si"></span> </div>
-      <div class="side-item" data-page="vip" onclick="gotoPage('vip')"><span class="si"></span> VIP </div>
-      <div class="side-item" data-page="sports" onclick="gotoPage('sports')"><span class="si"></span>  </div>
-      <div class="side-item" data-page="leaderboard" onclick="gotoPage('leaderboard')"><span class="si"></span> </div>
-      <div class="side-item" data-page="checkin" onclick="gotoPage('checkin')"><span class="si"></span>  -</div>
-      <div class="side-item" data-page="notifications" onclick="gotoPage('notifications')"><span class="si"></span> </div>
-      <div class="menu-label">Analytics</div>
-      <div class="side-item" data-page="reports" onclick="gotoPage('reports')"><span class="si"></span> </div>
-      <div class="side-item" data-page="activity" onclick="gotoPage('activity')"><span class="si"></span>  </div>
+      <div class="side-item active" data-page="dashboard" onclick="gotoPage('dashboard')"><span class="si">📊</span> ড্যাশবোর্ড</div>
+      <div class="side-item" data-page="users" onclick="gotoPage('users')"><span class="si">👥</span> ইউজার</div>
+      <div class="side-item" data-page="transactions" onclick="gotoPage('transactions')"><span class="si">💳</span> ট্রানজেকশন <span class="sbadge" id="pendingBadge">0</span></div>
+      <div class="side-item" data-page="plans" onclick="gotoPage('plans')"><span class="si">👑</span> VIP প্ল্যান</div>
+      <div class="side-item" data-page="userPlans" onclick="gotoPage('userPlans')"><span class="si">📋</span> ইউজার প্ল্যান</div>
+      <div class="side-item" data-page="addPlan" onclick="gotoPage('addPlan')"><span class="si">➕</span> প্ল্যান অ্যাসাইন</div>
+      <div class="menu-label">Settings</div>
+      <div class="side-item" data-page="popup" onclick="gotoPage('popup')"><span class="si">📢</span> ঘোষণা পপআপ</div>
+      <div class="side-item" data-page="payment" onclick="gotoPage('payment')"><span class="si">🏦</span> পেমেন্ট নাম্বার</div>
+      <div class="side-item" data-page="notifications" onclick="gotoPage('notifications')"><span class="si">🔔</span> নোটিফিকেশন</div>
       <div class="menu-label">System</div>
-      <div class="side-item" data-page="settings" onclick="gotoPage('settings')"><span class="si"></span> </div>
-      <div class="side-item" data-page="security" onclick="gotoPage('security')"><span class="si"></span> </div>
+      <div class="side-item" data-page="reports" onclick="gotoPage('reports')"><span class="si">📈</span> রিপোর্ট</div>
+      <div class="side-item" data-page="security" onclick="gotoPage('security')"><span class="si">🔒</span> সিকিউরিটি</div>
     </nav>
     <div class="sidebar-footer">
       <div class="sf-ava">S</div>
-      <div class="sf-info"><div class="n">Super Admin</div><div class="r">Firebase Auth</div></div>
-      <button class="sf-out" onclick="adminLogout()"></button>
+      <div class="sf-info"><div class="n">Super Admin</div><div class="r">Firebase</div></div>
+      <button class="sf-out" onclick="adminLogout()">🚪</button>
     </div>
   </aside>
   <div class="overlay-mask" id="overlayMask" onclick="toggleSidebar()"></div>
   <main class="main">
     <div class="topbar">
       <div class="tb-left">
-        <button class="menu-toggle" onclick="toggleSidebar()"></button>
-        <div><div class="tb-title" id="pageTitle"></div><div class="tb-sub" id="pageSub"> </div></div>
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+        <div><div class="tb-title" id="pageTitle">ড্যাশবোর্ড</div><div class="tb-sub" id="pageSub">সিস্টেম ওভারভিউ</div></div>
       </div>
-      <div class="tb-right">
-        <div class="tb-chip"><span class="dot"></span>  </div>
-      </div>
+      <div class="tb-right"><div class="tb-chip"><span class="dot"></span> অনলাইন</div></div>
     </div>
     <div class="content">
 
       <div class="page active" id="page-dashboard">
         <div class="stat-grid">
-          <div class="stat-card"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="statUsers">0</div><div class="sc-label"> </div></div>
-          <div class="stat-card green"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="statDeposit"> 0</div><div class="sc-label"> </div></div>
-          <div class="stat-card blue"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="statWithdraw"> 0</div><div class="sc-label"> </div></div>
-          <div class="stat-card purple"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="statPending">0</div><div class="sc-label"></div></div>
+          <div class="stat-card"><div class="sc-head"><div class="sc-ic">👥</div></div><div class="sc-value" id="statUsers">0</div><div class="sc-label">মোট ইউজার</div></div>
+          <div class="stat-card green"><div class="sc-head"><div class="sc-ic">💰</div></div><div class="sc-value" id="statDeposit">৳ 0</div><div class="sc-label">মোট ডিপোজিট</div></div>
+          <div class="stat-card blue"><div class="sc-head"><div class="sc-ic">📤</div></div><div class="sc-value" id="statWithdraw">৳ 0</div><div class="sc-label">মোট উইথড্র</div></div>
+          <div class="stat-card purple"><div class="sc-head"><div class="sc-ic">⏳</div></div><div class="sc-value" id="statPending">0</div><div class="sc-label">পেন্ডিং</div></div>
         </div>
         <div class="stat-grid">
-          <div class="stat-card"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="statGames">0</div><div class="sc-label"> </div></div>
-          <div class="stat-card green"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="statMatches">0</div><div class="sc-label"> </div></div>
-          <div class="stat-card purple"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="statVip">0</div><div class="sc-label">VIP </div></div>
-          <div class="stat-card blue"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="statCheckin">0</div><div class="sc-label"> -</div></div>
+          <div class="stat-card purple"><div class="sc-head"><div class="sc-ic">👑</div></div><div class="sc-value" id="statPlansSold">0</div><div class="sc-label">বিক্রি প্ল্যান</div></div>
+          <div class="stat-card green"><div class="sc-head"><div class="sc-ic">💎</div></div><div class="sc-value" id="statPlanRevenue">৳ 0</div><div class="sc-label">প্ল্যান রেভিনিউ</div></div>
+          <div class="stat-card blue"><div class="sc-head"><div class="sc-ic">🎁</div></div><div class="sc-value" id="statPlanPaid">৳ 0</div><div class="sc-label">প্ল্যান পেমেন্ট</div></div>
+          <div class="stat-card red"><div class="sc-head"><div class="sc-ic">📈</div></div><div class="sc-value" id="statNet">৳ 0</div><div class="sc-label">নেট</div></div>
         </div>
-        <div class="panel"><div class="panel-head"><h3> </h3></div><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th></th><th></th><th></th><th></th></tr></thead><tbody id="recentTxTable"></tbody></table></div></div></div>
+        <div class="panel"><div class="panel-head"><h3>সাম্প্রতিক ট্রানজেকশন</h3></div><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th>ইউজার</th><th>টাইপ</th><th>পরিমাণ</th><th>স্ট্যাটাস</th></tr></thead><tbody id="recentTxTable"></tbody></table></div></div></div>
       </div>
 
       <div class="page" id="page-users">
         <div class="toolbar">
-          <div class="search-box"><span class="s-ic"></span><input type="text" placeholder=" ..." id="userSearch" oninput="renderUsers()"></div>
-          <select class="filter-select" id="userFilter" onchange="renderUsers()"><option value="all"></option><option value="active"></option><option value="blocked"></option><option value="vip">VIP</option></select>
-          <button class="btn sm" onclick="adminAddUser()"> </button>
+          <div class="search-box"><span class="s-ic">🔍</span><input type="text" placeholder="ইউজার খুঁজুন..." id="userSearch" oninput="renderUsers()"></div>
+          <select class="filter-select" id="userFilter" onchange="renderUsers()"><option value="all">সব</option><option value="active">সক্রিয়</option><option value="blocked">ব্লকড</option><option value="hasPlan">প্ল্যান আছে</option></select>
+          <button class="btn sm" onclick="adminAddUser()">＋ নতুন</button>
         </div>
-        <div class="panel"><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody id="usersTable"></tbody></table></div></div></div>
+        <div class="panel"><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th>ইউজার</th><th>ইমেইল</th><th>ব্যালেন্স</th><th>প্ল্যান</th><th>স্ট্যাটাস</th><th>অ্যাকশন</th></tr></thead><tbody id="usersTable"></tbody></table></div></div></div>
       </div>
 
       <div class="page" id="page-transactions">
         <div class="toolbar">
-          <div class="search-box"><span class="s-ic"></span><input type="text" placeholder="TX ID / ..." oninput="renderTx()" id="txSearch"></div>
-          <select class="filter-select" id="txFilter" onchange="renderTx()"><option value="all"></option><option value="deposit"></option><option value="withdraw"></option><option value="bet"></option><option value="win"></option><option value="pending"></option></select>
+          <div class="search-box"><span class="s-ic">🔍</span><input type="text" placeholder="TX ID / ইউজার..." oninput="renderTx()" id="txSearch"></div>
+          <select class="filter-select" id="txFilter" onchange="renderTx()">
+            <option value="all">সব</option>
+            <option value="deposit">ডিপোজিট</option>
+            <option value="withdraw">উইথড্র</option>
+            <option value="buy_plan">প্ল্যান ক্রয়</option>
+            <option value="plan_earn">প্ল্যান আয়</option>
+            <option value="pending">পেন্ডিং</option>
+          </select>
         </div>
-        <div class="panel"><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th>TX ID</th><th></th><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody id="txTable"></tbody></table></div></div></div>
+        <div class="panel"><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th>TX ID</th><th>ইউজার</th><th>টাইপ</th><th>পরিমাণ</th><th>স্ট্যাটাস</th><th>সময়</th><th>অ্যাকশন</th></tr></thead><tbody id="txTable"></tbody></table></div></div></div>
       </div>
 
-      <div class="page" id="page-chats">
-        <div class="chat-admin-layout">
-          <div class="chat-users-panel">
-            <div class="chat-users-head"><h3>  </h3><span id="chatTotal" style="font-size:11px;color:var(--muted);font-weight:600;"> </span></div>
-            <div class="chat-users-list" id="chatUsersList"><div class="chat-empty-note"> ...</div></div>
+      <div class="page" id="page-plans">
+        <div class="toolbar">
+          <button class="btn sm" onclick="openPlanEdit()">＋ নতুন প্ল্যান</button>
+          <button class="btn sm ghost" onclick="resetPlansToDefault()">🔄 Reset ডিফল্ট</button>
+        </div>
+        <div class="panel"><div class="panel-head"><h3>👑 VIP প্ল্যান লিস্ট</h3></div><div class="panel-body"><div id="planEditList"></div></div></div>
+      </div>
+
+      <div class="page" id="page-userPlans">
+        <div class="toolbar">
+          <div class="search-box"><span class="s-ic">🔍</span><input type="text" placeholder="ইউজার খুঁজুন..." id="upSearch" oninput="renderUserPlans()"></div>
+          <select class="filter-select" id="upFilter" onchange="renderUserPlans()"><option value="all">সব</option><option value="live">লাইভ</option><option value="expired">শেষ</option></select>
+        </div>
+        <div class="panel"><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th>ইউজার</th><th>প্ল্যান</th><th>দৈনিক</th><th>দিন</th><th>মোট আয়</th><th>স্ট্যাটাস</th><th>অ্যাকশন</th></tr></thead><tbody id="userPlansTable"></tbody></table></div></div></div>
+      </div>
+
+      <div class="page" id="page-addPlan">
+        <div class="panel">
+          <div class="panel-head"><h3>➕ ইউজারকে প্ল্যান অ্যাসাইন</h3></div>
+          <div class="panel-body">
+            <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px;">Admin হিসেবে যেকোনো ইউজারকে ফ্রিতে VIP প্ল্যান দিতে পারবেন। ইউজার কোনো টাকা দেবে না।</p>
+            <div class="form-grid">
+              <div class="form-group full">
+                <label>ইউজার নির্বাচন করুন *</label>
+                <select class="form-control" id="assignUser">
+                  <option value="">-- ইউজার বাছুন --</option>
+                </select>
+              </div>
+              <div class="form-group full">
+                <label>প্ল্যান নির্বাচন করুন *</label>
+                <select class="form-control" id="assignPlan">
+                  <option value="">-- প্ল্যান বাছুন --</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>মেয়াদ (দিন)</label>
+                <input class="form-control" type="number" id="assignDays" placeholder="খালি রাখলে প্ল্যানের মেয়াদ">
+              </div>
+              <div class="form-group">
+                <label>Reset করুন? (আগের থাকলে)</label>
+                <select class="form-control" id="assignReset">
+                  <option value="no">না — আগের ডাটা থাকলে error</option>
+                  <option value="yes">হ্যাঁ — আগের ডাটা মুছে নতুন</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn" style="margin-top:16px;" onclick="assignPlanToUser()">👑 প্ল্যান অ্যাসাইন করুন</button>
           </div>
-          <div class="chat-conv-panel" id="chatConvPanel">
-            <div class="chat-conv-empty"><div><div class="ce-ic"></div><div style="font-size:13px;">    </div></div></div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><h3>📋 সাম্প্রতিক অ্যাসাইনমেন্ট</h3></div>
+          <div class="panel-body p0"><div class="activity-list" id="assignHistory"></div></div>
+        </div>
+      </div>
+
+      <div class="page" id="page-popup">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>📢 Full Screen Popup</h3>
+            <label class="toggle" style="margin:0;">
+              <input type="checkbox" id="popupActive" onchange="savePopup()">
+              <span class="slider"></span>
+            </label>
+          </div>
+          <div class="panel-body">
+            <p style="font-size:12.5px;color:var(--muted);margin-bottom:16px;">সব ইউজার সাইটে ঢুকলে এই popup দেখবে। একবার দেখলে আর আসবে না (নতুন ID দিলে আবার আসবে)।</p>
+            <div class="popup-preview" id="popupPreview">
+              <span class="pp-badge" id="prevBadge">🎉 ঘোষণা</span>
+              <div class="pp-icon" id="prevIcon">🎁</div>
+              <div class="pp-title" id="prevTitle">স্বাগতম!</div>
+              <div class="pp-msg" id="prevMsg">আমাদের সাইটে আপনাকে স্বাগতম।</div>
+              <span class="pp-btn" id="prevBtn">✅ বুঝেছি</span>
+            </div>
+            <div class="form-grid">
+              <div class="form-group"><label>Popup ID (unique)</label><input class="form-control" id="popupId" placeholder="popup_123456"></div>
+              <div class="form-group"><label>Badge টেক্সট</label><input class="form-control" id="popupBadge" placeholder="🎉 ঘোষণা"></div>
+              <div class="form-group"><label>Icon (Emoji)</label><input class="form-control" id="popupIcon" placeholder="🎁"></div>
+              <div class="form-group"><label>Button টেক্সট</label><input class="form-control" id="popupBtn" placeholder="✅ বুঝেছি"></div>
+              <div class="form-group full"><label>টাইটেল</label><input class="form-control" id="popupTitle" placeholder="বড় ঘোষণা!"></div>
+              <div class="form-group full"><label>মেসেজ</label><textarea class="form-control" id="popupMsg" placeholder="বিস্তারিত লিখুন..."></textarea></div>
+            </div>
+            <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap;">
+              <button class="btn" onclick="savePopup()">💾 সেভ করুন</button>
+              <button class="btn green sm" onclick="regeneratePopupId()">🔄 নতুন ID (আবার সবাই দেখবে)</button>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="page" id="page-payment">
         <div class="panel">
-          <div class="panel-head"><h3>  </h3></div>
+          <div class="panel-head"><h3>🏦 পেমেন্ট নাম্বার</h3></div>
           <div class="panel-body">
             <div class="form-grid">
-              <div class="form-group"><label> bKash </label><input class="form-control" id="payBkashDep" placeholder="01712-345678"></div>
-              <div class="form-group"><label> bKash </label><input class="form-control" id="payBkashWd" placeholder="01712-345678"></div>
-              <div class="form-group"><label> Nagad </label><input class="form-control" id="payNagadDep" placeholder="01812-345678"></div>
-              <div class="form-group"><label> Nagad </label><input class="form-control" id="payNagadWd" placeholder="01812-345678"></div>
-              <div class="form-group"><label> Rocket </label><input class="form-control" id="payRocketDep" placeholder="01912-345678-1"></div>
-              <div class="form-group"><label> Rocket </label><input class="form-control" id="payRocketWd" placeholder="01912-345678-1"></div>
-              <div class="form-group"><label> </label><select class="form-control" id="payAccType"><option value="Personal">Personal</option><option value="Agent">Agent</option><option value="Merchant">Merchant</option></select></div>
-              <div class="form-group"><label> </label><input class="form-control" type="number" id="payMinDep" value="100"></div>
-              <div class="form-group"><label> </label><input class="form-control" type="number" id="payMinWd" value="500"></div>
+              <div class="form-group"><label>🅱️ bKash ডিপোজিট</label><input class="form-control" id="payBkashDep" placeholder="01712-345678"></div>
+              <div class="form-group"><label>🅱️ bKash উইথড্র</label><input class="form-control" id="payBkashWd" placeholder="01712-345678"></div>
+              <div class="form-group"><label>🟠 Nagad ডিপোজিট</label><input class="form-control" id="payNagadDep" placeholder="01812-345678"></div>
+              <div class="form-group"><label>🟠 Nagad উইথড্র</label><input class="form-control" id="payNagadWd" placeholder="01812-345678"></div>
+              <div class="form-group"><label>🚀 Rocket ডিপোজিট</label><input class="form-control" id="payRocketDep" placeholder="01912-345678-1"></div>
+              <div class="form-group"><label>🚀 Rocket উইথড্র</label><input class="form-control" id="payRocketWd" placeholder="01912-345678-1"></div>
+              <div class="form-group"><label>একাউন্ট টাইপ</label><select class="form-control" id="payAccType"><option value="Personal">Personal</option><option value="Agent">Agent</option><option value="Merchant">Merchant</option></select></div>
+              <div class="form-group"><label>সর্বনিম্ন ডিপোজিট (৳)</label><input class="form-control" type="number" id="payMinDep" value="100"></div>
+              <div class="form-group"><label>সর্বনিম্ন উইথড্র (৳)</label><input class="form-control" type="number" id="payMinWd" value="500"></div>
             </div>
-            <button class="btn" style="margin-top:16px;" onclick="savePaymentSettings()">  </button>
+            <button class="btn" style="margin-top:16px;" onclick="savePaymentSettings()">💾 সেভ করুন</button>
           </div>
         </div>
-      </div>
-
-      <div class="page" id="page-games">
-        <div class="toolbar">
-          <div class="search-box"><span class="s-ic"></span><input type="text" placeholder=" ..." oninput="renderGamesAdmin()" id="gameSearch"></div>
-          <select class="filter-select" id="gameCatFilter" onchange="renderGamesAdmin()"><option value="all"></option><option value="slot"></option><option value="live"></option><option value="sports"></option><option value="crash"></option><option value="fish"></option><option value="lottery"></option></select>
-          <button class="btn sm" onclick="openGameEdit()">  </button>
-        </div>
-        <div class="panel"><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th></th><th></th><th></th><th>RTP</th><th></th><th></th></tr></thead><tbody id="gamesAdminTable"></tbody></table></div></div></div>
-      </div>
-
-      <div class="page" id="page-promotions">
-        <div class="panel"><div class="panel-head"><h3> </h3></div><div class="panel-body"><div id="promoAdminList"></div></div></div>
-      </div>
-
-      <div class="page" id="page-vip">
-        <div class="panel"><div class="panel-head"><h3>VIP </h3></div><div class="panel-body"><div id="vipEditList"></div></div></div>
-      </div>
-
-      <div class="page" id="page-sports">
-        <div class="toolbar"><button class="btn sm" onclick="openMatchEdit()">  </button></div>
-        <div class="panel"><div class="panel-body p0"><div class="table-wrap"><table class="tbl"><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody id="matchesTable"></tbody></table></div></div></div>
-      </div>
-
-      <div class="page" id="page-leaderboard">
-        <div class="panel"><div class="panel-head"><h3> </h3></div><div class="panel-body"><div class="mini-list" id="lbEditList"></div></div></div>
-      </div>
-
-      <div class="page" id="page-checkin">
-        <div class="panel"><div class="panel-head"><h3>  - </h3></div><div class="panel-body"><div class="form-grid" id="checkinEditGrid"></div><button class="btn" style="margin-top:16px;" onclick="saveCheckinConfig()"> </button></div></div>
       </div>
 
       <div class="page" id="page-notifications">
         <div class="panel">
-          <div class="panel-head"><h3>  </h3></div>
+          <div class="panel-head"><h3>📢 নোটিফিকেশন পাঠান</h3></div>
           <div class="panel-body">
-            <div class="form-group"><label></label><input class="form-control" id="notifTitle" placeholder=" !"></div>
-            <div class="form-group"><label></label><textarea class="form-control" id="notifMsg" placeholder="..."></textarea></div>
-            <div class="form-group"><label></label><select class="form-control" id="notifType"><option value="gold|"> </option><option value="green|"> </option><option value="red|"> </option><option value="purple|"> </option></select></div>
-            <button class="btn" onclick="sendNotif()"> </button>
+            <div class="form-group"><label>টাইটেল</label><input class="form-control" id="notifTitle" placeholder="নতুন বোনাস!"></div>
+            <div class="form-group"><label>মেসেজ</label><textarea class="form-control" id="notifMsg" placeholder="বিস্তারিত..."></textarea></div>
+            <div class="form-group"><label>টাইপ</label><select class="form-control" id="notifType"><option value="gold|🎁">🎁 বোনাস</option><option value="green|💰">💰 ডিপোজিট</option><option value="red|⚡">⚡ জরুরি</option><option value="purple|👑">👑 VIP</option></select></div>
+            <button class="btn" onclick="sendNotif()">📢 পাঠান</button>
           </div>
         </div>
-        <div class="panel"><div class="panel-head"><h3></h3></div><div class="panel-body p0"><div class="activity-list" id="notifHistory"></div></div></div>
+        <div class="panel"><div class="panel-head"><h3>সাম্প্রতিক</h3></div><div class="panel-body p0"><div class="activity-list" id="notifHistory"></div></div></div>
       </div>
 
       <div class="page" id="page-reports">
         <div class="stat-grid">
-          <div class="stat-card green"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="repDeposit"> 0</div><div class="sc-label"> </div></div>
-          <div class="stat-card red"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="repWithdraw"> 0</div><div class="sc-label"> </div></div>
-          <div class="stat-card"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="repNet"> 0</div><div class="sc-label"> </div></div>
-          <div class="stat-card purple"><div class="sc-head"><div class="sc-ic"></div></div><div class="sc-value" id="repUsers">0</div><div class="sc-label"> </div></div>
+          <div class="stat-card green"><div class="sc-head"><div class="sc-ic">💵</div></div><div class="sc-value" id="repDeposit">৳ 0</div><div class="sc-label">মোট ডিপোজিট</div></div>
+          <div class="stat-card red"><div class="sc-head"><div class="sc-ic">📤</div></div><div class="sc-value" id="repWithdraw">৳ 0</div><div class="sc-label">মোট উইথড্র</div></div>
+          <div class="stat-card purple"><div class="sc-head"><div class="sc-ic">👑</div></div><div class="sc-value" id="repPlanBuy">৳ 0</div><div class="sc-label">প্ল্যান বিক্রি</div></div>
+          <div class="stat-card blue"><div class="sc-head"><div class="sc-ic">💎</div></div><div class="sc-value" id="repPlanPay">৳ 0</div><div class="sc-label">প্ল্যান পেমেন্ট</div></div>
         </div>
-        <div class="panel"><div class="panel-head"><h3> </h3></div><div class="panel-body"><div class="chart" id="monthChart"></div><div class="chart-legend"><span><span class="ld" style="background:linear-gradient(135deg,#ffd54f,#ff8f00)"></span> </span><span><span class="ld" style="background:linear-gradient(135deg,#60a5fa,#2563eb)"></span> </span></div></div></div>
-      </div>
-
-      <div class="page" id="page-activity">
-        <div class="panel"><div class="panel-head"><h3> </h3></div><div class="panel-body p0"><div class="activity-list" id="activityFeed" style="max-height:600px;"></div></div></div>
-      </div>
-
-      <div class="page" id="page-settings">
-        <div class="panel"><div class="panel-head"><h3></h3></div><div class="panel-body"><div class="form-grid"><div class="form-group"><label> </label><input class="form-control" value="Tkwin99"></div><div class="form-group"><label> </label><input class="form-control" value="support@tkwin99.com"></div></div><button class="btn" style="margin-top:8px;" onclick="showToast(' ')"> </button></div></div>
       </div>
 
       <div class="page" id="page-security">
         <div class="panel">
-          <div class="panel-head"><h3> Admin Credentials</h3></div>
+          <div class="panel-head"><h3>🔐 Admin Credentials</h3></div>
           <div class="panel-body">
             <div class="form-grid">
-              <div class="form-group"><label> Username</label><input class="form-control" id="newAdmUser"></div>
-              <div class="form-group"><label> Password</label><input class="form-control" type="text" id="newAdmPass"></div>
-              <div class="form-group"><label> 2FA</label><input class="form-control" id="newAdm2FA"></div>
-              <div class="form-group"><label> Password</label><input class="form-control" type="text" id="curAdmPass"></div>
+              <div class="form-group"><label>নতুন Username</label><input class="form-control" id="newAdmUser"></div>
+              <div class="form-group"><label>নতুন Password</label><input class="form-control" type="text" id="newAdmPass"></div>
+              <div class="form-group"><label>নতুন 2FA</label><input class="form-control" id="newAdm2FA"></div>
+              <div class="form-group"><label>বর্তমান Password</label><input class="form-control" type="text" id="curAdmPass"></div>
             </div>
-            <button class="btn" style="margin-top:8px;" onclick="updateAdminCreds()"> </button>
+            <button class="btn" style="margin-top:8px;" onclick="updateAdminCreds()">💾 আপডেট</button>
           </div>
         </div>
-        <div class="panel"><div class="panel-head"><h3></h3></div><div class="panel-body"><button class="btn red sm" onclick="resetAllData()">  </button></div></div>
+        <div class="panel"><div class="panel-head"><h3>ডাটা রিসেট</h3></div><div class="panel-body"><button class="btn red sm" onclick="resetAllData()">🗑️ সব রিসেট</button></div></div>
       </div>
 
     </div>
@@ -445,196 +427,108 @@ textarea.form-control{min-height:90px;resize:vertical}
 
 <div class="modal-mask" id="modalMask" onclick="closeModal()">
   <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-head"><h3 id="modalTitle"></h3><button class="x" onclick="closeModal()"></button></div>
+    <div class="modal-head"><h3 id="modalTitle">ডিটেইলস</h3><button class="x" onclick="closeModal()">✕</button></div>
     <div class="modal-body" id="modalBody"></div>
-    <div class="modal-foot" id="modalFoot"><button class="btn ghost sm" onclick="closeModal()"></button></div>
+    <div class="modal-foot" id="modalFoot"><button class="btn ghost sm" onclick="closeModal()">বন্ধ</button></div>
   </div>
 </div>
 <div class="toast" id="toast"></div>
 
 <script>
-/* ========== STORE ========== */
+/* ===== STORE ===== */
 (function(global){
-const K_USERS='tkwin_users_v1',K_TXS='tkwin_txs_v1',K_SESSION='tkwin_session_v1',K_CHECKIN='tkwin_checkin_v1',K_NOTIFS='tkwin_notifs_v1',K_GAMES='tkwin_games_v1',K_VIP='tkwin_vip_v1',K_LB='tkwin_lb_v1',K_MATCHES='tkwin_matches_v1',K_ADMIN='tkwin_admin_v1',K_PAYMENT='tkwin_payment_v1';
+const K_USERS='tkwin_users_v1',K_TXS='tkwin_txs_v1',K_NOTIFS='tkwin_notifs_v1',K_ADMIN='tkwin_admin_v1',K_PAYMENT='tkwin_payment_v1',K_PLANS='tkwin_plans_v1';
 function read(k,d){try{const r=localStorage.getItem(k);return r?JSON.parse(r):d}catch{return d}}
 function write(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
 const fbReady=(typeof window.db!=='undefined'&&window.db!==null);
 function fbSet(p,v){if(fbReady)try{window.db.ref(p).set(v)}catch(e){}}
 function fbUpdate(p,v){if(fbReady)try{window.db.ref(p).update(v)}catch(e){}}
 function fbRemove(p){if(fbReady)try{window.db.ref(p).remove()}catch(e){}}
-const SEED_USERS=[{id:'TK000001',name:'Rakib Hasan',email:'rakib@mail.com',bal:12500,st:'active',joined:'2025-01-12',vip:true,pass:'1234'},{id:'TK000002',name:'Sabbir Ahmed',email:'sabbir@mail.com',bal:8200,st:'active',joined:'2025-02-03',vip:false,pass:'1234'},{id:'TK000003',name:'Nadia Islam',email:'nadia@mail.com',bal:25000,st:'active',joined:'2025-02-18',vip:true,pass:'1234'}];
 const DEFAULT_ADMIN={user:'sowrob',pass:'Rana123BD',twoFA:'112233'};
-if(!localStorage.getItem(K_USERS))write(K_USERS,SEED_USERS);
 if(!localStorage.getItem(K_ADMIN))write(K_ADMIN,DEFAULT_ADMIN);
 function startListeners(){
   if(!fbReady)return;
   window.db.ref('users').on('value',s=>{const v=s.val();if(v){write(K_USERS,Object.keys(v).map(k=>({...v[k],id:k})));notify()}});
   window.db.ref('transactions').on('value',s=>{const v=s.val();if(v){write(K_TXS,Object.keys(v).map(k=>({...v[k],id:k})).reverse());notify()}});
-  ['checkin','notifs','games','vip','leaderboard','matches','paymentNumbers'].forEach(key=>{
-    const map={checkin:K_CHECKIN,notifs:K_NOTIFS,games:K_GAMES,vip:K_VIP,leaderboard:K_LB,matches:K_MATCHES,paymentNumbers:K_PAYMENT};
-    window.db.ref('config/'+key).on('value',s=>{const v=s.val();if(v){write(map[key],v);notify()}});
-  });
+  window.db.ref('config/notifs').on('value',s=>{const v=s.val();if(v){write(K_NOTIFS,v);notify()}});
+  window.db.ref('config/paymentNumbers').on('value',s=>{const v=s.val();if(v){write(K_PAYMENT,v);notify()}});
+  window.db.ref('config/vipPlans').on('value',s=>{const v=s.val();if(v){write(K_PLANS,v);notify()}});
   window.db.ref('admin/credentials').on('value',s=>{const v=s.val();if(v){write(K_ADMIN,v);notify()}});
-  window.db.ref('chats').on('value',s=>{
-    window._chatsData=s.val()||{};
-    if(typeof renderChatUsers==='function')try{renderChatUsers()}catch(e){}
-    if(typeof updateChatBadge==='function')try{updateChatBadge()}catch(e){}
-    if(typeof window._updateActiveConv==='function')try{window._updateActiveConv()}catch(e){}
-  },e=>console.warn('chats err',e));
 }
 startListeners();
 function getUsers(){return read(K_USERS,[])}
 function saveUsers(l){write(K_USERS,l);notify()}
 function findUserByName(n){return getUsers().find(u=>u.name===n)}
 function findUserById(id){return getUsers().find(u=>u.id===id)}
-function addUser(name,pass){const l=getUsers();if(l.find(u=>u.name===name))return null;const id='TK'+String(100000+l.length+1).slice(-6);const u={id,name,pass,email:name.toLowerCase().replace(/\s+/g,'')+'@demo.local',bal:0,st:'active',joined:new Date().toISOString().slice(0,10),vip:false};l.push(u);saveUsers(l);fbSet('users/'+id,u);return u}
+function addUser(name,pass){const l=getUsers();if(l.find(u=>u.name===name))return null;const id='TK'+String(100000+l.length+1).slice(-6);const u={id,name,pass,email:name.toLowerCase().replace(/\s+/g,'')+'@demo.local',bal:0,st:'active',joined:new Date().toISOString().slice(0,10),vipPlans:{}};l.push(u);saveUsers(l);fbSet('users/'+id,u);return u}
 function updateUser(id,patch){const l=getUsers();const i=l.findIndex(u=>u.id===id);if(i<0)return null;l[i]=Object.assign({},l[i],patch);saveUsers(l);fbUpdate('users/'+id,patch);return l[i]}
 function deleteUser(id){saveUsers(getUsers().filter(u=>u.id!==id));fbRemove('users/'+id)}
 function addBalance(id,amt){const u=findUserById(id);if(!u)return null;const b=Math.max(0,(Number(u.bal)||0)+Number(amt));return updateUser(id,{bal:b})}
 function setBalance(id,amt){return updateUser(id,{bal:Number(amt)||0})}
 function getTxs(){return read(K_TXS,[])}
 function saveTxs(l){write(K_TXS,l);notify()}
+function addTx(tx){const id='TX'+(100000+getTxs().length+1)+Math.floor(Math.random()*1000);const rec={id,user:tx.user,t:tx.t,amt:Number(tx.amt)||0,st:tx.st||'active',time:tx.time||new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'}),method:tx.method||'',trx:tx.trx||'',account:tx.account||'',name:tx.name||''};const l=getTxs();l.unshift(rec);saveTxs(l);fbSet('transactions/'+id,rec);return rec}
 function updateTxStatus(id,s){const l=getTxs();const i=l.findIndex(t=>t.id===id);if(i<0)return null;l[i].st=s;saveTxs(l);fbUpdate('transactions/'+id,{st:s});return l[i]}
-function getSession(){return read(K_SESSION,null)}
-function getCheckin(){return read(K_CHECKIN,{streak:3,done:[0,1,2],today:2})}
-function saveCheckin(v){write(K_CHECKIN,v);notify();fbSet('config/checkin',v)}
 function getNotifs(){return read(K_NOTIFS,[])}
 function saveNotifs(v){write(K_NOTIFS,v);notify();fbSet('config/notifs',v)}
-function getGames(){return read(K_GAMES,null)}
-function saveGames(v){write(K_GAMES,v);notify();fbSet('config/games',v)}
-function getVip(){return read(K_VIP,null)}
-function saveVip(v){write(K_VIP,v);notify();fbSet('config/vip',v)}
-function getLb(){return read(K_LB,null)}
-function saveLb(v){write(K_LB,v);notify();fbSet('config/leaderboard',v)}
-function getMatches(){return read(K_MATCHES,null)}
-function saveMatches(v){write(K_MATCHES,v);notify();fbSet('config/matches',v)}
 function getAdminCreds(){return read(K_ADMIN,DEFAULT_ADMIN)}
 function saveAdminCreds(v){write(K_ADMIN,v);notify();fbSet('admin/credentials',v)}
 function getPayment(){return read(K_PAYMENT,null)}
 function savePayment(v){write(K_PAYMENT,v);notify();fbSet('config/paymentNumbers',v)}
+function getPlans(){return read(K_PLANS,null)}
+function savePlans(v){write(K_PLANS,v);notify();fbSet('config/vipPlans',v)}
 const listeners=[];
 function onChange(fn){listeners.push(fn)}
 function notify(){listeners.forEach(fn=>{try{fn()}catch(e){}})}
 window.addEventListener('storage',e=>{if(e.key&&e.key.indexOf('tkwin_')===0)notify()});
-global.Store={getUsers,saveUsers,findUserByName,findUserById,addUser,updateUser,deleteUser,addBalance,setBalance,getTxs,saveTxs,updateTxStatus,getSession,getCheckin,saveCheckin,getNotifs,saveNotifs,getGames,saveGames,getVip,saveVip,getLb,saveLb,getMatches,saveMatches,getAdminCreds,saveAdminCreds,getPayment,savePayment,onChange,notify};
+global.Store={getUsers,saveUsers,findUserByName,findUserById,addUser,updateUser,deleteUser,addBalance,setBalance,getTxs,saveTxs,addTx,updateTxStatus,getNotifs,saveNotifs,getAdminCreds,saveAdminCreds,getPayment,savePayment,getPlans,savePlans,onChange,notify};
 })(window);
 
-/* ========== DEFAULTS ========== */
-const DEFAULT_GAMES=[
-{n:' ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.5,v:'',r:4.9,st:true,bets:'1.5M'},
-{n:'',p:'Spribe',i:'',c:'crash',b:'hot',rtp:97.0,v:'',r:4.9,st:true,bets:'2.1M'},
-{n:' ',p:'Pragmatic',i:'',c:'slot',b:'new',rtp:96.5,v:'',r:4.8,st:true,bets:'890K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.2,v:'',r:4.7,st:true,bets:'720K'},
-{n:'  ',p:'PG',i:'',c:'slot',b:'hot',rtp:96.8,v:'',r:4.8,st:true,bets:'680K'},
-{n:'  ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.5,v:'',r:4.8,st:true,bets:'950K'},
-{n:'  ',p:'JILI',i:'',c:'slot',b:'',rtp:96.0,v:'',r:4.6,st:true,bets:'420K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.5,v:'',r:4.8,st:true,bets:'1.2M'},
-{n:'  ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.5,v:'',r:4.8,st:true,bets:'890K'},
-{n:' ',p:'FaChai',i:'',c:'slot',b:'new',rtp:96.3,v:'',r:4.6,st:true,bets:'380K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'',rtp:96.3,v:'',r:4.7,st:true,bets:'740K'},
-{n:' ',p:'Pragmatic',i:'',c:'live',b:'hot',rtp:96.5,v:'',r:4.8,st:true,bets:'520K'},
-{n:'  ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.6,v:'',r:4.8,st:true,bets:'820K'},
-{n:'  ',p:'JDB',i:'',c:'slot',b:'new',rtp:96.5,v:'',r:4.7,st:true,bets:'460K'},
-{n:'  ',p:'BNJ',i:'7',c:'slot',b:'',rtp:96.2,v:'',r:4.5,st:true,bets:'340K'},
-{n:'  ',p:'PG',i:'',c:'slot',b:'hot',rtp:96.8,v:'',r:4.8,st:true,bets:'720K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'',rtp:96.4,v:'',r:4.6,st:true,bets:'380K'},
-{n:'  ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.7,v:'',r:4.8,st:true,bets:'640K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'new',rtp:96.4,v:'',r:4.7,st:true,bets:'420K'},
-{n:'  ',p:'PG',i:'',c:'slot',b:'hot',rtp:97.0,v:'',r:4.8,st:true,bets:'580K'},
-{n:'   ',p:'BNG',i:'',c:'slot',b:'new',rtp:96.5,v:'',r:4.6,st:true,bets:'290K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'',rtp:96.3,v:'',r:4.6,st:true,bets:'480K'},
-{n:'',p:'Microgaming',i:'',c:'crash',b:'new',rtp:97.0,v:'',r:4.7,st:true,bets:'450K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.5,v:'',r:4.7,st:true,bets:'560K'},
-{n:'  ',p:'BNG',i:'',c:'slot',b:'new',rtp:96.6,v:'',r:4.7,st:true,bets:'340K'},
-{n:'  ',p:'JILI',i:'',c:'slot',b:'new',rtp:96.3,v:'',r:4.6,st:true,bets:'280K'},
-{n:'    ',p:'BNG',i:'',c:'slot',b:'hot',rtp:96.5,v:'',r:4.7,st:true,bets:'510K'},
-{n:'  ',p:'PG',i:'',c:'slot',b:'hot',rtp:96.7,v:'',r:4.8,st:true,bets:'720K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'',rtp:96.4,v:'',r:4.6,st:true,bets:'380K'},
-{n:'  ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.7,v:'',r:4.8,st:true,bets:'890K'},
-{n:' ',p:'BNJ',i:'',c:'slot',b:'new',rtp:96.5,v:'',r:4.7,st:true,bets:'420K'},
-{n:' ',p:'BNG',i:'',c:'slot',b:'',rtp:96.2,v:'',r:4.6,st:true,bets:'510K'},
-{n:' ',p:'PG',i:'',c:'slot',b:'hot',rtp:96.7,v:'',r:4.8,st:true,bets:'660K'},
-{n:'  ',p:'YB',i:'',c:'slot',b:'new',rtp:96.4,v:'',r:4.7,st:true,bets:'380K'},
-{n:' ',p:'AMIGO',i:'',c:'slot',b:'',rtp:96.3,v:'',r:4.6,st:true,bets:'290K'},
-{n:' ',p:'AMIGO',i:'',c:'slot',b:'new',rtp:96.5,v:'',r:4.7,st:true,bets:'340K'},
-{n:'  ',p:'BNJ',i:'',c:'slot',b:'hot',rtp:96.8,v:'',r:4.8,st:true,bets:'580K'},
-{n:'  ',p:'JILI',i:'',c:'slot',b:'hot',rtp:96.6,v:'',r:4.8,st:true,bets:'720K'},
-{n:' ',p:'JILI',i:'',c:'slot',b:'',rtp:96.5,v:'',r:4.7,st:true,bets:'480K'},
-{n:'  ',p:'PG',i:'',c:'slot',b:'hot',rtp:96.7,v:'',r:4.8,st:true,bets:'640K'},
-{n:' ',p:'JILI',i:'',c:'fish',b:'hot',rtp:96.5,v:'',r:4.7,st:true,bets:'520K'},
-{n:' ',p:'JILI',i:'',c:'fish',b:'new',rtp:96.3,v:'',r:4.6,st:true,bets:'380K'},
-{n:'  ',p:'FaChai',i:'',c:'slot',b:'',rtp:96.4,v:'',r:4.6,st:true,bets:'290K'},
-{n:'Jili Slot',p:'Jili',i:'',c:'slot',b:'hot',rtp:96.5,v:'',r:4.8,st:true,bets:'1.2M'},
-{n:'PG Soft',p:'PG',i:'',c:'slot',b:'new',rtp:97.2,v:'',r:4.7,st:true,bets:'980K'},
-{n:'Pragmatic',p:'PP',i:'',c:'slot',b:'hot',rtp:96.8,v:'',r:4.9,st:true,bets:'1.8M'},
-{n:'Sweet Bonanza',p:'PP',i:'',c:'slot',b:'hot',rtp:96.5,v:'',r:4.9,st:true,bets:'1.3M'},
-{n:'Gates of Olympus',p:'PP',i:'',c:'slot',b:'hot',rtp:96.5,v:' ',r:4.9,st:true,bets:'1.5M'},
-{n:'FaChai',p:'FaChai',i:'',c:'slot',b:'',rtp:96.2,v:'',r:4.5,st:true,bets:'380K'},
-{n:'Habanero',p:'Habanero',i:'',c:'slot',b:'',rtp:96.0,v:'',r:4.6,st:true,bets:'290K'},
-{n:'Microgaming',p:'Microgaming',i:'',c:'slot',b:'',rtp:96.4,v:'',r:4.7,st:true,bets:'510K'},
-{n:'Evolution Live',p:'Evolution',i:'',c:'live',b:'hot',rtp:97.3,v:'',r:4.9,st:true,bets:'1.5M'},
-{n:'Crazy Time',p:'Evolution',i:'',c:'live',b:'hot',rtp:96.0,v:' ',r:4.9,st:true,bets:'950K'},
-{n:'Dragon Tiger',p:'Evolution',i:'',c:'live',b:'hot',rtp:96.7,v:'',r:4.8,st:true,bets:'720K'},
-{n:'Lightning Roulette',p:'Evolution',i:'',c:'live',b:'',rtp:97.3,v:'',r:4.8,st:true,bets:'620K'},
-{n:'Mines',p:'Spribe',i:'',c:'crash',b:'new',rtp:97.5,v:'',r:4.7,st:true,bets:'1.4M'},
-{n:'Plinko',p:'Spribe',i:'',c:'crash',b:'',rtp:99.0,v:'',r:4.8,st:true,bets:'890K'},
-{n:'Spaceman',p:'PP',i:'',c:'crash',b:'hot',rtp:96.5,v:'',r:4.7,st:true,bets:'720K'},
-{n:'SBO Sports',p:'SBO',i:'',c:'sports',b:'hot',rtp:98.5,v:'',r:4.8,st:true,bets:'890K'},
-{n:'Cricket Live',p:'SBO',i:'',c:'sports',b:'hot',rtp:98.2,v:'',r:4.7,st:true,bets:'1.2M'},
-{n:'BTI Sports',p:'BTI',i:'',c:'sports',b:'',rtp:97.8,v:'',r:4.6,st:true,bets:'450K'},
-{n:'JDB Fishing',p:'JDB',i:'',c:'fish',b:'',rtp:95.5,v:'',r:4.5,st:true,bets:'420K'},
-{n:'Fish Hunter',p:'JDB',i:'',c:'fish',b:'hot',rtp:96.0,v:'',r:4.6,st:true,bets:'380K'},
-{n:'K3 Lottery',p:'LL',i:'',c:'lottery',b:'new',rtp:95.0,v:'',r:4.4,st:true,bets:'290K'},
-{n:'5D Lottery',p:'LL',i:'',c:'lottery',b:'',rtp:94.8,v:'',r:4.3,st:true,bets:'210K'}
+/* ===== DEFAULTS ===== */
+const DEFAULT_PLANS=[
+  {id:'starter',name:'Starter',icon:'🥉',color:'bronze',price:500,daily:10,days:60,badge:''},
+  {id:'silver',name:'Silver',icon:'🥈',color:'silver',price:1000,daily:25,days:60,badge:'hot'},
+  {id:'gold',name:'Gold',icon:'🥇',color:'gold',price:2000,daily:60,days:60,badge:'hot'},
+  {id:'platinum',name:'Platinum',icon:'💜',color:'platinum',price:5000,daily:180,days:60,badge:'vip'},
+  {id:'diamond',name:'Diamond',icon:'💎',color:'diamond',price:10000,daily:400,days:60,badge:'vip'}
 ];
-const DEFAULT_VIP=[{key:'bronze',icon:'',name:'Bronze',req:' +',perk:'% '},{key:'silver',icon:'',name:'Silver',req:' ,+',perk:'% '},{key:'gold',icon:'',name:'Gold',req:' ,,+',perk:'% '},{key:'platinum',icon:'',name:'Platinum',req:' ,,+',perk:'% '},{key:'diamond',icon:'',name:'Diamond',req:' ,,+',perk:'% '}];
-const DEFAULT_LB=[{name:'Rakib H.',amt:' ,,',stat:', '},{name:'Nadia I.',amt:' ,,',stat:', '},{name:'Hasan M.',amt:' ,,',stat:', '},{name:'Shakib A.',amt:' ,,',stat:', '},{name:'Ayesha B.',amt:' ,,',stat:', '}];
-const DEFAULT_MATCHES=[{league:' BPL 2025',live:true,t1:{n:'Dhaka',l:''},t2:{n:'Chattogram',l:''},o:['.','.','.']},{league:' Premier League',live:true,t1:{n:'Man City',l:''},t2:{n:'Liverpool',l:''},o:['.','.','.']}];
-const DEFAULT_PROMOS=[{ic:'',t:'  ',amt:'%',st:true},{ic:'',t:' ',amt:'.%',st:true},{ic:'',t:' ',amt:' ',st:true}];
-const DEFAULT_CHECKIN=[10,20,30,50,80,120,500];
-const VALID_PAGES=['dashboard','users','transactions','chats','payment','games','promotions','vip','sports','leaderboard','checkin','notifications','reports','activity','settings','security'];
-const PAGE_META={dashboard:{t:'',s:' '},users:{t:' ',s:' '},transactions:{t:'',s:', '},chats:{t:' ',s:'   '},payment:{t:' ',s:'bKash/Nagad/Rocket'},games:{t:' ',s:' '},promotions:{t:'',s:''},vip:{t:'VIP ',s:''},sports:{t:' ',s:''},leaderboard:{t:'',s:' '},checkin:{t:' -',s:''},notifications:{t:'',s:' '},reports:{t:'',s:''},activity:{t:' ',s:'-'},settings:{t:'',s:''},security:{t:'',s:''}};
+function getPlansData(){const r=Store.getPlans();return(Array.isArray(r)&&r.length)?r:DEFAULT_PLANS}
+function findPlan(id){return getPlansData().find(p=>p.id===id)}
+function getToday(){return new Date().toISOString().slice(0,10)}
+
+const VALID_PAGES=['dashboard','users','transactions','plans','userPlans','addPlan','popup','payment','notifications','reports','security'];
+const PAGE_META={dashboard:{t:'ড্যাশবোর্ড',s:'সিস্টেম ওভারভিউ'},users:{t:'ইউজার',s:'সব ইউজার'},transactions:{t:'ট্রানজেকশন',s:'ডিপোজিট, উইথড্র, প্ল্যান'},plans:{t:'VIP প্ল্যান',s:'প্ল্যান এডিট'},userPlans:{t:'ইউজার প্ল্যান',s:'কোন ইউজার কোন প্ল্যান কিনেছে'},addPlan:{t:'প্ল্যান অ্যাসাইন',s:'ইউজারকে ফ্রি প্ল্যান দিন'},popup:{t:'ঘোষণা পপআপ',s:'Full screen popup manage'},payment:{t:'পেমেন্ট নাম্বার',s:'bKash/Nagad/Rocket'},notifications:{t:'নোটিফিকেশন',s:'ইউজারদের পাঠান'},reports:{t:'রিপোর্ট',s:'অ্যানালিটিক্স'},security:{t:'সিকিউরিটি',s:'নিরাপত্তা'}};
 
 let currentPage='dashboard';
 let adminLoggedIn=false;
 let suppressPopstate=false;
-let editingGameIdx=-1;
-let editingMatchIdx=-1;
-let activeChatId=null;
-
-function getGames(){return Store.getGames()||DEFAULT_GAMES}
-function getVip(){return Store.getVip()||DEFAULT_VIP}
-function getLb(){return Store.getLb()||DEFAULT_LB}
-function getMatches(){return Store.getMatches()||DEFAULT_MATCHES}
-function getCheckinConfig(){const c=Store.getCheckin();return c.rewards||DEFAULT_CHECKIN}
-function getNotifs(){return Store.getNotifs()||[]}
+let editingPlanIdx=-1;
 
 function adminLogin(){
   const u=document.getElementById('aUser').value.trim();
   const p=document.getElementById('aPass').value.trim();
   const c=document.getElementById('aCode').value.trim();
-  if(!u||!p){showToast('   ');return}
-  if(!c){showToast('2FA  ');return}
+  if(!u||!p){showToast('ইউজারনেম ও পাসওয়ার্ড দিন');return}
+  if(!c){showToast('2FA কোড দিন');return}
   const creds=Store.getAdminCreds();
-  if(u!==creds.user||p!==creds.pass){showToast(' ');return}
-  if(c!==creds.twoFA){showToast(' 2FA');return}
+  if(u!==creds.user||p!==creds.pass){showToast('ভুল ক্রেডেনশিয়াল');return}
+  if(c!==creds.twoFA){showToast('ভুল 2FA');return}
   adminLoggedIn=true;
   document.getElementById('adminLogin').style.display='none';
   document.getElementById('adminApp').style.display='block';
-  showToast(', Admin!');
-  history.replaceState({page:'dashboard',app:'tkwin_admin'},'','#dashboard');
+  showToast('স্বাগতম Admin!');
+  history.replaceState({page:'dashboard',app:'vip_admin'},'','#dashboard');
   renderAll();
-  setTimeout(()=>{try{renderChatUsers();updateChatBadge()}catch(e){}},800);
 }
 function adminLogout(){
-  if(!confirm('?'))return;
+  if(!confirm('লগআউট?'))return;
   adminLoggedIn=false;
   document.getElementById('adminApp').style.display='none';
   document.getElementById('adminLogin').style.display='grid';
   document.getElementById('aUser').value='';
   document.getElementById('aPass').value='';
   document.getElementById('aCode').value='';
-  history.replaceState({page:'login',app:'tkwin_admin'},'','#login');
+  history.replaceState({page:'login',app:'vip_admin'},'','#login');
 }
 function updateAdminCreds(){
   const nu=document.getElementById('newAdmUser').value.trim();
@@ -642,33 +536,31 @@ function updateAdminCreds(){
   const n2=document.getElementById('newAdm2FA').value.trim();
   const cp=document.getElementById('curAdmPass').value.trim();
   const creds=Store.getAdminCreds();
-  if(cp!==creds.pass){showToast(' Password ');return}
-  if(nu.length<3){showToast('Username  ');return}
-  if(np.length<6){showToast('Password  ');return}
-  if(n2.length<4){showToast('2FA  ');return}
-  if(!confirm('Credentials ?'))return;
+  if(cp!==creds.pass){showToast('বর্তমান Password ভুল');return}
+  if(nu.length<3){showToast('Username কমপক্ষে ৩');return}
+  if(np.length<6){showToast('Password কমপক্ষে ৬');return}
+  if(n2.length<4){showToast('2FA কমপক্ষে ৪');return}
+  if(!confirm('Credentials পরিবর্তন?'))return;
   Store.saveAdminCreds({user:nu,pass:np,twoFA:n2});
   document.getElementById('newAdmUser').value='';
   document.getElementById('newAdmPass').value='';
   document.getElementById('newAdm2FA').value='';
   document.getElementById('curAdmPass').value='';
-  showToast(' ');
+  showToast('✅ আপডেট');
 }
 function gotoPage(page,skipPush){
   if(!VALID_PAGES.includes(page))page='dashboard';
   currentPage=page;
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const el=document.getElementById('page-'+page);
-  if(el)el.classList.add('active');
-  document.querySelectorAll('.side-item').forEach(i=>{i.classList.toggle('active',i.dataset.page===page)});
-  const meta=PAGE_META[page]||{t:'',s:''};
-  document.getElementById('pageTitle').textContent=meta.t;
-  document.getElementById('pageSub').textContent=meta.s;
+  const el=document.getElementById('page-'+page);if(el)el.classList.add('active');
+  document.querySelectorAll('.side-item').forEach(i=>i.classList.toggle('active',i.dataset.page===page));
+  const m=PAGE_META[page]||{t:'',s:''};
+  document.getElementById('pageTitle').textContent=m.t;
+  document.getElementById('pageSub').textContent=m.s;
   if(window.innerWidth<900)toggleSidebar(false);
   window.scrollTo({top:0,behavior:'instant'});
-  if(!skipPush&&adminLoggedIn)history.pushState({page,app:'tkwin_admin'},'','#'+page);
+  if(!skipPush&&adminLoggedIn)history.pushState({page,app:'vip_admin'},'','#'+page);
   refreshCurrentPage();
-  if(page==='chats')setTimeout(()=>{try{renderChatUsers();updateChatBadge()}catch(e){}},100);
 }
 function toggleSidebar(force){
   const sb=document.getElementById('sidebar'),mask=document.getElementById('overlayMask');
@@ -684,44 +576,44 @@ window.addEventListener('popstate',e=>{
   const sb=document.getElementById('sidebar');
   if(sb&&sb.classList.contains('open')){sb.classList.remove('open');document.getElementById('overlayMask').classList.remove('show');return}
   if(!adminLoggedIn)return;
-  if(e.state&&e.state.app==='tkwin_admin'&&e.state.page&&VALID_PAGES.includes(e.state.page)){
-    if(e.state.page!==currentPage)gotoPage(e.state.page,true);
-  }else{
-    if(currentPage!=='dashboard'){gotoPage('dashboard',true);history.pushState({page:'dashboard',app:'tkwin_admin'},'','#dashboard')}
-    else history.pushState({page:'dashboard',app:'tkwin_admin'},'','#dashboard');
-  }
+  if(e.state&&e.state.app==='vip_admin'&&e.state.page&&VALID_PAGES.includes(e.state.page)){if(e.state.page!==currentPage)gotoPage(e.state.page,true)}
+  else{if(currentPage!=='dashboard'){gotoPage('dashboard',true);history.pushState({page:'dashboard',app:'vip_admin'},'','#dashboard')}}
 });
+
 function updateStats(){
-  const users=Store.getUsers(),txs=Store.getTxs(),games=getGames(),matches=getMatches();
+  const users=Store.getUsers(),txs=Store.getTxs();
   const dep=txs.filter(t=>t.t==='deposit'&&t.st==='active').reduce((s,t)=>s+Number(t.amt||0),0);
   const wd=txs.filter(t=>t.t==='withdraw'&&t.st==='active').reduce((s,t)=>s+Number(t.amt||0),0);
   const pending=txs.filter(t=>t.st==='pending').length;
+  const buyPlans=txs.filter(t=>t.t==='buy_plan'&&t.st==='active');
+  const planRevenue=buyPlans.reduce((s,t)=>s+Number(t.amt||0),0);
+  const planPaid=txs.filter(t=>t.t==='plan_earn'&&t.st==='active').reduce((s,t)=>s+Number(t.amt||0),0);
   const S=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
-  S('statUsers',users.length);S('statDeposit',' '+dep.toLocaleString());S('statWithdraw',' '+wd.toLocaleString());
-  S('statPending',pending);S('statGames',games.length);S('statMatches',matches.length);
-  S('statVip',users.filter(u=>u.vip).length);S('statCheckin',(Store.getCheckin().done||[]).length);
-  S('repDeposit',' '+dep.toLocaleString());S('repWithdraw',' '+wd.toLocaleString());
-  S('repNet',' '+(dep-wd).toLocaleString());S('repUsers',users.length);
+  S('statUsers',users.length);S('statDeposit','৳ '+dep.toLocaleString());S('statWithdraw','৳ '+wd.toLocaleString());
+  S('statPending',pending);S('statPlansSold',buyPlans.length);S('statPlanRevenue','৳ '+planRevenue.toLocaleString());
+  S('statPlanPaid','৳ '+planPaid.toLocaleString());S('statNet','৳ '+(dep-wd).toLocaleString());
+  S('repDeposit','৳ '+dep.toLocaleString());S('repWithdraw','৳ '+wd.toLocaleString());
+  S('repPlanBuy','৳ '+planRevenue.toLocaleString());S('repPlanPay','৳ '+planPaid.toLocaleString());
 }
 function updateBadges(){
   const p=Store.getTxs().filter(t=>t.st==='pending').length;
-  const b1=document.getElementById('pendingBadge');
-  if(b1)b1.textContent=p;
+  const b=document.getElementById('pendingBadge');if(b)b.textContent=p;
 }
 function renderAll(){
   updateStats();updateBadges();
-  renderRecentTx();renderUsers();renderTx();renderGamesAdmin();
-  renderPromoAdmin();renderVipEdit();renderMatchesAdmin();renderLbEdit();
-  renderCheckinEdit();renderActivity();renderCharts();renderNotifHistory();
-  renderPaymentSettings();
-  renderChatUsers();updateChatBadge();
+  renderRecentTx();renderUsers();renderTx();renderPlanEdit();renderUserPlans();
+  renderPaymentSettings();renderNotifHistory();renderAssignDropdowns();renderAssignHistory();loadPopup();
 }
 function renderRecentTx(){
   const tb=document.getElementById('recentTxTable');if(!tb)return;
   const list=Store.getTxs().slice(0,6);
-  if(!list.length){tb.innerHTML='<tr><td colspan="4" style="text-align:center;padding:24px;color:var(--muted);">  </td></tr>';return}
-  tb.innerHTML=list.map(t=>`<tr><td><div class="u-cell"><div class="u-ava">${(t.user||'?').charAt(0)}</div><div class="u-info"><div class="un">${t.user}</div><div class="uid">${t.id}</div></div></div></td><td><span class="badge ${t.t}">${txLabel(t.t)}</span></td><td><span class="amt ${t.t==='deposit'||t.t==='win'?'plus':'minus'}"> ${Number(t.amt).toLocaleString()}</span></td><td><span class="badge ${t.st}">${stLabel(t.st)}</span></td></tr>`).join('');
+  if(!list.length){tb.innerHTML='<tr><td colspan="4" style="text-align:center;padding:24px;color:var(--muted);">কিছু নেই</td></tr>';return}
+  tb.innerHTML=list.map(t=>`<tr><td><div class="u-cell"><div class="u-ava">${(t.user||'?').charAt(0)}</div><div class="u-info"><div class="un">${t.user}</div><div class="uid">${t.id}</div></div></div></td><td><span class="badge ${t.t}">${txLabel(t.t)}</span></td><td><span class="amt ${isPlus(t.t)?'plus':'minus'}">৳ ${Number(t.amt).toLocaleString()}</span></td><td><span class="badge ${t.st}">${stLabel(t.st)}</span></td></tr>`).join('');
 }
+function isPlus(t){return t==='deposit'||t==='win'||t==='plan_earn'}
+function txLabel(t){return{deposit:'ডিপোজিট',withdraw:'উইথড্র',buy_plan:'প্ল্যান ক্রয়',plan_earn:'প্ল্যান আয়',bet:'বেট',win:'উইন'}[t]||t}
+function stLabel(s){return{active:'সক্রিয়',pending:'পেন্ডিং',blocked:'ব্লকড'}[s]||s}
+
 function renderUsers(){
   const tb=document.getElementById('usersTable');if(!tb)return;
   const q=(document.getElementById('userSearch')?.value||'').toLowerCase();
@@ -729,27 +621,36 @@ function renderUsers(){
   let list=Store.getUsers().filter(u=>(u.name||'').toLowerCase().includes(q)||(u.email||'').toLowerCase().includes(q)||(u.id||'').toLowerCase().includes(q));
   if(f==='active')list=list.filter(u=>u.st==='active');
   if(f==='blocked')list=list.filter(u=>u.st==='blocked');
-  if(f==='vip')list=list.filter(u=>u.vip);
-  if(!list.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--muted);">  </td></tr>';return}
-  tb.innerHTML=list.map(u=>`<tr><td><div class="u-cell"><div class="u-ava">${u.name.charAt(0)}</div><div class="u-info"><div class="un">${u.name} ${u.vip?'<span class="badge vip">VIP</span>':''}</div><div class="uid">${u.id}</div></div></div></td><td>${u.email}</td><td><span class="amt plus"> ${Number(u.bal||0).toLocaleString()}</span></td><td><span class="badge ${u.st}">${stLabel(u.st)}</span></td><td>${u.joined}</td><td><div class="row-actions"><button class="act-btn blue" onclick="viewUser('${u.id}')"></button><button class="act-btn green" onclick="adjustBalance('${u.id}')"></button><button class="act-btn" style="color:var(--brand);" onclick="toggleVip('${u.id}')"></button><button class="act-btn ${u.st==='blocked'?'green':'red'}" onclick="toggleBlock('${u.id}')">${u.st==='blocked'?'':''}</button><button class="act-btn red" onclick="deleteUser('${u.id}')"></button></div></td></tr>`).join('');
+  if(f==='hasPlan')list=list.filter(u=>u.vipPlans&&Object.keys(u.vipPlans).length>0);
+  if(!list.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--muted);">কোনো ইউজার নেই</td></tr>';return}
+  tb.innerHTML=list.map(u=>{
+    const planCount=u.vipPlans?Object.keys(u.vipPlans).length:0;
+    return `<tr><td><div class="u-cell"><div class="u-ava">${u.name.charAt(0)}</div><div class="u-info"><div class="un">${u.name}</div><div class="uid">${u.id}</div></div></div></td><td>${u.email||'-'}</td><td><span class="amt plus">৳ ${Number(u.bal||0).toLocaleString()}</span></td><td><span class="badge vip">${planCount}</span></td><td><span class="badge ${u.st}">${stLabel(u.st)}</span></td><td><div class="row-actions"><button class="act-btn blue" onclick="viewUser('${u.id}')">👁️</button><button class="act-btn green" onclick="adjustBalance('${u.id}')">💰</button><button class="act-btn purple" onclick="quickAssign('${u.id}')">👑</button><button class="act-btn ${u.st==='blocked'?'green':'red'}" onclick="toggleBlock('${u.id}')">${u.st==='blocked'?'✅':'🚫'}</button><button class="act-btn red" onclick="deleteUser('${u.id}')">🗑️</button></div></td></tr>`;
+  }).join('');
 }
 function adminAddUser(){
-  const n=prompt(':');if(!n)return;
-  const p=prompt(':','1234');if(!p)return;
+  const n=prompt('নাম:');if(!n)return;
+  const p=prompt('পাসওয়ার্ড:','1234');if(!p)return;
   const u=Store.addUser(n.trim(),p);
-  if(!u){showToast(' ');return}
-  showToast(' : '+n);renderUsers();updateStats();
+  if(!u){showToast('আগেই আছে');return}
+  showToast('✅ যোগ: '+n);renderUsers();updateStats();
 }
 function viewUser(id){
   const u=Store.findUserById(id);if(!u)return;
-  document.getElementById('modalTitle').textContent=': '+u.name;
-  document.getElementById('modalBody').innerHTML=`<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;"><div style="width:60px;height:60px;border-radius:50%;background:var(--gold-grad);display:grid;place-items:center;font-size:24px;font-weight:800;color:#1a1200;">${u.name.charAt(0)}</div><div><div style="font-size:17px;font-weight:800;">${u.name}</div><div style="font-size:12px;color:var(--muted);">${u.email}</div></div></div><div style="background:var(--bg-2);padding:12px;border-radius:10px;"><div style="color:var(--muted);font-size:11px;"></div><div style="color:var(--green);font-weight:800;"> ${Number(u.bal||0).toLocaleString()}</div></div>`;
+  const plans=u.vipPlans||{};
+  const planList=Object.keys(plans).map(pid=>{
+    const p=findPlan(pid);if(!p)return'';
+    const d=plans[pid];
+    return '<div style="background:var(--bg-2);padding:10px;border-radius:10px;margin-bottom:8px;font-size:12px;"><b>'+p.icon+' '+p.name+'</b> — দৈনিক ৳'+p.daily+' · '+((d.daysClaimed||0))+'/'+p.days+' দিন · মোট ৳'+(d.totalClaimed||0)+'</div>';
+  }).join('');
+  document.getElementById('modalTitle').textContent='ইউজার: '+u.name;
+  document.getElementById('modalBody').innerHTML=`<div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;"><div style="width:60px;height:60px;border-radius:50%;background:var(--gold);display:grid;place-items:center;font-size:24px;font-weight:800;color:#1a1200;">${u.name.charAt(0)}</div><div><div style="font-size:17px;font-weight:800;">${u.name}</div><div style="font-size:12px;color:var(--muted);">${u.email||''}</div><div style="font-size:11px;color:var(--muted);">ID: ${u.id}</div></div></div><div style="background:var(--bg-2);padding:12px;border-radius:10px;margin-bottom:14px;"><div style="color:var(--muted);font-size:11px;">ব্যালেন্স</div><div style="color:var(--green);font-weight:800;font-size:16px;">৳ ${Number(u.bal||0).toLocaleString()}</div></div><div style="font-size:12px;font-weight:700;color:var(--text);margin-bottom:8px;">👑 প্ল্যানসমূহ:</div>${planList||'<div style="color:var(--muted);font-size:12px;">কোনো প্ল্যান নেই</div>'}`;
   document.getElementById('modalMask').classList.add('show');
 }
-function toggleBlock(id){const u=Store.findUserById(id);if(!u)return;const s=u.st==='blocked'?'active':'blocked';Store.updateUser(id,{st:s});showToast(s==='blocked'?' ':' ');renderUsers()}
-function toggleVip(id){const u=Store.findUserById(id);if(!u)return;Store.updateUser(id,{vip:!u.vip});showToast(u.vip?'VIP ':' VIP');renderUsers()}
-function adjustBalance(id){const u=Store.findUserById(id);if(!u)return;const a=prompt(`${u.name}-  :`,u.bal);if(a===null)return;const v=parseFloat(a);if(isNaN(v)){showToast(' ');return}Store.setBalance(id,v);showToast(' '+v);renderUsers();updateStats()}
-function deleteUser(id){const u=Store.findUserById(id);if(!u)return;if(!confirm(`${u.name} ?`))return;Store.deleteUser(id);showToast(' ');renderUsers();updateStats()}
+function toggleBlock(id){const u=Store.findUserById(id);if(!u)return;const s=u.st==='blocked'?'active':'blocked';Store.updateUser(id,{st:s});showToast(s==='blocked'?'🚫 ব্লকড':'✅ আনব্লকড');renderUsers()}
+function adjustBalance(id){const u=Store.findUserById(id);if(!u)return;const a=prompt(`${u.name}-এর নতুন ব্যালেন্স:`,u.bal);if(a===null)return;const v=parseFloat(a);if(isNaN(v)){showToast('ভুল');return}Store.setBalance(id,v);showToast('✅ ৳'+v);renderUsers();updateStats()}
+function deleteUser(id){const u=Store.findUserById(id);if(!u)return;if(!confirm(`${u.name} ডিলিট?`))return;Store.deleteUser(id);showToast('🗑️ ডিলিট');renderUsers();updateStats()}
+
 function renderTx(){
   const tb=document.getElementById('txTable');if(!tb)return;
   const q=(document.getElementById('txSearch')?.value||'').toLowerCase();
@@ -757,82 +658,262 @@ function renderTx(){
   let list=Store.getTxs().filter(t=>(t.id||'').toLowerCase().includes(q)||(t.user||'').toLowerCase().includes(q));
   if(f==='pending')list=list.filter(t=>t.st==='pending');
   else if(f!=='all')list=list.filter(t=>t.t===f);
-  if(!list.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);">  </td></tr>';return}
+  if(!list.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);">কিছু নেই</td></tr>';return}
   tb.innerHTML=list.map(t=>{
     let d='';
-    if(t.t==='deposit')d=`<div class="tx-detail">${t.method?`<span class="brand"> ${t.method}</span>`:''}${t.trx?` � TrxID: <b>${t.trx}</b>`:''}</div>`;
-    else if(t.t==='withdraw')d=`<div class="tx-detail">${t.method?`<span class="brand"> ${t.method}</span>`:''}${t.account?` �  <b>${t.account}</b>`:''}${t.name?` �  <b>${t.name}</b>`:''}</div>`;
-    return `<tr><td><b style="color:var(--text);">${t.id}</b></td><td>${t.user}</td><td><span class="badge ${t.t}">${txLabel(t.t)}</span>${d}</td><td><span class="amt ${t.t==='deposit'||t.t==='win'?'plus':'minus'}"> ${Number(t.amt).toLocaleString()}</span></td><td><span class="badge ${t.st}">${stLabel(t.st)}</span></td><td style="color:var(--muted);">${t.time}</td><td><div class="row-actions"><button class="act-btn blue" onclick="viewTx('${t.id}')"></button>${t.st==='pending'?`<button class="act-btn green" onclick="approveTx('${t.id}')"></button><button class="act-btn red" onclick="rejectTx('${t.id}')"></button>`:''}</div></td></tr>`;
+    if(t.t==='deposit')d=`<div style="font-size:10.5px;color:var(--muted);margin-top:3px;">${t.method||''}${t.trx?' · '+t.trx:''}</div>`;
+    else if(t.t==='withdraw')d=`<div style="font-size:10.5px;color:var(--muted);margin-top:3px;">${t.method||''}${t.account?' · '+t.account:''}${t.name?' · '+t.name:''}</div>`;
+    return `<tr><td><b style="color:var(--text);">${t.id}</b></td><td>${t.user}</td><td><span class="badge ${t.t}">${txLabel(t.t)}</span>${d}</td><td><span class="amt ${isPlus(t.t)?'plus':'minus'}">৳ ${Number(t.amt).toLocaleString()}</span></td><td><span class="badge ${t.st}">${stLabel(t.st)}</span></td><td style="color:var(--muted);">${t.time}</td><td><div class="row-actions">${t.st==='pending'?`<button class="act-btn green" onclick="approveTx('${t.id}')">✅</button><button class="act-btn red" onclick="rejectTx('${t.id}')">❌</button>`:''}</div></td></tr>`;
   }).join('');
-}
-function viewTx(txId){
-  const t=Store.getTxs().find(x=>x.id===txId);if(!t){showToast(' ');return}
-  let dh='';
-  if(t.t==='deposit')dh=`<div style="background:var(--bg-2);padding:14px;border-radius:12px;margin-bottom:12px;"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;"> </div><div>Method: <b style="color:var(--brand);">${t.method||'N/A'}</b></div><div>TrxID: <b>${t.trx||'N/A'}</b></div></div>`;
-  else if(t.t==='withdraw')dh=`<div style="background:var(--bg-2);padding:14px;border-radius:12px;margin-bottom:12px;"><div style="font-size:11px;color:var(--muted);margin-bottom:8px;"> </div><div>Method: <b style="color:var(--brand);">${t.method||'N/A'}</b></div><div>Account: <b>${t.account||'N/A'}</b></div><div>Name: <b>${t.name||'N/A'}</b></div></div>`;
-  document.getElementById('modalTitle').textContent=' '+txLabel(t.t);
-  document.getElementById('modalBody').innerHTML=`<div style="text-align:center;margin-bottom:16px;"><div style="font-size:26px;font-weight:900;color:${t.t==='deposit'||t.t==='win'?'var(--green)':'var(--red)'};"> ${Number(t.amt).toLocaleString()}</div><div style="margin-top:8px;"><span class="badge ${t.st}">${stLabel(t.st)}</span></div></div>${dh}<div style="background:var(--bg-2);padding:12px;border-radius:12px;font-size:12px;"><div>User: <b>${t.user}</b></div><div>ID: <b>${t.id}</b></div></div>`;
-  const foot=document.getElementById('modalFoot');
-  if(t.st==='pending')foot.innerHTML=`<button class="btn ghost sm" onclick="closeModal()"></button><button class="btn red sm" onclick="closeModal();rejectTx('${t.id}')"></button><button class="btn green sm" onclick="closeModal();approveTx('${t.id}')"></button>`;
-  else foot.innerHTML=`<button class="btn ghost sm" onclick="closeModal()"></button>`;
-  document.getElementById('modalMask').classList.add('show');
 }
 function approveTx(txId){
   const tx=Store.getTxs().find(t=>t.id===txId);if(!tx)return;
-  const u=Store.findUserByName(tx.user);if(!u){showToast(' ');return}
+  const u=Store.findUserByName(tx.user);if(!u){showToast('ইউজার নেই');return}
   if(tx.t==='deposit')Store.addBalance(u.id,tx.amt);
-  else if(tx.t==='withdraw'){if(Number(u.bal)<tx.amt){showToast('   ');return}Store.addBalance(u.id,-tx.amt)}
+  else if(tx.t==='withdraw'){if(Number(u.bal)<tx.amt){showToast('⚠️ পর্যাপ্ত নেই');return}Store.addBalance(u.id,-tx.amt)}
   Store.updateTxStatus(txId,'active');
-  showToast(' ');renderAll();
+  showToast('✅ অ্যাপ্রুভ');renderAll();
 }
-function rejectTx(txId){if(!confirm('?'))return;Store.updateTxStatus(txId,'blocked');showToast(' ');renderAll()}
+function rejectTx(txId){if(!confirm('রিজেক্ট?'))return;Store.updateTxStatus(txId,'blocked');showToast('❌ রিজেক্ট');renderAll()}
 
-function escapeHtmlChat(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function renderChatUsers(){
-  const el=document.getElementById('chatUsersList');const totalEl=document.getElementById('chatTotal');
-  if(!el)return;
-  const allChats=window._chatsData||{};
-  const list=Object.keys(allChats).map(k=>({id:k,...(allChats[k].info||{})}));
-  list.sort((a,b)=>(b.lastTs||0)-(a.lastTs||0));
-  if(totalEl)totalEl.textContent=list.length+' ';
-  if(!list.length){el.innerHTML='<div class="chat-empty-note"><div class="ce"></div>  </div>';return}
-  el.innerHTML=list.map(c=>{
-    const time=c.lastTs?new Date(c.lastTs).toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'}):'';
-    return `<div class="chat-user-item ${c.id===activeChatId?'active':''}" onclick="openChatConv('${c.id}')"><div class="cu-ava">${(c.userName||'?').charAt(0).toUpperCase()}</div><div class="cu-info"><div class="cu-name">${escapeHtmlChat(c.userName||'Unknown')}</div><div class="cu-last">${c.lastFrom==='admin'?'<b>: </b>':''}${escapeHtmlChat(c.lastMsg||'')}</div></div><div class="cu-meta"><div class="cu-time">${time}</div>${c.unreadAdmin?'<div class="cu-badge">'+c.unreadAdmin+'</div>':''}</div></div>`;
+/* ===== PLANS EDIT ===== */
+function renderPlanEdit(){
+  const el=document.getElementById('planEditList');if(!el)return;
+  const plans=getPlansData();
+  el.innerHTML=plans.map((p,i)=>`
+    <div class="plan-edit-row">
+      <div class="plan-edit-icon ${p.color}">${p.icon}</div>
+      <div class="plan-edit-info">
+        <div class="n">${p.name}${p.badge?' <span class="badge '+(p.badge==='hot'?'pending':'vip')+'" style="margin-left:6px;">'+p.badge.toUpperCase()+'</span>':''}</div>
+        <div class="s">💰 ৳${p.price.toLocaleString()} · দৈনিক ৳${p.daily} · ${p.days} দিন</div>
+        <div class="d">মোট রিটার্ন ৳${(p.daily*p.days).toLocaleString()}</div>
+      </div>
+      <div class="row-actions">
+        <button class="act-btn blue" onclick="openPlanEdit(${i})">✏️</button>
+        <button class="act-btn red" onclick="deletePlan(${i})">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+function openPlanEdit(idx){
+  editingPlanIdx=idx!==undefined?idx:-1;
+  const p=idx!==undefined?getPlansData()[idx]:{id:'plan_'+Date.now(),name:'',icon:'👑',color:'gold',price:500,daily:10,days:60,badge:''};
+  document.getElementById('modalTitle').textContent=idx!==undefined?'প্ল্যান এডিট':'নতুন প্ল্যান';
+  document.getElementById('modalBody').innerHTML=`
+    <div class="form-grid">
+      <div class="form-group full"><label>নাম *</label><input class="form-control" id="pName" value="${p.name}"></div>
+      <div class="form-group"><label>আইকন</label><input class="form-control" id="pIcon" value="${p.icon}"></div>
+      <div class="form-group"><label>কালার</label><select class="form-control" id="pColor">
+        <option value="bronze" ${p.color==='bronze'?'selected':''}>Bronze</option>
+        <option value="silver" ${p.color==='silver'?'selected':''}>Silver</option>
+        <option value="gold" ${p.color==='gold'?'selected':''}>Gold</option>
+        <option value="platinum" ${p.color==='platinum'?'selected':''}>Platinum</option>
+        <option value="diamond" ${p.color==='diamond'?'selected':''}>Diamond</option>
+      </select></div>
+      <div class="form-group"><label>দাম (৳)</label><input class="form-control" type="number" id="pPrice" value="${p.price}"></div>
+      <div class="form-group"><label>দৈনিক (৳)</label><input class="form-control" type="number" id="pDaily" value="${p.daily}"></div>
+      <div class="form-group"><label>মেয়াদ (দিন)</label><input class="form-control" type="number" id="pDays" value="${p.days}"></div>
+      <div class="form-group"><label>ব্যাজ</label><select class="form-control" id="pBadge">
+        <option value="" ${!p.badge?'selected':''}>নেই</option>
+        <option value="hot" ${p.badge==='hot'?'selected':''}>🔥 HOT</option>
+        <option value="vip" ${p.badge==='vip'?'selected':''}>👑 VIP</option>
+      </select></div>
+    </div>
+  `;
+  document.getElementById('modalFoot').innerHTML=`<button class="btn ghost sm" onclick="closeModal()">বাতিল</button><button class="btn sm" onclick="savePlan()">💾 সেভ</button>`;
+  document.getElementById('modalMask').classList.add('show');
+}
+function savePlan(){
+  const name=document.getElementById('pName').value.trim();
+  const price=parseFloat(document.getElementById('pPrice').value)||0;
+  const daily=parseFloat(document.getElementById('pDaily').value)||0;
+  const days=parseFloat(document.getElementById('pDays').value)||0;
+  if(!name){showToast('নাম দিন');return}
+  if(price<=0){showToast('দাম');return}
+  if(daily<=0){showToast('দৈনিক');return}
+  if(days<=0){showToast('মেয়াদ');return}
+  const plans=[...getPlansData()];
+  const obj={
+    id:editingPlanIdx>=0?plans[editingPlanIdx].id:'plan_'+Date.now(),
+    name,icon:document.getElementById('pIcon').value.trim()||'👑',
+    color:document.getElementById('pColor').value,
+    price,daily,days,
+    badge:document.getElementById('pBadge').value
+  };
+  if(editingPlanIdx>=0)plans[editingPlanIdx]=obj;
+  else plans.push(obj);
+  Store.savePlans(plans);
+  showToast('✅ প্ল্যান সেভ');
+  closeModal();renderPlanEdit();renderAssignDropdowns();
+}
+function deletePlan(idx){
+  const plans=[...getPlansData()];
+  if(!confirm(`"${plans[idx].name}" ডিলিট?`))return;
+  plans.splice(idx,1);
+  Store.savePlans(plans);
+  showToast('🗑️ ডিলিট');
+  renderPlanEdit();renderAssignDropdowns();
+}
+function resetPlansToDefault(){
+  if(!confirm('ডিফল্ট প্ল্যানে রিসেট?'))return;
+  Store.savePlans(DEFAULT_PLANS);
+  showToast('✅ রিসেট');
+  renderPlanEdit();renderAssignDropdowns();
+}
+
+/* ===== USER PLANS ===== */
+function renderUserPlans(){
+  const tb=document.getElementById('userPlansTable');if(!tb)return;
+  const q=(document.getElementById('upSearch')?.value||'').toLowerCase();
+  const f=document.getElementById('upFilter')?.value||'all';
+  const users=Store.getUsers().filter(u=>u.name.toLowerCase().includes(q));
+  const rows=[];
+  users.forEach(u=>{
+    const plans=u.vipPlans||{};
+    Object.keys(plans).forEach(pid=>{
+      const p=findPlan(pid);if(!p)return;
+      const d=plans[pid];
+      const expired=(d.daysClaimed||0)>=p.days;
+      if(f==='live'&&expired)return;
+      if(f==='expired'&&!expired)return;
+      rows.push({user:u,plan:p,data:d,expired});
+    });
+  });
+  if(!rows.length){tb.innerHTML='<tr><td colspan="7" style="text-align:center;padding:24px;color:var(--muted);">কিছু নেই</td></tr>';return}
+  tb.innerHTML=rows.map(r=>{
+    return `<tr><td><div class="u-cell"><div class="u-ava">${r.user.name.charAt(0)}</div><div class="u-info"><div class="un">${r.user.name}</div><div class="uid">${r.user.id}</div></div></div></td><td>${r.plan.icon} ${r.plan.name}</td><td>৳${r.plan.daily}</td><td>${r.data.daysClaimed||0} / ${r.plan.days}</td><td style="color:var(--green);font-weight:800;">৳${(r.data.totalClaimed||0).toLocaleString()}</td><td><span class="badge ${r.expired?'blocked':'active'}">${r.expired?'শেষ':'লাইভ'}</span></td><td><button class="act-btn red" onclick="removeUserPlan('${r.user.id}','${r.plan.id}')">🗑️</button></td></tr>`;
   }).join('');
 }
-function openChatConv(id){activeChatId=id;renderChatUsers();renderChatConv(id);if(window.db)window.db.ref('chats/'+id+'/info/unreadAdmin').set(0)}
-window._updateActiveConv=function(){if(activeChatId&&currentPage==='chats')try{renderChatConv(activeChatId)}catch(e){}};
-function renderChatConv(id){
-  const el=document.getElementById('chatConvPanel');if(!el)return;
-  if(!id){el.innerHTML='<div class="chat-conv-empty"><div><div class="ce-ic"></div><div style="font-size:13px;">    </div></div></div>';return}
-  const allChats=window._chatsData||{};
-  const chat=allChats[id]||{};const info=chat.info||{};const msgs=chat.messages||{};
-  const arr=Object.keys(msgs).map(k=>({...msgs[k],_k:k})).sort((a,b)=>(a.ts||0)-(b.ts||0));
-  el.innerHTML=`<div class="chat-conv-head"><div class="cu-ava">${(info.userName||'?').charAt(0).toUpperCase()}</div><div style="flex:1;min-width:0;"><div style="font-weight:700;font-size:14px;color:var(--text);">${escapeHtmlChat(info.userName||'Unknown')}</div><div style="font-size:11px;color:var(--muted);margin-top:2px;">ID: ${id}</div></div><button class="act-btn red" onclick="clearChatConv('${id}')"></button></div><div class="chat-conv-body" id="chatConvBody">${arr.length?arr.map(m=>`<div class="chat-conv-msg ${m.from==='admin'?'admin':'user'}"><div class="chat-conv-bubble">${escapeHtmlChat(m.text||'')}</div><div class="chat-conv-time">${m.t||''}</div></div>`).join(''):'<div class="chat-empty-note">  </div>'}</div><div class="chat-conv-input"><input type="text" id="chatAdminInput" placeholder=" ..." onkeydown="if(event.key==='Enter')sendAdminChat()"><button class="btn sm" onclick="sendAdminChat()"></button></div>`;
-  setTimeout(()=>{const b=document.getElementById('chatConvBody');if(b)b.scrollTop=b.scrollHeight},60);
+function removeUserPlan(userId,planId){
+  const u=Store.findUserById(userId);if(!u)return;
+  if(!confirm(`${u.name} থেকে ${planId} প্ল্যান মুছবেন?`))return;
+  const userPlans=u.vipPlans||{};
+  delete userPlans[planId];
+  Store.updateUser(userId,{vipPlans:userPlans});
+  showToast('🗑️ প্ল্যান মুছে ফেলা হয়েছে');
+  renderUserPlans();renderUsers();
 }
-function sendAdminChat(){
-  if(!activeChatId){showToast('  ');return}
+
+/* ===== PLAN ASSIGN ===== */
+function renderAssignDropdowns(){
+  const uSel=document.getElementById('assignUser');
+  const pSel=document.getElementById('assignPlan');
+  if(uSel){
+    const users=Store.getUsers();
+    uSel.innerHTML='<option value="">-- ইউজার বাছুন --</option>'+users.map(u=>`<option value="${u.id}">${u.name} (${u.id}) — ৳${Number(u.bal||0).toLocaleString()}</option>`).join('');
+  }
+  if(pSel){
+    const plans=getPlansData();
+    pSel.innerHTML='<option value="">-- প্ল্যান বাছুন --</option>'+plans.map(p=>`<option value="${p.id}">${p.icon} ${p.name} — দৈনিক ৳${p.daily} × ${p.days} দিন</option>`).join('');
+  }
+}
+function quickAssign(userId){
+  gotoPage('addPlan');
+  setTimeout(()=>{
+    const sel=document.getElementById('assignUser');
+    if(sel)sel.value=userId;
+  },200);
+}
+function assignPlanToUser(){
+  const userId=document.getElementById('assignUser').value;
+  const planId=document.getElementById('assignPlan').value;
+  const customDays=parseInt(document.getElementById('assignDays').value)||0;
+  const doReset=document.getElementById('assignReset').value==='yes';
+  if(!userId){showToast('ইউজার বাছুন');return}
+  if(!planId){showToast('প্ল্যান বাছুন');return}
+  const u=Store.findUserById(userId);
+  const p=findPlan(planId);
+  if(!u||!p){showToast('ভুল ডাটা');return}
+  const userPlans=u.vipPlans||{};
+  if(userPlans[planId]&&!doReset){showToast('⚠️ এই ইউজারের এই প্ল্যান আগেই আছে। "Reset" অপশন দিন।');return}
+  const days=customDays>0?customDays:p.days;
+  const plans=getPlansData();
+  const planCopy=plans.find(x=>x.id===planId);
+  // if custom days given, override plan's days temporarily by cloning
+  userPlans[planId]={
+    purchased:Date.now(),
+    lastClaim:null,
+    daysClaimed:0,
+    totalClaimed:0,
+    adminAssigned:true,
+    customDays:customDays>0?customDays:null,
+    effectiveDays:days
+  };
+  Store.updateUser(userId,{vipPlans:userPlans});
+  Store.addTx({user:u.name,t:'plan_earn',amt:0,st:'active',time:'Admin প্ল্যান অ্যাসাইন - '+p.name});
+  showToast('👑 '+u.name+' কে '+p.name+' দেয়া হয়েছে!');
+  document.getElementById('assignUser').value='';
+  document.getElementById('assignPlan').value='';
+  document.getElementById('assignDays').value='';
+  document.getElementById('assignReset').value='no';
+  renderAssignHistory();
+  renderUsers();renderUserPlans();
+}
+function renderAssignHistory(){
+  const el=document.getElementById('assignHistory');if(!el)return;
+  const txs=Store.getTxs().filter(t=>t.time&&t.time.includes('Admin প্ল্যান অ্যাসাইন')).slice(0,15);
+  if(!txs.length){el.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px;">এখনো কিছু অ্যাসাইন করা হয়নি</div>';return}
+  el.innerHTML=txs.map(t=>`<div class="activity-item"><div class="act-dot v">👑</div><div class="act-body"><div class="t">${t.user}</div><div class="s">${t.time}</div></div><div class="act-time">${t.id}</div></div>`).join('');
+}
+
+/* ===== POPUP ===== */
+let popupRef=null;
+function loadPopup(){
   if(!window.db)return;
-  const inp=document.getElementById('chatAdminInput');
-  const text=(inp.value||'').trim();if(!text)return;
-  const id=activeChatId;const now=Date.now();
-  const t=new Date(now).toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'});
-  window.db.ref('chats/'+id+'/messages').push({from:'admin',text,ts:now,t});
-  window.db.ref('chats/'+id+'/info').transaction(cur=>{cur=cur||{};cur.lastMsg=text.slice(0,60);cur.lastFrom='admin';cur.lastTs=now;cur.unreadUser=(cur.unreadUser||0)+1;if(cur.unreadAdmin===undefined)cur.unreadAdmin=0;return cur});
-  inp.value='';
+  if(popupRef)return;
+  popupRef=true;
+  window.db.ref('config/welcomePopup').on('value',s=>{
+    const v=s.val()||{active:false,id:'popup_'+Date.now(),badge:'🎉 ঘোষণা',icon:'🎁',title:'স্বাগতম!',msg:'আমাদের সাইটে আপনাকে স্বাগতম।',btn:'✅ বুঝেছি'};
+    document.getElementById('popupActive').checked=!!v.active;
+    document.getElementById('popupId').value=v.id||'';
+    document.getElementById('popupBadge').value=v.badge||'';
+    document.getElementById('popupIcon').value=v.icon||'';
+    document.getElementById('popupTitle').value=v.title||'';
+    document.getElementById('popupMsg').value=v.msg||'';
+    document.getElementById('popupBtn').value=v.btn||'';
+    updatePreview();
+  });
 }
-function clearChatConv(id){
-  if(!confirm(' ?'))return;if(!window.db)return;
-  window.db.ref('chats/'+id).remove();activeChatId=null;
-  renderChatUsers();renderChatConv(null);showToast(' ');
+function updatePreview(){
+  const b=document.getElementById('popupBadge').value||'🎉 ঘোষণা';
+  const i=document.getElementById('popupIcon').value||'🎁';
+  const t=document.getElementById('popupTitle').value||'স্বাগতম!';
+  const m=document.getElementById('popupMsg').value||'আমাদের সাইটে আপনাকে স্বাগতম।';
+  const btn=document.getElementById('popupBtn').value||'✅ বুঝেছি';
+  document.getElementById('prevBadge').textContent=b;
+  document.getElementById('prevIcon').textContent=i;
+  document.getElementById('prevTitle').textContent=t;
+  document.getElementById('prevMsg').textContent=m;
+  document.getElementById('prevBtn').textContent=btn;
 }
-function updateChatBadge(){
-  const allChats=window._chatsData||{};
-  let total=0;Object.keys(allChats).forEach(k=>{total+=(allChats[k].info&&allChats[k].info.unreadAdmin)||0});
-  const b=document.getElementById('chatBadge');if(b)b.textContent=total>99?'99+':total;
+['popupBadge','popupIcon','popupTitle','popupMsg','popupBtn'].forEach(id=>{
+  document.addEventListener('input',e=>{if(e.target&&e.target.id===id)updatePreview()});
+});
+function savePopup(){
+  if(!window.db)return showToast('Firebase নেই');
+  const active=document.getElementById('popupActive').checked;
+  let id=document.getElementById('popupId').value.trim()||'popup_'+Date.now();
+  const data={
+    id,active,
+    badge:document.getElementById('popupBadge').value.trim()||'🎉 ঘোষণা',
+    icon:document.getElementById('popupIcon').value.trim()||'🎁',
+    title:document.getElementById('popupTitle').value.trim()||'স্বাগতম!',
+    msg:document.getElementById('popupMsg').value.trim()||'',
+    btn:document.getElementById('popupBtn').value.trim()||'✅ বুঝেছি',
+    updated:Date.now()
+  };
+  window.db.ref('config/welcomePopup').set(data);
+  document.getElementById('popupId').value=id;
+  showToast(active?'✅ পপআপ চালু':'✅ পপআপ বন্ধ');
 }
+function regeneratePopupId(){
+  const newId='popup_'+Date.now();
+  document.getElementById('popupId').value=newId;
+  showToast('🔄 নতুন ID — সবাই আবার দেখবে');
+  savePopup();
+}
+
+/* ===== PAYMENT ===== */
 function getPaymentDefaults(){return{bkash:{dep:'01712-345678',wd:'01712-345678'},nagad:{dep:'01812-345678',wd:'01812-345678'},rocket:{dep:'01912-345678-1',wd:'01912-345678-1'},accountType:'Personal',minDep:100,minWd:500}}
 function getPaymentSettings(){return Store.getPayment()||getPaymentDefaults()}
 function renderPaymentSettings(){
@@ -847,104 +928,50 @@ function savePaymentSettings(){
   const v=id=>(document.getElementById(id)?.value||'').trim();
   const n=id=>parseFloat(document.getElementById(id)?.value||0)||0;
   Store.savePayment({bkash:{dep:v('payBkashDep'),wd:v('payBkashWd')},nagad:{dep:v('payNagadDep'),wd:v('payNagadWd')},rocket:{dep:v('payRocketDep'),wd:v('payRocketWd')},accountType:v('payAccType')||'Personal',minDep:n('payMinDep')||100,minWd:n('payMinWd')||500});
-  showToast('  ');
+  showToast('✅ সেভ');
 }
-function renderGamesAdmin(){
-  const tb=document.getElementById('gamesAdminTable');if(!tb)return;
-  const q=(document.getElementById('gameSearch')?.value||'').toLowerCase();
-  const cat=document.getElementById('gameCatFilter')?.value||'all';
-  let list=getGames().map((g,i)=>({...g,_idx:i}));
-  if(cat!=='all')list=list.filter(g=>g.c===cat);
-  if(q)list=list.filter(g=>g.n.toLowerCase().includes(q)||g.p.toLowerCase().includes(q));
-  if(!list.length){tb.innerHTML='<tr><td colspan="6" style="text-align:center;padding:24px;color:var(--muted);">  </td></tr>';return}
-  tb.innerHTML=list.map(g=>`<tr><td><div class="g-cell"><div class="g-ic">${g.i}</div><b style="color:var(--text);">${g.n}</b></div></td><td>${g.p}</td><td><span class="badge ${g.c}">${g.c}</span></td><td><b style="color:var(--brand);">${g.rtp}%</b></td><td><span class="badge ${g.st?'active':'blocked'}">${g.st?'':''}</span></td><td><div class="row-actions"><button class="act-btn blue" onclick="openGameEdit(${g._idx})"></button><button class="act-btn" onclick="toggleGameStatus(${g._idx})">${g.st?'':''}</button><button class="act-btn red" onclick="deleteGame(${g._idx})"></button></div></td></tr>`).join('');
-}
-function openGameEdit(idx){
-  editingGameIdx=idx!==undefined?idx:-1;
-  const g=idx!==undefined?getGames()[idx]:{n:'',p:'',i:'',c:'slot',b:'',rtp:96,v:'',r:4.5,st:true,bets:'0',desc:''};
-  document.getElementById('modalTitle').textContent=idx!==undefined?' ':' ';
-  document.getElementById('modalBody').innerHTML=`<div class="form-grid"><div class="form-group full"><label> *</label><input class="form-control" id="gName" value="${g.n}"></div><div class="form-group"><label></label><input class="form-control" id="gProv" value="${g.p}"></div><div class="form-group"><label></label><input class="form-control" id="gIcon" value="${g.i}"></div><div class="form-group"><label></label><select class="form-control" id="gCat"><option value="slot" ${g.c==='slot'?'selected':''}>slot</option><option value="live" ${g.c==='live'?'selected':''}>live</option><option value="sports" ${g.c==='sports'?'selected':''}>sports</option><option value="crash" ${g.c==='crash'?'selected':''}>crash</option><option value="fish" ${g.c==='fish'?'selected':''}>fish</option><option value="lottery" ${g.c==='lottery'?'selected':''}>lottery</option></select></div><div class="form-group"><label></label><select class="form-control" id="gBadge"><option value="" ${!g.b?'selected':''}>-</option><option value="hot" ${g.b==='hot'?'selected':''}>HOT</option><option value="new" ${g.b==='new'?'selected':''}>NEW</option></select></div><div class="form-group"><label>RTP</label><input class="form-control" id="gRtp" type="number" step="0.1" value="${g.rtp}"></div><div class="form-group full"><label></label><textarea class="form-control" id="gDesc">${g.desc||''}</textarea></div></div>`;
-  document.getElementById('modalFoot').innerHTML=`<button class="btn ghost sm" onclick="closeModal()"></button><button class="btn sm" onclick="saveGame()"> </button>`;
-  document.getElementById('modalMask').classList.add('show');
-}
-function saveGame(){
-  const name=document.getElementById('gName').value.trim();if(!name){showToast(' ');return}
-  const games=[...getGames()];
-  const obj={n:name,p:document.getElementById('gProv').value.trim()||'N/A',i:document.getElementById('gIcon').value.trim()||'',c:document.getElementById('gCat').value,b:document.getElementById('gBadge').value,rtp:parseFloat(document.getElementById('gRtp').value)||96,bets:'0',desc:document.getElementById('gDesc').value.trim(),st:true};
-  if(editingGameIdx>=0){obj.st=games[editingGameIdx].st;games[editingGameIdx]=obj}else games.push(obj);
-  Store.saveGames(games);showToast(' ');closeModal();renderGamesAdmin();updateStats();
-}
-function toggleGameStatus(idx){const games=[...getGames()];games[idx].st=!games[idx].st;Store.saveGames(games);showToast(games[idx].st?' ':' ');renderGamesAdmin()}
-function deleteGame(idx){const games=[...getGames()];if(!confirm('?'))return;games.splice(idx,1);Store.saveGames(games);showToast(' ');renderGamesAdmin();updateStats()}
-function renderPromoAdmin(){const el=document.getElementById('promoAdminList');if(!el)return;el.innerHTML=DEFAULT_PROMOS.map(p=>`<div style="display:flex;align-items:center;gap:14px;padding:14px;background:var(--bg-2);border-radius:12px;margin-bottom:10px;"><div style="width:44px;height:44px;border-radius:11px;display:grid;place-items:center;font-size:20px;background:rgba(255,179,0,.14);">${p.ic}</div><div style="flex:1;"><div style="font-size:14px;font-weight:700;">${p.t}</div><div style="font-size:11.5px;color:var(--muted);">: <b style="color:var(--brand);">${p.amt}</b></div></div><label class="toggle"><input type="checkbox" ${p.st?'checked':''}><span class="slider"></span></label></div>`).join('')}
-function renderVipEdit(){const el=document.getElementById('vipEditList');if(!el)return;el.innerHTML=getVip().map((v,i)=>`<div class="vip-edit-row"><div class="vip-edit-icon ${v.key}">${v.icon}</div><div class="vip-edit-info"><div class="n">${v.name}</div><div class="s">${v.req} � ${v.perk}</div></div><button class="act-btn blue" onclick="editVip(${i})"></button></div>`).join('')}
-function editVip(idx){const vips=[...getVip()];const v=vips[idx];const n=prompt(':',v.name);if(n===null)return;const r=prompt(':',v.req);if(r===null)return;const p=prompt(':',v.perk);if(p===null)return;vips[idx]={...v,name:n,req:r,perk:p};Store.saveVip(vips);showToast(' ');renderVipEdit()}
-function renderMatchesAdmin(){const tb=document.getElementById('matchesTable');if(!tb)return;const matches=getMatches();if(!matches.length){tb.innerHTML='<tr><td colspan="5" style="text-align:center;padding:24px;color:var(--muted);">  </td></tr>';return}tb.innerHTML=matches.map((m,i)=>`<tr><td><b style="color:var(--text);">${m.league}</b></td><td>${m.t1.l} ${m.t1.n} VS ${m.t2.l} ${m.t2.n}</td><td>${m.live?' ':''}</td><td style="color:var(--brand);">${m.o.join(' � ')}</td><td><div class="row-actions"><button class="act-btn blue" onclick="openMatchEdit(${i})"></button><button class="act-btn red" onclick="deleteMatch(${i})"></button></div></td></tr>`).join('')}
-function openMatchEdit(idx){editingMatchIdx=idx!==undefined?idx:-1;const m=idx!==undefined?getMatches()[idx]:{league:'',live:true,t1:{n:'',l:''},t2:{n:'',l:''},o:['.','.','.']};document.getElementById('modalTitle').textContent=idx!==undefined?' ':' ';document.getElementById('modalBody').innerHTML=`<div class="form-grid"><div class="form-group full"><label></label><input class="form-control" id="mLeague" value="${m.league}"></div><div class="form-group"><label> </label><input class="form-control" id="mT1n" value="${m.t1.n}"></div><div class="form-group"><label> </label><input class="form-control" id="mT1l" value="${m.t1.l}"></div><div class="form-group"><label> </label><input class="form-control" id="mT2n" value="${m.t2.n}"></div><div class="form-group"><label> </label><input class="form-control" id="mT2l" value="${m.t2.l}"></div><div class="form-group"><label>Home</label><input class="form-control" id="mO1" value="${m.o[0]}"></div><div class="form-group"><label>Draw</label><input class="form-control" id="mO2" value="${m.o[1]}"></div><div class="form-group"><label>Away</label><input class="form-control" id="mO3" value="${m.o[2]}"></div></div>`;document.getElementById('modalFoot').innerHTML=`<button class="btn ghost sm" onclick="closeModal()"></button><button class="btn sm" onclick="saveMatch()"> </button>`;document.getElementById('modalMask').classList.add('show')}
-function saveMatch(){const matches=[...getMatches()];const obj={league:document.getElementById('mLeague').value.trim()||'Match',live:true,t1:{n:document.getElementById('mT1n').value.trim()||'A',l:document.getElementById('mT1l').value.trim()||''},t2:{n:document.getElementById('mT2n').value.trim()||'B',l:document.getElementById('mT2l').value.trim()||''},o:[document.getElementById('mO1').value,document.getElementById('mO2').value,document.getElementById('mO3').value]};if(editingMatchIdx>=0)matches[editingMatchIdx]=obj;else matches.push(obj);Store.saveMatches(matches);showToast(' ');closeModal();renderMatchesAdmin()}
-function deleteMatch(idx){const matches=[...getMatches()];if(!confirm('?'))return;matches.splice(idx,1);Store.saveMatches(matches);showToast('');renderMatchesAdmin()}
-function renderLbEdit(){const el=document.getElementById('lbEditList');if(!el)return;el.innerHTML=getLb().map((u,i)=>{const rc=i===0?'gold':i===1?'silver':i===2?'bronze':'';return `<div class="mini-item"><div class="mi-rank ${rc}">${i<3?['','',''][i]:'#'+(i+1)}</div><div class="mi-info"><div class="mi-name">${u.name}</div><div class="mi-sub">${u.stat}</div></div><div class="mi-amt">${u.amt}</div><button class="act-btn blue" onclick="editLb(${i})"></button></div>`}).join('')}
-function editLb(idx){const lb=[...getLb()];const u=lb[idx];const n=prompt(':',u.name);if(n===null)return;const a=prompt(':',u.amt);if(a===null)return;const s=prompt(':',u.stat);if(s===null)return;lb[idx]={name:n,amt:a,stat:s};Store.saveLb(lb);showToast(' ');renderLbEdit()}
-function renderCheckinEdit(){const el=document.getElementById('checkinEditGrid');if(!el)return;el.innerHTML=getCheckinConfig().map((amt,i)=>`<div class="form-group"><label> ${i+1}${i===6?' ':''}</label><input class="form-control" type="number" id="ci-${i}" value="${amt}"></div>`).join('')}
-function saveCheckinConfig(){const r=[];for(let i=0;i<7;i++)r.push(parseFloat(document.getElementById('ci-'+i).value)||0);const c=Store.getCheckin();c.rewards=r;Store.saveCheckin(c);showToast(' ')}
+
+/* ===== NOTIFICATIONS ===== */
 function sendNotif(){
   const title=document.getElementById('notifTitle').value.trim();
   const msg=document.getElementById('notifMsg').value.trim();
   const type=document.getElementById('notifType').value.split('|');
-  if(!title||!msg){showToast('   ');return}
-  const notifs=getNotifs();
+  if(!title||!msg){showToast('টাইটেল ও মেসেজ');return}
+  const notifs=Store.getNotifs();
   notifs.unshift({id:'N'+Date.now(),title,msg,color:type[0],ic:type[1],time:new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'})});
   Store.saveNotifs(notifs);
   document.getElementById('notifTitle').value='';
   document.getElementById('notifMsg').value='';
-  showToast('  ');renderNotifHistory();
+  showToast('📢 পাঠানো হয়েছে');renderNotifHistory();
 }
 function renderNotifHistory(){
   const el=document.getElementById('notifHistory');if(!el)return;
-  const notifs=getNotifs().slice(0,15);
-  if(!notifs.length){el.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px;">  </div>';return}
-  el.innerHTML=notifs.map(n=>`<div class="activity-item"><div class="act-dot v">${n.ic||''}</div><div class="act-body"><div class="t">${n.title}</div><div class="s">${n.msg}</div></div><div class="act-time">${n.time}</div></div>`).join('');
+  const notifs=Store.getNotifs().slice(0,15);
+  if(!notifs.length){el.innerHTML='<div style="padding:32px;text-align:center;color:var(--muted);font-size:13px;">এখনো পাঠানো হয়নি</div>';return}
+  el.innerHTML=notifs.map(n=>`<div class="activity-item"><div class="act-dot v">${n.ic||'📢'}</div><div class="act-body"><div class="t">${n.title}</div><div class="s">${n.msg}</div></div><div class="act-time">${n.time}</div></div>`).join('');
 }
-function renderActivity(){
-  const el=document.getElementById('activityFeed');if(!el)return;
-  const txs=Store.getTxs().slice(0,15);
-  const items=[...txs.map(t=>({ic:t.t==='deposit'?'':t.t==='withdraw'?'':t.t==='win'?'':'',c:t.t==='deposit'?'d':t.t==='withdraw'?'w':t.t==='win'?'v':'b',t:`${t.user} ${txLabel(t.t)}`,s:`${t.id} �  ${Number(t.amt).toLocaleString()}`,time:t.time}))];
-  el.innerHTML=items.map(a=>`<div class="activity-item"><div class="act-dot ${a.c}">${a.ic}</div><div class="act-body"><div class="t">${a.t}</div><div class="s">${a.s}</div></div><div class="act-time">${a.time}</div></div>`).join('');
-}
-function renderCharts(){
-  const week=[65,72,58,85,78,92,88];
-  const wc=document.getElementById('weekChart');
-  if(wc)wc.innerHTML=week.map(v=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;"><div class="bar" style="width:80%;height:${v}%;"></div></div>`).join('');
-  const month=[65,72,58,85,78,92];
-  const mc=document.getElementById('monthChart');
-  if(mc)mc.innerHTML=month.map(v=>`<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;justify-content:flex-end;"><div class="bar" style="width:80%;height:${v}%;"></div></div>`).join('');
-}
-function txLabel(t){return{deposit:'',withdraw:'',bet:'',win:''}[t]||t}
-function stLabel(s){return{active:'',pending:'',blocked:''}[s]||s}
+
+/* ===== HELPERS ===== */
 function refreshCurrentPage(){
   updateStats();updateBadges();
   if(currentPage==='dashboard')renderRecentTx();
   if(currentPage==='users')renderUsers();
   if(currentPage==='transactions')renderTx();
-  if(currentPage==='chats')renderChatUsers();
+  if(currentPage==='plans')renderPlanEdit();
+  if(currentPage==='userPlans')renderUserPlans();
+  if(currentPage==='addPlan'){renderAssignDropdowns();renderAssignHistory()}
+  if(currentPage==='popup')loadPopup();
   if(currentPage==='payment')renderPaymentSettings();
-  if(currentPage==='games')renderGamesAdmin();
-  if(currentPage==='promotions')renderPromoAdmin();
-  if(currentPage==='vip')renderVipEdit();
-  if(currentPage==='sports')renderMatchesAdmin();
-  if(currentPage==='leaderboard')renderLbEdit();
-  if(currentPage==='checkin')renderCheckinEdit();
   if(currentPage==='notifications')renderNotifHistory();
-  if(currentPage==='activity')renderActivity();
 }
 function closeModal(){document.getElementById('modalMask').classList.remove('show')}
-function resetAllData(){if(!confirm('    ?'))return;localStorage.clear();if(window.db)try{window.db.ref().remove()}catch(e){}showToast(' ');setTimeout(()=>location.reload(),800)}
+function resetAllData(){if(!confirm('⚠️ সব ডাটা মুছে যাবে?'))return;localStorage.clear();if(window.db)try{window.db.ref().remove()}catch(e){}showToast('✅ রিসেট');setTimeout(()=>location.reload(),800)}
 let toastTimer;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
 
 ['aUser','aPass','aCode'].forEach(id=>{const el=document.getElementById(id);if(el)el.addEventListener('keydown',e=>{if(e.key==='Enter')adminLogin()})});
 Store.onChange(()=>{if(!adminLoggedIn)return;refreshCurrentPage()});
-history.replaceState({page:'login',app:'tkwin_admin'},'','#login');
+history.replaceState({page:'login',app:'vip_admin'},'','#login');
 </script>
 </body>
 </html>
