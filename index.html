@@ -31,7 +31,7 @@ input,select{font-family:inherit}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px}
 .brand-logo{width:36px;height:36px;border-radius:11px;background:linear-gradient(135deg,#ffd54f 0%,#ffb300 40%,#ff8f00 100%);display:grid;place-items:center;font-size:20px;box-shadow:0 6px 16px -6px rgba(255,143,0,.6);position:relative;overflow:hidden}
 .brand-logo::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.5),transparent 60%)}
-.brand-logo span{position:relative;z-index:1;filter:drop-shadow(0 1px 2px rgba(0,0,0,.2))}
+.brand-logo span{position:relative;z-index:1}
 .brand-text{background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.3px}
 .topbar-right{display:flex;align-items:center;gap:8px}
 .chip{display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--border);padding:6px 11px;border-radius:999px;font-size:12.5px;font-weight:600}
@@ -39,12 +39,14 @@ input,select{font-family:inherit}
 .chip b{color:var(--brand);font-variant-numeric:tabular-nums}
 .icon-btn{position:relative;width:36px;height:36px;border-radius:10px;background:var(--card);border:1px solid var(--border);display:grid;place-items:center;font-size:16px;transition:all .2s}
 .icon-btn:active{transform:scale(.94)}
-.theme-toggle{position:relative;width:56px;height:30px;border-radius:999px;background:var(--card);border:1px solid var(--border);cursor:pointer;transition:all .3s;flex:0 0 auto;display:grid;place-items:center;overflow:hidden}
-.theme-toggle::before{content:"";position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,#ffd54f,#ff8f00);transition:transform .3s cubic-bezier(.22,.61,.36,1);box-shadow:0 2px 6px rgba(255,143,0,.4)}
-[data-theme="light"] .theme-toggle::before{transform:translateX(26px);background:linear-gradient(135deg,#1e293b,#0f172a)}
-.theme-toggle .tt-ic{position:absolute;font-size:12px;z-index:2;transition:opacity .3s}
-.theme-toggle .tt-sun{left:8px;color:#fff;opacity:1}
-.theme-toggle .tt-moon{right:8px;color:#fff;opacity:0}
+.icon-btn .badge{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;border-radius:9px;background:var(--red);color:#fff;font-size:10px;font-weight:800;display:grid;place-items:center;padding:0 4px;border:2px solid var(--bg);animation:pulseB 1.5s infinite}
+@keyframes pulseB{50%{transform:scale(1.15)}}
+.theme-toggle{position:relative;width:48px;height:28px;border-radius:999px;background:var(--card);border:1px solid var(--border);cursor:pointer;transition:all .3s;flex:0 0 auto;display:grid;place-items:center;overflow:hidden}
+.theme-toggle::before{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#ffd54f,#ff8f00);transition:transform .3s cubic-bezier(.22,.61,.36,1)}
+[data-theme="light"] .theme-toggle::before{transform:translateX(20px);background:linear-gradient(135deg,#1e293b,#0f172a)}
+.theme-toggle .tt-ic{position:absolute;font-size:11px;z-index:2;transition:opacity .3s}
+.theme-toggle .tt-sun{left:7px;color:#fff;opacity:1}
+.theme-toggle .tt-moon{right:7px;color:#fff;opacity:0}
 [data-theme="light"] .theme-toggle .tt-sun{opacity:0}
 [data-theme="light"] .theme-toggle .tt-moon{opacity:1}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:14px;border-radius:12px;background:var(--gold);color:#1a1200;font-weight:800;font-size:14.5px;transition:transform .12s}
@@ -52,13 +54,13 @@ input,select{font-family:inherit}
 .btn.ghost{background:transparent;color:var(--text-2);border:1px solid var(--border)}
 .btn.red{background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff}
 .btn.green{background:linear-gradient(135deg,#10b981,#059669);color:#fff}
+.btn.sm{padding:8px 12px;font-size:12px;border-radius:10px;width:auto}
 .field{position:relative;margin-bottom:12px}
 .field .f-ic{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-size:16px;color:var(--muted);pointer-events:none}
 .input{width:100%;padding:14px 42px;border-radius:12px;background:var(--bg-2);border:1px solid var(--border);color:var(--text);font-size:14px;outline:none;transition:border-color .2s}
 .input::placeholder{color:var(--muted)}
 .input:focus{border-color:var(--brand)}
 .eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--muted);cursor:pointer;padding:4px;border-radius:6px}
-/* Login */
 .login-wrap{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:24px 20px 40px;max-width:460px;margin:0 auto}
 .login-logo{text-align:center;margin-bottom:30px}
 .login-logo .lm{width:88px;height:88px;border-radius:26px;background:linear-gradient(135deg,#ffd54f 0%,#ffb300 40%,#ff8f00 100%);display:grid;place-items:center;font-size:44px;margin:0 auto 14px;box-shadow:0 20px 40px -12px rgba(255,143,0,.55);position:relative;overflow:hidden}
@@ -78,7 +80,6 @@ input,select{font-family:inherit}
 .divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--border)}
 .social{display:flex;align-items:center;justify-content:center;padding:12px;border-radius:12px;background:var(--bg-2);border:1px solid var(--border);font-size:13px;font-weight:700;color:var(--text-2)}
 .login-foot{text-align:center;margin-top:20px;font-size:12.5px;color:var(--muted)}
-/* Bal */
 .hero-bal{padding:16px 0 8px}
 .bal-card{position:relative;border-radius:20px;padding:22px;background:linear-gradient(135deg,#4c1d95 0%,#7c3aed 45%,#ec4899 100%);overflow:hidden;box-shadow:0 20px 40px -14px rgba(139,92,246,.5)}
 .bal-card::before{content:"";position:absolute;top:-40px;right:-40px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);filter:blur(20px)}
@@ -94,12 +95,10 @@ input,select{font-family:inherit}
 .q-item .qi{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:20px;background:linear-gradient(135deg,rgba(255,179,0,.14),rgba(255,143,0,.04));border:1px solid rgba(255,179,0,.18)}
 .q-item.green .qi{background:linear-gradient(135deg,rgba(16,185,129,.14),rgba(16,185,129,.04));border-color:rgba(16,185,129,.2)}
 .q-item.blue .qi{background:linear-gradient(135deg,rgba(59,130,246,.14),rgba(59,130,246,.04));border-color:rgba(59,130,246,.2)}
-/* Section */
 .sec-head{display:flex;align-items:center;justify-content:space-between;padding:18px 0 12px}
 .sec-head h3{font-size:15px;font-weight:800;display:flex;align-items:center;gap:8px}
 .sec-head h3::before{content:"";width:3px;height:15px;border-radius:2px;background:var(--gold)}
 .sec-head a{font-size:12px;color:var(--brand);font-weight:600}
-/* Plans */
 .plan-list{display:flex;flex-direction:column;gap:12px;padding-bottom:20px}
 .plan-card{position:relative;border-radius:18px;padding:18px;border:1px solid var(--border);overflow:hidden;background:var(--card)}
 .plan-card::before{content:"";position:absolute;top:-30px;right:-30px;width:140px;height:140px;border-radius:50%;opacity:.22;filter:blur(30px)}
@@ -109,6 +108,8 @@ input,select{font-family:inherit}
 .plan-card.gold{border-color:rgba(255,179,0,.4)}.plan-card.gold::before{background:#ffb300}
 .plan-card.platinum{border-color:rgba(139,92,246,.4)}.plan-card.platinum::before{background:#8b5cf6}
 .plan-card.diamond{border-color:rgba(6,182,212,.4)}.plan-card.diamond::before{background:#06b6d4}
+.plan-card.emerald{border-color:rgba(16,185,129,.4)}.plan-card.emerald::before{background:#10b981}
+.plan-card.ruby{border-color:rgba(239,68,68,.4)}.plan-card.ruby::before{background:#ef4444}
 .plan-head{position:relative;z-index:2;display:flex;align-items:flex-start;gap:14px;margin-bottom:14px}
 .plan-icon{width:56px;height:56px;border-radius:16px;display:grid;place-items:center;font-size:28px;flex:0 0 auto;background:var(--bg-2);border:1px solid var(--border-2);position:relative}
 .plan-badge{position:absolute;top:-6px;right:-6px;font-size:9px;font-weight:900;padding:3px 7px;border-radius:999px;letter-spacing:.5px;color:#fff}
@@ -139,7 +140,6 @@ input,select{font-family:inherit}
 .empty{padding:50px 20px;text-align:center;color:var(--muted)}
 .empty .ic{font-size:48px;margin-bottom:12px;opacity:.5}
 .empty .t{font-size:13px}
-/* Sheets */
 .sheet-mask{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s}
 .sheet-mask.show{opacity:1;pointer-events:auto}
 .sheet{position:fixed;left:0;right:0;bottom:0;z-index:201;background:var(--card);border-top-left-radius:22px;border-top-right-radius:22px;border-top:1px solid var(--border-2);padding:8px 18px calc(20px + env(safe-area-inset-bottom,0px));transform:translateY(100%);transition:transform .3s cubic-bezier(.22,.61,.36,1);max-width:520px;margin:0 auto;max-height:80vh;overflow-y:auto}
@@ -172,7 +172,6 @@ input,select{font-family:inherit}
 .hist-v.plus{color:var(--green)}.hist-v.minus{color:var(--red)}
 .hist-st{font-size:10px;font-weight:700;margin-top:2px}
 .hist-st.active{color:var(--green)}.hist-st.pending{color:var(--brand)}.hist-st.blocked{color:var(--red)}
-/* Profile */
 .profile-head{padding:24px 0 16px;text-align:center}
 .ava{width:88px;height:88px;border-radius:50%;margin:0 auto 12px;display:grid;place-items:center;font-size:40px;background:var(--gold);border:3px solid var(--bg-2);box-shadow:0 16px 40px -14px rgba(255,143,0,.55)}
 .pname{font-size:19px;font-weight:800}
@@ -184,13 +183,11 @@ input,select{font-family:inherit}
 .stat .sl{font-size:10.5px;color:var(--muted);margin-top:3px}
 .menu-group{margin-top:16px}
 .menu-group .gl{font-size:11px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;padding:0 4px 8px}
-.menu-item{display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;font-size:13.5px;font-weight:600;color:var(--text-2);cursor:pointer;transition:all .15s}
-.menu-item:active{border-color:var(--border-2)}
+.menu-item{display:flex;align-items:center;gap:12px;padding:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;margin-bottom:8px;font-size:13.5px;font-weight:600;color:var(--text-2);cursor:pointer}
 .menu-item .mi{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px;background:var(--bg-2);border:1px solid var(--border)}
 .menu-item .arrow{margin-left:auto;color:var(--muted);font-size:16px}
 .menu-item.danger{color:var(--red)}
 .menu-item.danger .mi{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.2)}
-/* Bottom nav */
 .bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:70;background:rgba(7,10,18,.94);backdrop-filter:blur(20px);border-top:1px solid var(--border);padding-bottom:env(safe-area-inset-bottom,0px)}
 [data-theme="light"] .bottom-nav{background:rgba(255,255,255,.94)}
 .bn-inner{max-width:520px;margin:0 auto;display:flex;align-items:center;justify-content:space-around;height:var(--nav-h)}
@@ -199,16 +196,14 @@ input,select{font-family:inherit}
 .nav-item.active{color:var(--brand)}
 .nav-item.active .nic{transform:translateY(-2px) scale(1.06)}
 .nav-item.active::after{content:"";position:absolute;bottom:0;width:22px;height:3px;border-radius:3px 3px 0 0;background:var(--gold)}
-/* Toast */
 .toast{position:fixed;bottom:calc(var(--nav-h) + 20px);left:50%;transform:translateX(-50%) translateY(20px);background:rgba(20,26,42,.98);border:1px solid var(--border-2);color:var(--text);padding:12px 20px;border-radius:14px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:all .28s cubic-bezier(.22,.61,.36,1);z-index:999;max-width:88%;text-align:center}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-/* Splash */
 #splash{position:fixed;inset:0;z-index:999;display:grid;place-items:center;background:radial-gradient(circle at 50% 40%,rgba(255,179,0,.12),transparent 60%),var(--bg);transition:opacity .5s,visibility .5s}
 #splash.hide{opacity:0;visibility:hidden}
 .splash-inner{text-align:center}
 .splash-mark{width:100px;height:100px;border-radius:28px;background:linear-gradient(135deg,#ffd54f 0%,#ffb300 40%,#ff8f00 100%);display:grid;place-items:center;font-size:50px;margin:0 auto 18px;box-shadow:0 24px 50px -14px rgba(255,143,0,.6);animation:sp 1.4s ease-in-out infinite;position:relative;overflow:hidden}
 .splash-mark::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.55),transparent 55%)}
-.splash-mark span{position:relative;z-index:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.25))}
+.splash-mark span{position:relative;z-index:1}
 @keyframes sp{50%{transform:scale(1.06) rotate(-3deg)}}
 .splash-title{font-size:36px;font-weight:900;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.5px}
 .splash-sub{font-size:12.5px;color:var(--muted);margin-top:8px;letter-spacing:3px;text-transform:uppercase}
@@ -221,7 +216,6 @@ input,select{font-family:inherit}
 .toggle .slider::before{content:"";position:absolute;width:18px;height:18px;border-radius:50%;left:3px;top:2px;background:var(--muted);transition:.3s}
 .toggle input:checked+.slider{background:var(--gold);border-color:transparent}
 .toggle input:checked+.slider::before{transform:translateX(18px);background:#1a1200}
-/* Welcome Full Screen Popup */
 .welcome-popup{position:fixed;inset:0;z-index:10000;background:rgba(7,10,18,.85);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px;animation:fadeIn .3s ease}
 .welcome-popup.show{display:flex}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -233,9 +227,36 @@ input,select{font-family:inherit}
 @keyframes wv{50%{transform:translateY(-8px) rotate(5deg)}}
 .welcome-title{font-size:22px;font-weight:900;background:var(--gold);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px;line-height:1.3;position:relative;z-index:1}
 .welcome-msg{font-size:14px;color:var(--text-2);line-height:1.65;margin-bottom:20px;position:relative;z-index:1;white-space:pre-line}
-.welcome-btn{width:100%;padding:14px;border-radius:14px;background:var(--gold);color:#1a1200;font-weight:900;font-size:14.5px;letter-spacing:.3px;position:relative;z-index:1;box-shadow:0 10px 30px -8px rgba(255,179,0,.5)}
-.welcome-btn:active{transform:scale(.98)}
+.welcome-btn{width:100%;padding:14px;border-radius:14px;background:var(--gold);color:#1a1200;font-weight:900;font-size:14.5px;letter-spacing:.3px;position:relative;z-index:1}
 .welcome-badge{display:inline-block;font-size:10.5px;font-weight:800;letter-spacing:1px;padding:4px 10px;border-radius:999px;background:linear-gradient(135deg,#ff5a1f,#ff8f00);color:#fff;margin-bottom:14px;text-transform:uppercase;position:relative;z-index:1}
+.image-popup{position:fixed;inset:0;z-index:10001;background:rgba(7,10,18,.92);backdrop-filter:blur(10px);display:none;align-items:center;justify-content:center;padding:20px;animation:fadeIn .3s ease}
+.image-popup.show{display:flex}
+.image-popup-inner{width:100%;max-width:420px;position:relative;text-align:center}
+.image-popup-inner img{width:100%;max-height:70vh;object-fit:contain;border-radius:18px;box-shadow:0 20px 60px -14px rgba(0,0,0,.8);animation:popIn .4s cubic-bezier(.22,.61,.36,1)}
+.image-close{position:absolute;top:-40px;right:0;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:16px;display:grid;place-items:center;backdrop-filter:blur(8px)}
+.image-popup-btn{width:100%;margin-top:16px;padding:14px;border-radius:14px;background:var(--gold);color:#1a1200;font-weight:900;font-size:14.5px;letter-spacing:.3px;box-shadow:0 10px 30px -8px rgba(255,179,0,.5);animation:popIn .5s cubic-bezier(.22,.61,.36,1)}
+.notif-mask{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.55);backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .25s}
+.notif-mask.show{opacity:1;pointer-events:auto}
+.notif-drawer{position:fixed;top:0;right:0;bottom:0;width:92%;max-width:420px;background:var(--card);border-left:1px solid var(--border-2);z-index:301;transform:translateX(100%);transition:transform .3s cubic-bezier(.22,.61,.36,1);display:flex;flex-direction:column}
+.notif-drawer.show{transform:translateX(0)}
+.notif-head{padding:16px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(135deg,rgba(255,179,0,.06),transparent)}
+.notif-head h3{font-size:16px;font-weight:800;display:flex;align-items:center;gap:8px}
+.notif-head .n-close{width:34px;height:34px;border-radius:10px;background:var(--bg-2);border:1px solid var(--border);display:grid;place-items:center;font-size:14px}
+.notif-list{flex:1;overflow-y:auto;padding:6px 0}
+.notif-item{display:flex;gap:12px;padding:14px 18px;border-bottom:1px solid rgba(34,43,69,.4);cursor:pointer}
+.notif-item.unread{background:linear-gradient(90deg,rgba(255,179,0,.06),transparent 60%)}
+.notif-icon{width:38px;height:38px;border-radius:11px;display:grid;place-items:center;font-size:16px;flex:0 0 auto;background:var(--bg-2);border:1px solid var(--border)}
+.notif-icon.green{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.22)}
+.notif-icon.red{background:rgba(239,68,68,.12);border-color:rgba(239,68,68,.22)}
+.notif-icon.gold{background:rgba(255,179,0,.12);border-color:rgba(255,179,0,.22)}
+.notif-icon.purple{background:rgba(139,92,246,.12);border-color:rgba(139,92,246,.22)}
+.notif-body{flex:1;min-width:0}
+.notif-title{font-size:13px;font-weight:700;margin-bottom:2px}
+.notif-text{font-size:11.5px;color:var(--text-2);line-height:1.45}
+.notif-time{font-size:10px;color:var(--muted);margin-top:4px}
+.notif-empty{padding:60px 20px;text-align:center;color:var(--muted)}
+.notif-empty .ne-ic{font-size:48px;margin-bottom:10px;opacity:.5}
+.notif-empty .ne-t{font-size:13px}
 </style>
 </head>
 <body class="no-nav">
@@ -249,7 +270,6 @@ input,select{font-family:inherit}
   </div>
 </div>
 
-<!-- Welcome Full Screen Popup -->
 <div class="welcome-popup" id="welcomePopup">
   <div class="welcome-card">
     <button class="welcome-close" onclick="closeWelcome()">✕</button>
@@ -258,6 +278,14 @@ input,select{font-family:inherit}
     <div class="welcome-title" id="welcomeTitle">স্বাগতম!</div>
     <div class="welcome-msg" id="welcomeMsg">আমাদের সাইটে আপনাকে স্বাগতম।</div>
     <button class="welcome-btn" onclick="closeWelcome()" id="welcomeBtnText">✅ বুঝেছি</button>
+  </div>
+</div>
+
+<div class="image-popup" id="imagePopup">
+  <div class="image-popup-inner">
+    <button class="image-close" onclick="closeImagePopup()">✕</button>
+    <img id="imagePopupImg" src="" alt="announcement">
+    <button class="image-popup-btn" id="imagePopupBtn" onclick="closeImagePopup()">✅ বুঝেছি</button>
   </div>
 </div>
 
@@ -275,6 +303,7 @@ input,select{font-family:inherit}
     <div class="form-card">
       <div class="field"><span class="f-ic">👤</span><input class="input" type="text" id="inUser" placeholder="ইউজারনেম / ফোন নাম্বার" autocomplete="off"></div>
       <div class="field"><span class="f-ic">🔒</span><input class="input" type="password" id="inPass" placeholder="পাসওয়ার্ড"><span class="eye" onclick="togglePass(this)">👁️</span></div>
+      <div class="field" id="refField" style="display:none;"><span class="f-ic">🎁</span><input class="input" type="text" id="inRef" placeholder="রেফারেল কোড (অপশনাল)" autocomplete="off" style="text-transform:uppercase;"></div>
       <div class="row-flex">
         <label class="check"><input type="checkbox" checked> মনে রাখুন</label>
         <a class="link" href="#" onclick="showToast('সাপোর্টে যোগাযোগ করুন');return false;">পাসওয়ার্ড ভুলে গেছেন?</a>
@@ -288,7 +317,7 @@ input,select{font-family:inherit}
 </div>
 
 <div class="page" id="page-home">
-  <div class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-logo"><span>👑</span></div><span class="brand-text">Tkwin99</span></div><div class="topbar-right"><div class="theme-toggle" onclick="toggleTheme()"><span class="tt-ic tt-sun">☀️</span><span class="tt-ic tt-moon">🌙</span></div><div class="chip"><span class="dot"></span>৳ <b id="balHome">0.00</b></div></div></div></div>
+  <div class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-logo"><span>👑</span></div><span class="brand-text">Tkwin99</span></div><div class="topbar-right"><div class="theme-toggle" onclick="toggleTheme()"><span class="tt-ic tt-sun">☀️</span><span class="tt-ic tt-moon">🌙</span></div><div class="icon-btn" onclick="openNotif()">🔔<span class="badge" id="notifBadge" style="display:none;">0</span></div><div class="chip"><span class="dot"></span>৳ <b id="balHome">0.00</b></div></div></div></div>
   <div class="container">
     <div class="hero-bal">
       <div class="bal-card">
@@ -315,7 +344,7 @@ input,select{font-family:inherit}
 </div>
 
 <div class="page" id="page-plans">
-  <div class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-logo"><span>👑</span></div><span class="brand-text">VIP প্ল্যান</span></div><div class="topbar-right"><div class="theme-toggle" onclick="toggleTheme()"><span class="tt-ic tt-sun">☀️</span><span class="tt-ic tt-moon">🌙</span></div><div class="chip"><span class="dot"></span>৳ <b id="balPlans">0.00</b></div></div></div></div>
+  <div class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-logo"><span>👑</span></div><span class="brand-text">VIP প্ল্যান</span></div><div class="topbar-right"><div class="theme-toggle" onclick="toggleTheme()"><span class="tt-ic tt-sun">☀️</span><span class="tt-ic tt-moon">🌙</span></div><div class="icon-btn" onclick="openNotif()">🔔<span class="badge" id="notifBadge2" style="display:none;">0</span></div><div class="chip"><span class="dot"></span>৳ <b id="balPlans">0.00</b></div></div></div></div>
   <div class="container">
     <div id="plansActiveBlock"></div>
     <div class="sec-head"><h3>সব প্ল্যান</h3><span style="font-size:11.5px;color:var(--muted);font-weight:700;" id="planCount"></span></div>
@@ -324,7 +353,7 @@ input,select{font-family:inherit}
 </div>
 
 <div class="page" id="page-deposit">
-  <div class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-logo"><span>💰</span></div><span class="brand-text">ডিপোজিট</span></div><div class="topbar-right"><div class="theme-toggle" onclick="toggleTheme()"><span class="tt-ic tt-sun">☀️</span><span class="tt-ic tt-moon">🌙</span></div></div></div></div>
+  <div class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-logo"><span>💰</span></div><span class="brand-text">ডিপোজিট</span></div><div class="topbar-right"><div class="theme-toggle" onclick="toggleTheme()"><span class="tt-ic tt-sun">☀️</span><span class="tt-ic tt-moon">🌙</span></div><div class="icon-btn" onclick="openNotif()">🔔<span class="badge" id="notifBadge3" style="display:none;">0</span></div></div></div></div>
   <div class="container">
     <div class="sec-head"><h3>টাকা যোগ করুন</h3></div>
     <div id="depositFormBox"></div>
@@ -334,7 +363,7 @@ input,select{font-family:inherit}
 </div>
 
 <div class="page" id="page-profile">
-  <div class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-logo"><span>👤</span></div><span class="brand-text">প্রোফাইল</span></div><div class="topbar-right"><div class="theme-toggle" onclick="toggleTheme()"><span class="tt-ic tt-sun">☀️</span><span class="tt-ic tt-moon">🌙</span></div></div></div></div>
+  <div class="topbar"><div class="topbar-inner"><div class="brand"><div class="brand-logo"><span>👤</span></div><span class="brand-text">প্রোফাইল</span></div><div class="topbar-right"><div class="theme-toggle" onclick="toggleTheme()"><span class="tt-ic tt-sun">☀️</span><span class="tt-ic tt-moon">🌙</span></div><div class="icon-btn" onclick="openNotif()">🔔<span class="badge" id="notifBadge4" style="display:none;">0</span></div></div></div></div>
   <div class="container">
     <div class="profile-head">
       <div class="ava">👤</div>
@@ -345,6 +374,28 @@ input,select{font-family:inherit}
       <div class="stat"><div class="sv" id="pBal">৳ 0</div><div class="sl">ব্যালেন্স</div></div>
       <div class="stat"><div class="sv" id="pPlans">0</div><div class="sl">প্ল্যান</div></div>
       <div class="stat"><div class="sv" id="pEarned">৳ 0</div><div class="sl">মোট আয়</div></div>
+    </div>
+    <div class="menu-group">
+      <div class="gl">🎁 রেফারেল সিস্টেম</div>
+      <div style="background:linear-gradient(135deg,rgba(139,92,246,.15),rgba(236,72,153,.05));border:1px solid rgba(139,92,246,.3);border-radius:14px;padding:16px;margin-bottom:10px;">
+        <div style="font-size:11px;color:var(--muted);font-weight:700;letter-spacing:.5px;">আপনার রেফারেল কোড</div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+          <div style="flex:1;font-size:18px;font-weight:900;color:var(--brand);letter-spacing:1px;" id="myRefCode">TK000000</div>
+          <button class="btn sm" style="background:linear-gradient(135deg,#8b5cf6,#7c3aed);color:#fff;" onclick="copyRefCode()">📋 কপি</button>
+          <button class="btn sm" style="background:linear-gradient(135deg,#10b981,#059669);color:#fff;" onclick="shareRefCode()">📤 শেয়ার</button>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5;">বন্ধুকে এই কোড দিন। সে সাইনআপে দিলে আপনি ৩ level পর্যন্ত কমিশন পাবেন।</div>
+      </div>
+      <div class="stat-grid" style="margin-top:0;">
+        <div class="stat"><div class="sv" id="refL1">৳ 0</div><div class="sl">Level 1</div></div>
+        <div class="stat"><div class="sv" id="refL2">৳ 0</div><div class="sl">Level 2</div></div>
+        <div class="stat"><div class="sv" id="refL3">৳ 0</div><div class="sl">Level 3</div></div>
+      </div>
+      <div class="stat-grid" style="margin-top:10px;">
+        <div class="stat"><div class="sv" id="refTotal">0</div><div class="sl">মোট রেফার</div></div>
+        <div class="stat"><div class="sv" id="refEarned">৳ 0</div><div class="sl">মোট কমিশন</div></div>
+        <div class="stat"><div class="sv">3</div><div class="sl">Level</div></div>
+      </div>
     </div>
     <div class="menu-group">
       <div class="gl">অ্যাকাউন্ট</div>
@@ -380,26 +431,21 @@ input,select{font-family:inherit}
 <div class="sheet-mask" id="sheetMask" onclick="closeSheet()"></div>
 <div class="sheet" id="sheet"><div class="handle"></div><div id="sheetContent"></div></div>
 
+<div class="notif-mask" id="notifMask" onclick="closeNotif()"></div>
+<div class="notif-drawer" id="notifDrawer">
+  <div class="notif-head"><h3>🔔 নোটিফিকেশন</h3><button class="n-close" onclick="closeNotif()">✕</button></div>
+  <div class="notif-list" id="notifList"></div>
+</div>
+
 <div class="toast" id="toast"></div>
 
 <script>
-/* ===== THEME ===== */
-function initTheme(){
-  const t=localStorage.getItem('tkwin_theme')||'dark';
-  if(t==='light')document.documentElement.setAttribute('data-theme','light');
-  const meta=document.querySelector('meta[name="theme-color"]');
-  if(meta)meta.content=t==='light'?'#f5f7fb':'#0a0e1a';
-}
-function toggleTheme(){
-  const isLight=document.documentElement.getAttribute('data-theme')==='light';
-  if(isLight){document.documentElement.removeAttribute('data-theme');localStorage.setItem('tkwin_theme','dark');const m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#0a0e1a';showToast('🌙 ডার্ক মোড')}
-  else{document.documentElement.setAttribute('data-theme','light');localStorage.setItem('tkwin_theme','light');const m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f5f7fb';showToast('☀️ লাইট মোড')}
-}
+function initTheme(){const t=localStorage.getItem('tkwin_theme')||'dark';if(t==='light')document.documentElement.setAttribute('data-theme','light');const meta=document.querySelector('meta[name="theme-color"]');if(meta)meta.content=t==='light'?'#f5f7fb':'#0a0e1a';}
+function toggleTheme(){const isLight=document.documentElement.getAttribute('data-theme')==='light';if(isLight){document.documentElement.removeAttribute('data-theme');localStorage.setItem('tkwin_theme','dark');const m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#0a0e1a';showToast('🌙 ডার্ক মোড')}else{document.documentElement.setAttribute('data-theme','light');localStorage.setItem('tkwin_theme','light');const m=document.querySelector('meta[name="theme-color"]');if(m)m.content='#f5f7fb';showToast('☀️ লাইট মোড')}}
 initTheme();
 
-/* ===== STORE ===== */
 (function(global){
-const K_USERS='tkwin_users_v1',K_TXS='tkwin_txs_v1',K_SESSION='tkwin_session_v1',K_PAYMENT='tkwin_payment_v1';
+const K_USERS='tkwin_users_v1',K_TXS='tkwin_txs_v1',K_SESSION='tkwin_session_v1',K_PAYMENT='tkwin_payment_v1',K_NOTIFS='tkwin_notifs_v1',K_COMMISSION='tkwin_commission_v1';
 function read(k,d){try{const r=localStorage.getItem(k);return r?JSON.parse(r):d}catch{return d}}
 function write(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch{}}
 const fbReady=(typeof window.db!=='undefined'&&window.db!==null);
@@ -411,64 +457,107 @@ function startListeners(){
   window.db.ref('transactions').on('value',s=>{const v=s.val();if(v){write(K_TXS,Object.keys(v).map(k=>({...v[k],id:k})).reverse());notify()}});
   window.db.ref('config/paymentNumbers').on('value',s=>{const v=s.val();if(v){write(K_PAYMENT,v);notify()}});
   window.db.ref('config/vipPlans').on('value',s=>{const v=s.val();if(v){write('tkwin_plans_v1',v);notify()}});
+  window.db.ref('config/notifs').on('value',s=>{const v=s.val();if(v){write(K_NOTIFS,v);notify()}else{write(K_NOTIFS,[]);notify()}});
+  window.db.ref('config/commissionRates').on('value',s=>{const v=s.val();if(v){write(K_COMMISSION,v);notify()}});
 }
 startListeners();
 function getUsers(){return read(K_USERS,[])}
 function saveUsers(l){write(K_USERS,l);notify()}
 function findUserByName(n){return getUsers().find(u=>u.name===n)}
 function findUserById(id){return getUsers().find(u=>u.id===id)}
-function addUser(name,pass){const l=getUsers();if(l.find(u=>u.name===name))return null;const id='TK'+String(100000+l.length+1).slice(-6);const u={id,name,pass,email:name.toLowerCase().replace(/\s+/g,'')+'@demo.local',bal:0,st:'active',joined:new Date().toISOString().slice(0,10),vipPlans:{}};l.push(u);saveUsers(l);fbSet('users/'+id,u);return u}
+function addUser(name,pass,referralCode){
+  const l=getUsers();if(l.find(u=>u.name===name))return null;
+  const id='TK'+String(100000+l.length+1).slice(-6);
+  const u={id,name,pass,referralCode:id,email:name.toLowerCase().replace(/\s+/g,'')+'@demo.local',bal:0,st:'active',joined:new Date().toISOString().slice(0,10),vipPlans:{},referredBy:null,referralChain:[],referrals:[]};
+  l.push(u);saveUsers(l);fbSet('users/'+id,u);
+  if(referralCode) setTimeout(()=>linkReferral(id,referralCode),200);
+  return u;
+}
 function updateUser(id,patch){const l=getUsers();const i=l.findIndex(u=>u.id===id);if(i<0)return null;l[i]=Object.assign({},l[i],patch);saveUsers(l);fbUpdate('users/'+id,patch);return l[i]}
 function addBalance(id,amt){const u=findUserById(id);if(!u)return null;return updateUser(id,{bal:Math.max(0,(Number(u.bal)||0)+Number(amt))})}
 function getTxs(){return read(K_TXS,[])}
 function saveTxs(l){write(K_TXS,l);notify()}
-function addTx(tx){const id='TX'+(100000+getTxs().length+1)+Math.floor(Math.random()*1000);const rec={id,user:tx.user,t:tx.t,amt:Number(tx.amt)||0,st:tx.st||'active',time:tx.time||new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'}),method:tx.method||'',trx:tx.trx||'',account:tx.account||'',name:tx.name||''};const l=getTxs();l.unshift(rec);saveTxs(l);fbSet('transactions/'+id,rec);return rec}
+function addTx(tx){const id='TX'+(100000+getTxs().length+1)+Math.floor(Math.random()*1000);const rec={id,user:tx.user,t:tx.t,amt:Number(tx.amt)||0,st:tx.st||'active',time:tx.time||new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'}),method:tx.method||'',trx:tx.trx||'',account:tx.account||'',name:tx.name||'',createdAt:Date.now()};const l=getTxs();l.unshift(rec);saveTxs(l);fbSet('transactions/'+id,rec);return rec}
 function getSession(){return read(K_SESSION,null)}
 function login(name){const u=findUserByName(name);if(!u)return{error:'notfound'};if(u.st==='blocked')return{error:'blocked'};write(K_SESSION,{userId:u.id,name:u.name,at:Date.now()});notify();return{user:u}}
 function logout(){localStorage.removeItem(K_SESSION);notify()}
 function currentUser(){const s=getSession();if(!s)return null;const u=findUserById(s.userId);if(!u){localStorage.removeItem(K_SESSION);return null}return u}
 function getPayment(){return read(K_PAYMENT,null)}
 function getPlans(){return read('tkwin_plans_v1',null)}
+function getNotifs(){return read(K_NOTIFS,[])}
+function saveNotifs(v){write(K_NOTIFS,v);notify();fbSet('config/notifs',v)}
+function getCommissionRates(){const r=read(K_COMMISSION,null);if(r&&r.plan&&r.daily)return r;return{plan:{l1:5,l2:3,l3:1},daily:{l1:5,l2:3,l3:1}}}
+function findByReferralCode(code){if(!code)return null;code=String(code).trim().toUpperCase();const users=getUsers();return users.find(u=>String(u.referralCode||u.id).toUpperCase()===code)||null}
+function linkReferral(newUserId,referralCode){
+  if(!referralCode)return false;
+  const referrer=findByReferralCode(referralCode);
+  if(!referrer)return false;
+  if(referrer.id===newUserId)return false;
+  const chain=[referrer.id];
+  if(referrer.referredBy){
+    chain.push(referrer.referredBy);
+    const l2=findUserById(referrer.referredBy);
+    if(l2&&l2.referredBy)chain.push(l2.referredBy);
+  }
+  updateUser(newUserId,{referredBy:referrer.id,referralChain:chain});
+  const refs=referrer.referrals||[];
+  if(!refs.includes(newUserId)){refs.push(newUserId);updateUser(referrer.id,{referrals:refs})}
+  return true;
+}
+function payReferralCommission(buyerId,amount,type){
+  const buyer=findUserById(buyerId);
+  if(!buyer||!buyer.referralChain||!buyer.referralChain.length)return;
+  const rates=getCommissionRates();
+  const r=type==='plan'?rates.plan:rates.daily;
+  const arr=[r.l1,r.l2,r.l3];
+  buyer.referralChain.forEach((refId,i)=>{
+    if(i>=arr.length)return;
+    const commission=Math.floor(amount*(arr[i]/100));
+    if(commission<=0)return;
+    const refUser=findUserById(refId);
+    if(!refUser)return;
+    addBalance(refId,commission);
+    addTx({user:refUser.name,t:'referral',amt:commission,st:'active',time:'Level '+(i+1)+' কমিশন — '+buyer.name});
+  });
+}
 const listeners=[];
 function onChange(fn){listeners.push(fn)}
 function notify(){listeners.forEach(fn=>{try{fn()}catch(e){}})}
 window.addEventListener('storage',e=>{if(e.key&&e.key.indexOf('tkwin_')===0)notify()});
-global.Store={getUsers,saveUsers,findUserByName,findUserById,addUser,updateUser,addBalance,getTxs,saveTxs,addTx,getSession,login,logout,currentUser,getPayment,getPlans,onChange,notify};
+global.Store={getUsers,saveUsers,findUserByName,findUserById,addUser,updateUser,addBalance,getTxs,saveTxs,addTx,getSession,login,logout,currentUser,getPayment,getPlans,getNotifs,saveNotifs,getCommissionRates,findByReferralCode,linkReferral,payReferralCommission,onChange,notify};
 })(window);
 
-/* ===== WELCOME POPUP ===== */
 let welcomeConfig=null;
-function listenWelcome(){
+function listenWelcome(){if(!window.db)return;window.db.ref('config/welcomePopup').on('value',s=>{const v=s.val();if(v&&v.active){welcomeConfig=v;const key='tkwin_seen_'+v.id;if(!localStorage.getItem(key))setTimeout(()=>showWelcome(),800)}})}
+function showWelcome(){if(!welcomeConfig)return;document.getElementById('welcomeIcon').textContent=welcomeConfig.icon||'🎁';document.getElementById('welcomeTitle').textContent=welcomeConfig.title||'স্বাগতম!';document.getElementById('welcomeMsg').textContent=welcomeConfig.msg||'';document.getElementById('welcomeBadge').textContent=welcomeConfig.badge||'🎉 ঘোষণা';document.getElementById('welcomeBtnText').textContent=welcomeConfig.btn||'✅ বুঝেছি';document.getElementById('welcomePopup').classList.add('show')}
+function showWelcomeForce(){if(welcomeConfig)showWelcome();else showToast('এখন কোনো ঘোষণা নেই')}
+function closeWelcome(){if(welcomeConfig)localStorage.setItem('tkwin_seen_'+welcomeConfig.id,'1');document.getElementById('welcomePopup').classList.remove('show')}
+listenWelcome();
+
+let imgPopupConfig=null;
+function listenImagePopup(){
   if(!window.db)return;
-  window.db.ref('config/welcomePopup').on('value',s=>{
+  window.db.ref('config/imagePopup').on('value',s=>{
     const v=s.val();
-    if(v&&v.active){
-      welcomeConfig=v;
-      const key='tkwin_seen_'+v.id;
-      if(!localStorage.getItem(key))setTimeout(()=>showWelcome(),800);
+    if(v&&v.active&&v.data){
+      imgPopupConfig=v;
+      const key='tkwin_seen_img_'+v.id;
+      if(!localStorage.getItem(key))setTimeout(()=>showImagePopup(),1200);
     }
   });
 }
-function showWelcome(){
-  if(!welcomeConfig)return;
-  document.getElementById('welcomeIcon').textContent=welcomeConfig.icon||'🎁';
-  document.getElementById('welcomeTitle').textContent=welcomeConfig.title||'স্বাগতম!';
-  document.getElementById('welcomeMsg').textContent=welcomeConfig.msg||'';
-  document.getElementById('welcomeBadge').textContent=welcomeConfig.badge||'🎉 ঘোষণা';
-  document.getElementById('welcomeBtnText').textContent=welcomeConfig.btn||'✅ বুঝেছি';
-  document.getElementById('welcomePopup').classList.add('show');
+function showImagePopup(){
+  if(!imgPopupConfig||!imgPopupConfig.data)return;
+  document.getElementById('imagePopupImg').src=imgPopupConfig.data;
+  document.getElementById('imagePopupBtn').textContent=imgPopupConfig.btn||'✅ বুঝেছি';
+  document.getElementById('imagePopup').classList.add('show');
 }
-function showWelcomeForce(){
-  if(welcomeConfig)showWelcome();
-  else showToast('এখন কোনো ঘোষণা নেই');
+function closeImagePopup(){
+  if(imgPopupConfig)localStorage.setItem('tkwin_seen_img_'+imgPopupConfig.id,'1');
+  document.getElementById('imagePopup').classList.remove('show');
 }
-function closeWelcome(){
-  if(welcomeConfig)localStorage.setItem('tkwin_seen_'+welcomeConfig.id,'1');
-  document.getElementById('welcomePopup').classList.remove('show');
-}
-listenWelcome();
+listenImagePopup();
 
-/* ===== DATA ===== */
 const DEFAULT_PLANS=[
   {id:'starter',name:'Starter',icon:'🥉',color:'bronze',price:500,daily:10,days:60,badge:''},
   {id:'silver',name:'Silver',icon:'🥈',color:'silver',price:1000,daily:25,days:60,badge:'hot'},
@@ -490,28 +579,27 @@ setTimeout(()=>{document.getElementById('splash').classList.add('hide')},1400);
 
 function go(page,skipPush){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  const el=document.getElementById('page-'+page);
-  if(el)el.classList.add('active');
+  const el=document.getElementById('page-'+page);if(el)el.classList.add('active');
   currentPage=page;
   const isLogin=page==='login';
   document.body.classList.toggle('no-nav',isLogin);
   document.getElementById('bottomNav').style.display=isLogin?'none':'block';
   document.querySelectorAll('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.page===page));
   window.scrollTo({top:0,behavior:'instant'});
-  if(!skipPush){
-    if(page==='login')history.replaceState({page:'login',app:'vip'},'','#login');
-    else history.pushState({page:page,app:'vip'},'','#'+page);
-  }
+  if(!skipPush){if(page==='login')history.replaceState({page:'login',app:'vip'},'','#login');else history.pushState({page:page,app:'vip'},'','#'+page)}
   updateBalanceUI();
   if(page==='home')renderHome();
   if(page==='plans')renderPlans();
   if(page==='deposit')renderDeposit();
   if(page==='profile')renderProfile();
+  updateNotifBadge();
 }
 window.addEventListener('popstate',e=>{
   if(suppressPopstate){suppressPopstate=false;return}
   const sheet=document.getElementById('sheet');
   if(sheet&&sheet.classList.contains('show')){document.getElementById('sheetMask').classList.remove('show');sheet.classList.remove('show');return}
+  const nd=document.getElementById('notifDrawer');
+  if(nd&&nd.classList.contains('show')){nd.classList.remove('show');document.getElementById('notifMask').classList.remove('show');return}
   if(e.state&&e.state.app==='vip'&&e.state.page){if(e.state.page!==currentPage)go(e.state.page,true)}
   else{if(currentPage!=='login'){go('login',true);history.pushState({page:'login',app:'vip'},'','#login')}}
 });
@@ -521,8 +609,9 @@ function switchLoginTab(mode,el){
   el.classList.add('active');
   const btn=document.getElementById('mainAuthBtn');
   const inp=document.getElementById('inUser');
-  if(mode==='register'){btn.textContent='📝 রেজিস্টার করুন';inp.placeholder='মোবাইল নাম্বার'}
-  else{btn.textContent='🔓 লগইন করুন';inp.placeholder='ইউজারনেম / ফোন নাম্বার'}
+  const refField=document.getElementById('refField');
+  if(mode==='register'){btn.textContent='📝 রেজিস্টার করুন';inp.placeholder='মোবাইল নাম্বার';if(refField)refField.style.display='block'}
+  else{btn.textContent='🔓 লগইন করুন';inp.placeholder='ইউজারনেম / ফোন নাম্বার';if(refField)refField.style.display='none'}
 }
 function togglePass(el){const inp=document.getElementById('inPass');if(inp.type==='password'){inp.type='text';el.textContent='🙈'}else{inp.type='password';el.textContent='👁️'}}
 function doLogin(){
@@ -530,10 +619,11 @@ function doLogin(){
   const p=document.getElementById('inPass').value.trim();
   if(!u||!p){showToast('ইউজারনেম ও পাসওয়ার্ড দিন');return}
   if(loginMode==='register'){
-    const created=Store.addUser(u,p);
+    const refCode=(document.getElementById('inRef')?.value||'').trim();
+    const created=Store.addUser(u,p,refCode);
     if(!created){showToast('এই ইউজারনেম আগেই আছে');return}
     Store.login(u);
-    showToast('✅ রেজিস্ট্রেশন সফল!');
+    showToast(refCode?'✅ সফল! রেফারেল যুক্ত হয়েছে':'✅ রেজিস্ট্রেশন সফল!');
   }else{
     const user=Store.findUserByName(u);
     if(!user){showToast('ইউজার নেই — রেজিস্টার করুন');return}
@@ -622,6 +712,7 @@ function buyPlan(planId){
   Store.addTx({user:u.name,t:'buy_plan',amt:p.price,st:'active',time:'প্ল্যান ক্রয় - '+p.name});
   userPlans[planId]={purchased:Date.now(),lastClaim:null,daysClaimed:0,totalClaimed:0};
   Store.updateUser(u.id,{vipPlans:userPlans});
+  Store.payReferralCommission(u.id,p.price,'plan');
   showToast('🎉 '+p.name+' কিনেছেন!');
   renderPlans();renderHome();updateBalanceUI();
 }
@@ -639,6 +730,7 @@ function claimDaily(planId){
   Store.addTx({user:u.name,t:'plan_earn',amt:p.daily,st:'active',time:'VIP ক্লেইম - '+p.name});
   userPlans[planId]={...data,lastClaim:today,daysClaimed:daysUsed+1,totalClaimed:(data.totalClaimed||0)+p.daily};
   Store.updateUser(u.id,{vipPlans:userPlans});
+  Store.payReferralCommission(u.id,p.daily,'daily');
   showToast('🎁 ৳'+p.daily+' ক্লেইম হয়েছে!');
   renderPlans();renderHome();updateBalanceUI();
 }
@@ -685,123 +777,42 @@ function renderPendingDeposits(){
   if(!u||u.id==='GUEST'){el.innerHTML='<div class="empty"><div class="ic">🔒</div><div class="t">আগে লগইন করুন</div></div>';return}
   const txs=Store.getTxs().filter(t=>t.user===u.name&&t.t==='deposit').slice(0,10);
   if(!txs.length){el.innerHTML='<div class="empty"><div class="ic">📭</div><div class="t">কোনো ডিপোজিট নেই</div></div>';return}
-  el.innerHTML=txs.map(t=>{
-    const stTxt={active:'✓ সফল',pending:'⏳ পেন্ডিং',blocked:'✕ বাতিল'}[t.st]||t.st;
-    return '<div class="hist-item"><div class="hist-ic '+(t.st==='active'?'plus':'gold')+'">💰</div><div class="hist-body"><div class="hist-t">ডিপোজিট · '+t.method+'</div><div class="hist-s">'+t.id+' · '+t.time+'</div></div><div class="hist-amt"><div class="hist-v plus">+৳'+Number(t.amt).toLocaleString()+'</div><div class="hist-st '+t.st+'">'+stTxt+'</div></div></div>';
-  }).join('');
+  el.innerHTML=txs.map(t=>{const stTxt={active:'✓ সফল',pending:'⏳ পেন্ডিং',blocked:'✕ বাতিল'}[t.st]||t.st;return '<div class="hist-item"><div class="hist-ic '+(t.st==='active'?'plus':'gold')+'">💰</div><div class="hist-body"><div class="hist-t">ডিপোজিট · '+t.method+'</div><div class="hist-s">'+t.id+' · '+t.time+'</div></div><div class="hist-amt"><div class="hist-v plus">+৳'+Number(t.amt).toLocaleString()+'</div><div class="hist-st '+t.st+'">'+stTxt+'</div></div></div>'}).join('');
 }
-function selectPayMethod(el,ctx){
-  const parent=el.parentElement;
-  parent.querySelectorAll('.pay-method').forEach(x=>x.classList.remove('active'));
-  el.classList.add('active');
-  payMethods[ctx]=el.dataset.m;
-  const s=getPaymentSettings();const m=el.dataset.m.toLowerCase();
-  if(ctx==='dep'){const t=document.getElementById('depTarget');if(t&&s[m])t.textContent=s[m].dep}
-}
+function selectPayMethod(el,ctx){const parent=el.parentElement;parent.querySelectorAll('.pay-method').forEach(x=>x.classList.remove('active'));el.classList.add('active');payMethods[ctx]=el.dataset.m;const s=getPaymentSettings();const m=el.dataset.m.toLowerCase();if(ctx==='dep'){const t=document.getElementById('depTarget');if(t&&s[m])t.textContent=s[m].dep}}
 function doDepositPage(){
   const amt=parseFloat(document.getElementById('depAmt').value||0);
   const trx=(document.getElementById('depTrx').value||'').trim();
   const s=getPaymentSettings();
   if(!amt||amt<s.minDep)return showToast('সর্বনিম্ন ৳ '+s.minDep);
   if(!trx||trx.length<5)return showToast('সঠিক TrxID দিন');
-  const u=Store.currentUser();
-  if(!u)return showToast('আগে লগইন করুন');
+  const u=Store.currentUser();if(!u)return showToast('আগে লগইন করুন');
   Store.addTx({user:u.name,t:'deposit',amt,st:'pending',method:payMethods.dep||'bKash',trx,time:new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'})});
   document.getElementById('depAmt').value='';
   document.getElementById('depTrx').value='';
   showToast('✅ ৳'+amt+' রিকোয়েস্ট পাঠানো হয়েছে');
   renderPendingDeposits();
 }
-function buildDepositHTML(){
-  const s=getPaymentSettings();
-  return '<h3>💰 ডিপোজিট</h3><p class="sub">নিচের নাম্বারে Send Money করুন</p>'+
-    '<div class="notice"><span class="n-ic">ℹ️</span><div>৫-৩০ মিনিটে অ্যাপ্রুভ হবে।</div></div>'+
-    '<div class="pay-methods" id="depPayMethods2">'+
-      '<div class="pay-method active" data-m="bKash" onclick="selectPayMethod2(this,\'dep\')"><span class="pm-logo">🅱️</span>bKash</div>'+
-      '<div class="pay-method" data-m="Nagad" onclick="selectPayMethod2(this,\'dep\')"><span class="pm-logo">🟠</span>Nagad</div>'+
-      '<div class="pay-method" data-m="Rocket" onclick="selectPayMethod2(this,\'dep\')"><span class="pm-logo">🚀</span>Rocket</div>'+
-    '</div>'+
-    '<div class="target-box"><div class="tb-row"><span class="tb-l">সেন্ড মানি</span><span class="tb-r" id="depTarget2">'+s.bkash.dep+'</span></div><div class="tb-row"><span class="tb-l">সর্বনিম্ন</span><span class="tb-r green">৳ '+s.minDep+'</span></div></div>'+
-    '<div class="field"><span class="f-ic">৳</span><input class="input" type="number" id="shDepAmt" placeholder="পরিমাণ" inputmode="numeric"></div>'+
-    '<div class="field"><span class="f-ic">🔢</span><input class="input" type="text" id="shDepTrx" placeholder="TrxID"></div>'+
-    '<button class="btn" onclick="doDepositSheet()">✅ পাঠান</button>';
-}
-function buildWithdrawHTML(){
-  const s=getPaymentSettings();
-  return '<h3>🏦 উইথড্র</h3><p class="sub">রিকোয়েস্ট পাঠান</p>'+
-    '<div class="notice"><span class="n-ic">ℹ️</span><div>সর্বনিম্ন ৳ '+s.minWd+'। নাম্বার আপনার নিজের হতে হবে।</div></div>'+
-    '<div class="pay-methods" id="wdPayMethods2">'+
-      '<div class="pay-method active" data-m="bKash" onclick="selectPayMethod2(this,\'wd\')"><span class="pm-logo">🅱️</span>bKash</div>'+
-      '<div class="pay-method" data-m="Nagad" onclick="selectPayMethod2(this,\'wd\')"><span class="pm-logo">🟠</span>Nagad</div>'+
-      '<div class="pay-method" data-m="Rocket" onclick="selectPayMethod2(this,\'wd\')"><span class="pm-logo">🚀</span>Rocket</div>'+
-    '</div>'+
-    '<div class="target-box"><div class="tb-row"><span class="tb-l">নাম্বার</span><span class="tb-r" id="wdTarget2">'+s.bkash.wd+'</span></div></div>'+
-    '<div class="field"><span class="f-ic">৳</span><input class="input" type="number" id="shWdAmt" placeholder="পরিমাণ" inputmode="numeric"></div>'+
-    '<div class="field"><span class="f-ic">📱</span><input class="input" type="text" id="shWdAcc" placeholder="আপনার নাম্বার" inputmode="numeric"></div>'+
-    '<div class="field"><span class="f-ic">👤</span><input class="input" type="text" id="shWdName" placeholder="অ্যাকাউন্টের নাম"></div>'+
-    '<button class="btn" onclick="doWithdrawSheet()">✅ পাঠান</button>';
-}
-function selectPayMethod2(el,ctx){
-  const parent=el.parentElement;
-  parent.querySelectorAll('.pay-method').forEach(x=>x.classList.remove('active'));
-  el.classList.add('active');
-  payMethods[ctx]=el.dataset.m;
-  const s=getPaymentSettings();const m=el.dataset.m.toLowerCase();
-  if(ctx==='dep'){const t=document.getElementById('depTarget2');if(t&&s[m])t.textContent=s[m].dep}
-  if(ctx==='wd'){const t=document.getElementById('wdTarget2');if(t&&s[m])t.textContent=s[m].wd}
-}
-function openSheet(type){
-  const c=document.getElementById('sheetContent');
-  c.innerHTML=type==='deposit'?buildDepositHTML():buildWithdrawHTML();
-  document.getElementById('sheetMask').classList.add('show');
-  document.getElementById('sheet').classList.add('show');
-  history.pushState({sheet:type,app:'vip'},'','');
-}
-function closeSheet(){
-  if(history.state&&history.state.sheet){suppressPopstate=true;document.getElementById('sheetMask').classList.remove('show');document.getElementById('sheet').classList.remove('show');history.back();return}
-  document.getElementById('sheetMask').classList.remove('show');
-  document.getElementById('sheet').classList.remove('show');
-}
-function doDepositSheet(){
-  const amt=parseFloat(document.getElementById('shDepAmt').value||0);
-  const trx=(document.getElementById('shDepTrx').value||'').trim();
-  const s=getPaymentSettings();
-  if(!amt||amt<s.minDep)return showToast('সর্বনিম্ন ৳ '+s.minDep);
-  if(!trx||trx.length<5)return showToast('সঠিক TrxID');
-  const u=Store.currentUser();if(!u)return showToast('লগইন করুন');
-  Store.addTx({user:u.name,t:'deposit',amt,st:'pending',method:payMethods.dep||'bKash',trx,time:new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'})});
-  closeSheet();
-  showToast('✅ ৳'+amt+' রিকোয়েস্ট');
-  if(currentPage==='deposit')renderDeposit();
-}
-function doWithdrawSheet(){
-  const amt=parseFloat(document.getElementById('shWdAmt').value||0);
-  const acc=(document.getElementById('shWdAcc').value||'').trim();
-  const name=(document.getElementById('shWdName').value||'').trim();
-  const s=getPaymentSettings();
-  if(!amt||amt<s.minWd)return showToast('সর্বনিম্ন ৳ '+s.minWd);
-  if(!acc||acc.length<6)return showToast('সঠিক নাম্বার');
-  if(!name||name.length<2)return showToast('নাম দিন');
-  const u=Store.currentUser();if(!u)return showToast('লগইন করুন');
-  if(Number(u.bal)<amt)return showToast('পর্যাপ্ত ব্যালেন্স নেই');
-  Store.addTx({user:u.name,t:'withdraw',amt,st:'pending',method:payMethods.wd||'bKash',account:acc,name,time:new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'})});
-  closeSheet();
-  showToast('✅ ৳'+amt+' উইথড্র রিকোয়েস্ট');
-}
+function buildDepositHTML(){const s=getPaymentSettings();return '<h3>💰 ডিপোজিট</h3><p class="sub">নিচের নাম্বারে Send Money করুন</p><div class="notice"><span class="n-ic">ℹ️</span><div>৫-৩০ মিনিটে অ্যাপ্রুভ হবে।</div></div><div class="pay-methods" id="depPayMethods2"><div class="pay-method active" data-m="bKash" onclick="selectPayMethod2(this,\'dep\')"><span class="pm-logo">🅱️</span>bKash</div><div class="pay-method" data-m="Nagad" onclick="selectPayMethod2(this,\'dep\')"><span class="pm-logo">🟠</span>Nagad</div><div class="pay-method" data-m="Rocket" onclick="selectPayMethod2(this,\'dep\')"><span class="pm-logo">🚀</span>Rocket</div></div><div class="target-box"><div class="tb-row"><span class="tb-l">সেন্ড মানি</span><span class="tb-r" id="depTarget2">'+s.bkash.dep+'</span></div><div class="tb-row"><span class="tb-l">সর্বনিম্ন</span><span class="tb-r green">৳ '+s.minDep+'</span></div></div><div class="field"><span class="f-ic">৳</span><input class="input" type="number" id="shDepAmt" placeholder="পরিমাণ" inputmode="numeric"></div><div class="field"><span class="f-ic">🔢</span><input class="input" type="text" id="shDepTrx" placeholder="TrxID"></div><button class="btn" onclick="doDepositSheet()">✅ পাঠান</button>'}
+function buildWithdrawHTML(){const s=getPaymentSettings();return '<h3>🏦 উইথড্র</h3><p class="sub">রিকোয়েস্ট পাঠান</p><div class="notice"><span class="n-ic">ℹ️</span><div>সর্বনিম্ন ৳ '+s.minWd+'। নাম্বার আপনার নিজের হতে হবে।</div></div><div class="pay-methods" id="wdPayMethods2"><div class="pay-method active" data-m="bKash" onclick="selectPayMethod2(this,\'wd\')"><span class="pm-logo">🅱️</span>bKash</div><div class="pay-method" data-m="Nagad" onclick="selectPayMethod2(this,\'wd\')"><span class="pm-logo">🟠</span>Nagad</div><div class="pay-method" data-m="Rocket" onclick="selectPayMethod2(this,\'wd\')"><span class="pm-logo">🚀</span>Rocket</div></div><div class="target-box"><div class="tb-row"><span class="tb-l">নাম্বার</span><span class="tb-r" id="wdTarget2">'+s.bkash.wd+'</span></div></div><div class="field"><span class="f-ic">৳</span><input class="input" type="number" id="shWdAmt" placeholder="পরিমাণ" inputmode="numeric"></div><div class="field"><span class="f-ic">📱</span><input class="input" type="text" id="shWdAcc" placeholder="আপনার নাম্বার" inputmode="numeric"></div><div class="field"><span class="f-ic">👤</span><input class="input" type="text" id="shWdName" placeholder="অ্যাকাউন্টের নাম"></div><button class="btn" onclick="doWithdrawSheet()">✅ পাঠান</button>'}
+function selectPayMethod2(el,ctx){const parent=el.parentElement;parent.querySelectorAll('.pay-method').forEach(x=>x.classList.remove('active'));el.classList.add('active');payMethods[ctx]=el.dataset.m;const s=getPaymentSettings();const m=el.dataset.m.toLowerCase();if(ctx==='dep'){const t=document.getElementById('depTarget2');if(t&&s[m])t.textContent=s[m].dep}if(ctx==='wd'){const t=document.getElementById('wdTarget2');if(t&&s[m])t.textContent=s[m].wd}}
+function openSheet(type){const c=document.getElementById('sheetContent');c.innerHTML=type==='deposit'?buildDepositHTML():buildWithdrawHTML();document.getElementById('sheetMask').classList.add('show');document.getElementById('sheet').classList.add('show');history.pushState({sheet:type,app:'vip'},'','')}
+function closeSheet(){if(history.state&&history.state.sheet){suppressPopstate=true;document.getElementById('sheetMask').classList.remove('show');document.getElementById('sheet').classList.remove('show');history.back();return}document.getElementById('sheetMask').classList.remove('show');document.getElementById('sheet').classList.remove('show')}
+function doDepositSheet(){const amt=parseFloat(document.getElementById('shDepAmt').value||0);const trx=(document.getElementById('shDepTrx').value||'').trim();const s=getPaymentSettings();if(!amt||amt<s.minDep)return showToast('সর্বনিম্ন ৳ '+s.minDep);if(!trx||trx.length<5)return showToast('সঠিক TrxID');const u=Store.currentUser();if(!u)return showToast('লগইন করুন');Store.addTx({user:u.name,t:'deposit',amt,st:'pending',method:payMethods.dep||'bKash',trx,time:new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'})});closeSheet();showToast('✅ ৳'+amt+' রিকোয়েস্ট');if(currentPage==='deposit')renderDeposit()}
+function doWithdrawSheet(){const amt=parseFloat(document.getElementById('shWdAmt').value||0);const acc=(document.getElementById('shWdAcc').value||'').trim();const name=(document.getElementById('shWdName').value||'').trim();const s=getPaymentSettings();if(!amt||amt<s.minWd)return showToast('সর্বনিম্ন ৳ '+s.minWd);if(!acc||acc.length<6)return showToast('সঠিক নাম্বার');if(!name||name.length<2)return showToast('নাম দিন');const u=Store.currentUser();if(!u)return showToast('লগইন করুন');if(Number(u.bal)<amt)return showToast('পর্যাপ্ত ব্যালেন্স নেই');Store.addTx({user:u.name,t:'withdraw',amt,st:'pending',method:payMethods.wd||'bKash',account:acc,name,time:new Date().toLocaleString('bn-BD',{hour:'2-digit',minute:'2-digit'})});closeSheet();showToast('✅ ৳'+amt+' উইথড্র রিকোয়েস্ট')}
 function openHistory(type){
-  const u=Store.currentUser();
-  if(!u){showToast('আগে লগইন করুন');return}
+  const u=Store.currentUser();if(!u){showToast('আগে লগইন করুন');return}
   let txs=Store.getTxs().filter(t=>t.user===u.name);
-  if(type==='earn')txs=txs.filter(t=>t.t==='plan_earn');
+  if(type==='earn')txs=txs.filter(t=>t.t==='plan_earn'||t.t==='referral');
   const title=type==='earn'?'💎 আয়ের হিস্ট্রি':'📊 ট্রানজেকশন';
   let html='<h3>'+title+'</h3><p class="sub">মোট '+txs.length+' টি</p>';
   if(!txs.length){html+='<div class="empty"><div class="ic">📭</div><div class="t">কিছু নেই</div></div>'}
   else{
     html+='<div class="history-list">';
     txs.slice(0,60).forEach(t=>{
-      const labelMap={deposit:'ডিপোজিট',withdraw:'উইথড্র',buy_plan:'প্ল্যান ক্রয়',plan_earn:'VIP আয়',bet:'বেট',win:'উইন'};
-      const iconMap={deposit:'💰',withdraw:'📤',buy_plan:'🛒',plan_earn:'💎',bet:'🎯',win:'🏆'};
-      const isPlus=(t.t==='deposit'||t.t==='plan_earn'||t.t==='win');
+      const labelMap={deposit:'ডিপোজিট',withdraw:'উইথড্র',buy_plan:'প্ল্যান ক্রয়',plan_earn:'VIP আয়',bet:'বেট',win:'উইন',referral:'রেফারেল কমিশন'};
+      const iconMap={deposit:'💰',withdraw:'📤',buy_plan:'🛒',plan_earn:'💎',bet:'🎯',win:'🏆',referral:'🎁'};
+      const isPlus=(t.t==='deposit'||t.t==='plan_earn'||t.t==='win'||t.t==='referral');
       const cls=isPlus?'plus':(t.t==='withdraw'||t.t==='buy_plan'?'minus':'gold');
       const stTxt={active:'✓ সফল',pending:'⏳ পেন্ডিং',blocked:'✕ বাতিল'}[t.st]||t.st;
       html+='<div class="hist-item"><div class="hist-ic '+cls+'">'+(iconMap[t.t]||'📄')+'</div><div class="hist-body"><div class="hist-t">'+(labelMap[t.t]||t.t)+'</div><div class="hist-s">'+[t.id,t.method,t.trx||t.account,t.time].filter(Boolean).join(' · ')+'</div></div><div class="hist-amt"><div class="hist-v '+(isPlus?'plus':'minus')+'">'+(isPlus?'+':'−')+'৳'+Number(t.amt).toLocaleString()+'</div><div class="hist-st '+t.st+'">'+stTxt+'</div></div></div>';
@@ -823,55 +834,68 @@ function renderProfile(){
   document.getElementById('pBal').textContent='৳ '+(u?Number(u.bal||0).toLocaleString():0);
   document.getElementById('pPlans').textContent=plans;
   document.getElementById('pEarned').textContent='৳ '+earned.toLocaleString();
+  renderReferralSection();
 }
-function openPasswordChange(){
-  const u=Store.currentUser();
-  if(!u||u.id==='GUEST'){showToast('আগে লগইন করুন');return}
-  document.getElementById('sheetContent').innerHTML='<h3>🔑 পাসওয়ার্ড পরিবর্তন</h3><p class="sub">পুরনো পাসওয়ার্ড দিন</p><div class="field"><span class="f-ic">🔒</span><input class="input" type="password" id="oldPass" placeholder="বর্তমান"></div><div class="field"><span class="f-ic">🔐</span><input class="input" type="password" id="newPass" placeholder="নতুন (৬+)"></div><div class="field"><span class="f-ic">✅</span><input class="input" type="password" id="confPass" placeholder="আবার লিখুন"></div><button class="btn" onclick="doChangePass()">💾 পরিবর্তন</button>';
-  document.getElementById('sheetMask').classList.add('show');
-  document.getElementById('sheet').classList.add('show');
-  history.pushState({sheet:'pass',app:'vip'},'','');
-}
-function doChangePass(){
-  const o=(document.getElementById('oldPass').value||'').trim();
-  const n=(document.getElementById('newPass').value||'').trim();
-  const c=(document.getElementById('confPass').value||'').trim();
-  const u=Store.currentUser();
-  if(!u)return showToast('লগইন করুন');
-  if(o!==u.pass)return showToast('❌ বর্তমান পাসওয়ার্ড ভুল');
-  if(!n||n.length<6)return showToast('৬+ অক্ষর দিন');
-  if(n!==c)return showToast('❌ মিলছে না');
-  Store.updateUser(u.id,{pass:n});
-  closeSheet();showToast('✅ পরিবর্তন হয়েছে');
-}
-function open2FASetup(){
-  const u=Store.currentUser();
-  if(!u||u.id==='GUEST'){showToast('আগে লগইন করুন');return}
-  const en=!!u.twoFA,code=u.twoFA||'';
-  document.getElementById('sheetContent').innerHTML='<h3>🛡️ 2FA</h3><p class="sub">লগইনে নিরাপত্তা</p><div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:var(--bg-2);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;"><div><div style="font-size:13.5px;font-weight:700;">2FA চালু</div><div style="font-size:11.5px;color:var(--muted);">৬ ডিজিটের কোড</div></div><label class="toggle"><input type="checkbox" id="tgl2" '+(en?'checked':'')+' onchange="toggle2F()"><span class="slider"></span></label></div><div id="f2" style="display:'+(en?'block':'none')+';"><div class="field"><span class="f-ic">🔢</span><input class="input" type="text" id="c2" value="'+code+'" placeholder="৬ ডিজিট" maxlength="6" inputmode="numeric"></div></div><button class="btn" onclick="save2FA()">💾 সেভ</button>';
-  document.getElementById('sheetMask').classList.add('show');
-  document.getElementById('sheet').classList.add('show');
-  history.pushState({sheet:'2fa',app:'vip'},'','');
-}
-function toggle2F(){document.getElementById('f2').style.display=document.getElementById('tgl2').checked?'block':'none'}
-function save2FA(){
+function renderReferralSection(){
   const u=Store.currentUser();if(!u)return;
-  const c=document.getElementById('tgl2').checked;
-  if(c){const code=(document.getElementById('c2').value||'').trim();if(!/^\d{6}$/.test(code))return showToast('৬ ডিজিট সংখ্যা');Store.updateUser(u.id,{twoFA:code});showToast('✅ চালু')}
-  else{Store.updateUser(u.id,{twoFA:null});showToast('✅ বন্ধ')}
-  closeSheet();
+  const code=u.referralCode||u.id;
+  const codeEl=document.getElementById('myRefCode');
+  if(codeEl)codeEl.textContent=code;
+  const myTxs=Store.getTxs().filter(t=>t.user===u.name&&t.t==='referral');
+  let l1=0,l2=0,l3=0;
+  myTxs.forEach(t=>{const m=(t.time||'').match(/Level (\d)/);if(!m)return;if(m[1]==='1')l1+=Number(t.amt||0);else if(m[1]==='2')l2+=Number(t.amt||0);else if(m[1]==='3')l3+=Number(t.amt||0)});
+  const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v};
+  set('refL1','৳ '+l1.toLocaleString());
+  set('refL2','৳ '+l2.toLocaleString());
+  set('refL3','৳ '+l3.toLocaleString());
+  set('refTotal',(u.referrals||[]).length);
+  set('refEarned','৳ '+(l1+l2+l3).toLocaleString());
 }
-function openLanguageSelect(){
-  const langs=[{code:'bn',name:'বাংলা',flag:'🇧🇩'},{code:'en',name:'English',flag:'🇬🇧'},{code:'hi',name:'हिन्दी',flag:'🇮🇳'}];
-  const cur=localStorage.getItem('tkwin_lang')||'bn';
-  document.getElementById('sheetContent').innerHTML='<h3>🌐 ভাষা</h3><p class="sub">পছন্দ বেছে নিন</p>'+langs.map(l=>'<div class="menu-item" style="cursor:pointer;'+(cur===l.code?'border-color:var(--brand);':'')+'" onclick="selLang(\''+l.code+'\')"><span class="mi">'+l.flag+'</span>'+l.name+(cur===l.code?'<span class="arrow" style="color:var(--brand);">✓</span>':'')+'</div>').join('');
-  document.getElementById('sheetMask').classList.add('show');
-  document.getElementById('sheet').classList.add('show');
-  history.pushState({sheet:'lang',app:'vip'},'','');
+function copyRefCode(){const u=Store.currentUser();if(!u)return showToast('লগইন করুন');const code=u.referralCode||u.id;if(navigator.clipboard)navigator.clipboard.writeText(code);showToast('✅ কপি: '+code)}
+function shareRefCode(){
+  const u=Store.currentUser();if(!u)return showToast('লগইন করুন');
+  const code=u.referralCode||u.id;
+  const url='https://tkwin99.cyou';
+  const text='🎁 Tkwin99 এ যোগ দিন!\n\nরেফারেল কোড: '+code+'\nলিংক: '+url+'\n\nআমার কোড দিয়ে সাইনআপ করলে বোনাস পাবেন!';
+  if(navigator.share){navigator.share({title:'Tkwin99',text,url}).catch(()=>{})}
+  else{if(navigator.clipboard)navigator.clipboard.writeText(text);showToast('✅ কপি — শেয়ার করুন')}
 }
+function openPasswordChange(){const u=Store.currentUser();if(!u||u.id==='GUEST'){showToast('আগে লগইন করুন');return}document.getElementById('sheetContent').innerHTML='<h3>🔑 পাসওয়ার্ড পরিবর্তন</h3><p class="sub">পুরনো পাসওয়ার্ড দিন</p><div class="field"><span class="f-ic">🔒</span><input class="input" type="password" id="oldPass" placeholder="বর্তমান"></div><div class="field"><span class="f-ic">🔐</span><input class="input" type="password" id="newPass" placeholder="নতুন (৬+)"></div><div class="field"><span class="f-ic">✅</span><input class="input" type="password" id="confPass" placeholder="আবার লিখুন"></div><button class="btn" onclick="doChangePass()">💾 পরিবর্তন</button>';document.getElementById('sheetMask').classList.add('show');document.getElementById('sheet').classList.add('show');history.pushState({sheet:'pass',app:'vip'},'','')}
+function doChangePass(){const o=(document.getElementById('oldPass').value||'').trim();const n=(document.getElementById('newPass').value||'').trim();const c=(document.getElementById('confPass').value||'').trim();const u=Store.currentUser();if(!u)return showToast('লগইন করুন');if(o!==u.pass)return showToast('❌ বর্তমান পাসওয়ার্ড ভুল');if(!n||n.length<6)return showToast('৬+ অক্ষর দিন');if(n!==c)return showToast('❌ মিলছে না');Store.updateUser(u.id,{pass:n});closeSheet();showToast('✅ পরিবর্তন হয়েছে')}
+function open2FASetup(){const u=Store.currentUser();if(!u||u.id==='GUEST'){showToast('আগে লগইন করুন');return}const en=!!u.twoFA,code=u.twoFA||'';document.getElementById('sheetContent').innerHTML='<h3>🛡️ 2FA</h3><p class="sub">লগইনে নিরাপত্তা</p><div style="display:flex;align-items:center;justify-content:space-between;padding:14px;background:var(--bg-2);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;"><div><div style="font-size:13.5px;font-weight:700;">2FA চালু</div><div style="font-size:11.5px;color:var(--muted);">৬ ডিজিটের কোড</div></div><label class="toggle"><input type="checkbox" id="tgl2" '+(en?'checked':'')+' onchange="toggle2F()"><span class="slider"></span></label></div><div id="f2" style="display:'+(en?'block':'none')+';"><div class="field"><span class="f-ic">🔢</span><input class="input" type="text" id="c2" value="'+code+'" placeholder="৬ ডিজিট" maxlength="6" inputmode="numeric"></div></div><button class="btn" onclick="save2FA()">💾 সেভ</button>';document.getElementById('sheetMask').classList.add('show');document.getElementById('sheet').classList.add('show');history.pushState({sheet:'2fa',app:'vip'},'','')}
+function toggle2F(){document.getElementById('f2').style.display=document.getElementById('tgl2').checked?'block':'none'}
+function save2FA(){const u=Store.currentUser();if(!u)return;const c=document.getElementById('tgl2').checked;if(c){const code=(document.getElementById('c2').value||'').trim();if(!/^\d{6}$/.test(code))return showToast('৬ ডিজিট সংখ্যা');Store.updateUser(u.id,{twoFA:code});showToast('✅ চালু')}else{Store.updateUser(u.id,{twoFA:null});showToast('✅ বন্ধ')}closeSheet()}
+function openLanguageSelect(){const langs=[{code:'bn',name:'বাংলা',flag:'🇧🇩'},{code:'en',name:'English',flag:'🇬🇧'},{code:'hi',name:'हिन्दी',flag:'🇮🇳'}];const cur=localStorage.getItem('tkwin_lang')||'bn';document.getElementById('sheetContent').innerHTML='<h3>🌐 ভাষা</h3><p class="sub">পছন্দ বেছে নিন</p>'+langs.map(l=>'<div class="menu-item" style="cursor:pointer;'+(cur===l.code?'border-color:var(--brand);':'')+'" onclick="selLang(\''+l.code+'\')"><span class="mi">'+l.flag+'</span>'+l.name+(cur===l.code?'<span class="arrow" style="color:var(--brand);">✓</span>':'')+'</div>').join('');document.getElementById('sheetMask').classList.add('show');document.getElementById('sheet').classList.add('show');history.pushState({sheet:'lang',app:'vip'},'','')}
 function selLang(c){localStorage.setItem('tkwin_lang',c);closeSheet();showToast('✅ ভাষা পরিবর্তন')}
+
+function getSeenNotifs(){try{const r=localStorage.getItem('tkwin_seen_notifs');return r?JSON.parse(r):[]}catch{return[]}}
+function markNotifSeen(id){const seen=getSeenNotifs();if(!seen.includes(id)){seen.push(id);if(seen.length>200)seen.splice(0,seen.length-200);localStorage.setItem('tkwin_seen_notifs',JSON.stringify(seen))}}
+function getUnreadNotifs(){const notifs=Store.getNotifs();const seen=getSeenNotifs();return notifs.filter(n=>!seen.includes(n.id))}
+function updateNotifBadge(){
+  const unread=getUnreadNotifs().length;
+  const badges=['notifBadge','notifBadge2','notifBadge3','notifBadge4'];
+  badges.forEach(id=>{const el=document.getElementById(id);if(el){if(unread>0){el.textContent=unread>99?'99+':unread;el.style.display='grid'}else{el.style.display='none'}}});
+}
+function openNotif(){
+  const el=document.getElementById('notifList');
+  const notifs=Store.getNotifs();
+  if(!notifs.length){el.innerHTML='<div class="notif-empty"><div class="ne-ic">🔔</div><div class="ne-t">কোনো নোটিফিকেশন নেই</div></div>'}
+  else{
+    const seen=getSeenNotifs();
+    el.innerHTML=notifs.map(n=>{const isUnread=!seen.includes(n.id);return '<div class="notif-item '+(isUnread?'unread':'')+'" onclick="handleNotifClick(\''+n.id+'\')"><div class="notif-icon '+(n.color||'gold')+'">'+(n.ic||'📢')+'</div><div class="notif-body"><div class="notif-title">'+(n.title||'')+'</div><div class="notif-text">'+(n.msg||'')+'</div><div class="notif-time">'+(n.time||'')+'</div></div></div>'}).join('');
+  }
+  document.getElementById('notifMask').classList.add('show');
+  document.getElementById('notifDrawer').classList.add('show');
+  history.pushState({notif:true,app:'vip'},'','');
+  notifs.forEach(n=>markNotifSeen(n.id));
+  updateNotifBadge();
+}
+function handleNotifClick(id){markNotifSeen(id);updateNotifBadge()}
+function closeNotif(){if(history.state&&history.state.notif){suppressPopstate=true;document.getElementById('notifDrawer').classList.remove('show');document.getElementById('notifMask').classList.remove('show');history.back();return}document.getElementById('notifDrawer').classList.remove('show');document.getElementById('notifMask').classList.remove('show')}
+
 let toastTimer;
 function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2200)}
+
 Store.onChange(()=>{
   const s=Store.getSession();
   if(!s){if(currentPage!=='login')go('login');return}
@@ -885,12 +909,16 @@ Store.onChange(()=>{
   if(currentPage==='home')renderHome();
   if(currentPage==='plans')renderPlans();
   if(currentPage==='deposit')renderDeposit();
+  updateNotifBadge();
 });
+
 (function init(){
   const s=Store.getSession();
   setTimeout(()=>{
     if(s){history.replaceState({page:'home',app:'vip'},'#home','#home');go('home',true)}
     else{history.replaceState({page:'login',app:'vip'},'#login','#login');go('login',true)}
+    updateNotifBadge();
+    setInterval(updateNotifBadge,5000);
   },1400);
 })();
 </script>
